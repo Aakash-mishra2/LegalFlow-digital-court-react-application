@@ -1,5 +1,4 @@
 import React from "react";
-import ReactDOM from "react-dom";
 import CitizenList from "../components/CitizenList";
 export default function Citizens() {
 
