@@ -1,11 +1,14 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 
-export default function Navlink() {
+
+import "./styles/Navlinks.css";
+
+export default function Navlinks() {
     return (
-        <ul>
+        <ul className="nav-links">
             <li>
-                <Navlink to="/">CITIZENS</Navlink>
+                <NavLink to="/">CITIZENS</NavLink>
             </li>
             <li>
                 <NavLink to="/u1/cases">MY CASES</NavLink>

@@ -1,14 +1,14 @@
 import React from "react";
+import ReactDOM from "react-dom";
 import { CSSTransition } from "react-transition-group";
-import Backdrop from "./Backdrop";
 
-import './styles/Sidemenu';
+import './styles/Sidemenu.css';
 
 export default function SideMenu(props) {
     const sideDrawer = (
         <div>
             <CSSTransition
-                in={props.openMenu}
+                in={props.show}
                 mountonEnter
                 unmountOnExit
                 timeout={200}

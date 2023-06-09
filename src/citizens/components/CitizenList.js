@@ -14,7 +14,7 @@ export default function CitizenList(props) {
         );
     }
     return (
-        <ul className="citizen-list">
+        <ul className="citizens-list">
             {
                 props.users.map((plaintiff) => {
                     return (

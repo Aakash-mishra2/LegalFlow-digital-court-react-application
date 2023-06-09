@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import Card from "../../shared/UIelements/Card";
-import Button from "";
+import Button from "../../shared/formElements/Button";
 import Modal from "../../shared/UIelements/Modal";
 
 export default function CaseItem(props) {
@@ -20,7 +20,9 @@ export default function CaseItem(props) {
                     contentClass="case-item__modal-content"
                     footerClass="case-item__modal-actions"
                 >
-                    <p> CASE DESCRIPTION </p>
+                    <h3> CaseID : {props.id}</h3>
+                    <p> Next Hearing  : {props.nextDate} </p>
+                    <p> Judge : {props.judge} </p>
                 </Modal>
                 <li className="case-item">
                     <Card className="case-item__content">

@@ -24,7 +24,7 @@ const DUMMMY_CASES = [
     judge: "Mr. Devesh Patel",
     status: "PENDING",
     nextHearing: "13/08/2027",
-    plaintiff: "c1"
+    plaintiff: "c2"
   }
 ]
 
