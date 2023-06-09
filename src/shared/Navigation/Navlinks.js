@@ -11,7 +11,7 @@ export default function Navlinks() {
                 <NavLink to="/">CITIZENS</NavLink>
             </li>
             <li>
-                <NavLink to="/u1/cases">MY CASES</NavLink>
+                <NavLink to="/c1/cases">MY CASES</NavLink>
             </li>
             <li>
                 <NavLink to="/cases/new">NEW CASE</NavLink>
