@@ -13,7 +13,8 @@ const DUMMMY_CASES = [
     judge: "Mr. Suresh Joshi",
     status: "PENDING",
     nextHearing: "05/07/2023",
-    plaintiff: "c1"
+    plaintiff: "c1",
+    idCardNo: 5564 - 4737 - 7738,
   },
   {
     id: 'ccl456',
@@ -24,7 +25,8 @@ const DUMMMY_CASES = [
     judge: "Mr. Devesh Patel",
     status: "PENDING",
     nextHearing: "13/08/2027",
-    plaintiff: "c2"
+    plaintiff: "c2",
+    idCardNo: 5564 - 4737 - 7738,
   }
 ]
 

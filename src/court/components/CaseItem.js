@@ -15,12 +15,12 @@ export default function CaseItem(props) {
                 <Modal
                     show={isDescBox}
                     closeBox={closeDescBox}
-                    header={props.description}
+                    header={`REGISTRATION - ID: ${props.id} --- Status: ${props.status}`}
                     footer={<Button onClick={closeDescBox} >CLOSE</Button>}
                     contentClass="case-item__modal-content"
                     footerClass="case-item__modal-actions"
                 >
-                    <h3> CaseID : {props.id}</h3>
+                    <h4> Description : {props.description}</h4>
                     <p> Next Hearing  : {props.nextDate} </p>
                     <p> Judge : {props.judge} </p>
                 </Modal>
@@ -36,7 +36,7 @@ export default function CaseItem(props) {
                         <div className="case-item__actions">
 
                             <Button onClick={openDescBox} >VIEW DESCRIPTION</Button>
-                            <Button >EDIT</Button>
+                            <Button to={`/update/${props.id}`}>EDIT</Button>
                             <Button >DELETE</Button>
                         </div>
                     </Card>

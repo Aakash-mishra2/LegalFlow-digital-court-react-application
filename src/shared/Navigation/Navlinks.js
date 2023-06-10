@@ -16,6 +16,9 @@ export default function Navlinks() {
             <li>
                 <NavLink to="/cases/new">NEW CASE</NavLink>
             </li>
+            <li>
+                <NavLink to="/authenticate">AUTHENTICATE</NavLink>
+            </li>
         </ul>
     );
 }
