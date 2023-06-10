@@ -16,7 +16,7 @@ function App() {
       <Route path="/cases/new" element={<NewCases />} />
       <Route path="/:uid/cases" element={< RegisteredCases />} />
       <Route path="/update/:caseID" element={<UpdateCases />} />
-      <Route path="/auth" element={<Authenticate />} />
+      <Route path="/users/authenticate" element={<Authenticate />} />
     </Routes>
   );
 
