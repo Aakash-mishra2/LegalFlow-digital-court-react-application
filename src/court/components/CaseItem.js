@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Card from "../../shared/UIelements/Card";
 import Button from "../../shared/formElements/Button";
 import Modal from "../../shared/UIelements/Modal";
+import "./styles/CaseItem.css";
 
 export default function CaseItem(props) {
 
@@ -15,10 +16,10 @@ export default function CaseItem(props) {
                 <Modal
                     show={isDescBox}
                     closeBox={closeDescBox}
-                    header={`CASE-ID: ${props.id} ---  STATUS: ${props.status}`}
+                    header={<span><p>CASE-ID: {props.id}</p><p>STATUS: {props.status}</p></span>}
                     footer={
                         <span>
-                            <Button onClick={closeDescBox} >CLOSE</Button>
+                            <Button onClick={closeDescBox} danger>CLOSE</Button>
                             <Button> ADD TO CALENDER </Button>
                         </span>
                     }
@@ -31,19 +32,21 @@ export default function CaseItem(props) {
                 </Modal>
                 <li className="case-item">
                     <Card className="case-item__content">
-                        <div className="case-item__image">
-                            <img src={props.image} alt={props.court} />
+                        <div className="top-half">
+                            <div className="case-item__image">
+                                <img src={props.image} alt={props.court} />
+                            </div>
+                            <div className="case-item__actions">
+
+                                <Button onClick={openDescBox}><b></b>DESCRIPTION</Button>
+                                <Button to={`/update/${props.id}`}>EDIT</Button>
+                                <Button danger>DELETE</Button>
+                            </div>
                         </div>
                         <div className="case-item__info">
-                            <h2>{props.court} </h2>
-                            <h3>{props.nextDate}</h3>
+                            <h2>{props.court} </h2> <h3>Next Hearing Date: {props.nextDate}</h3>
                         </div>
-                        <div className="case-item__actions">
 
-                            <Button onClick={openDescBox} >VIEW DESCRIPTION</Button>
-                            <Button to={`/update/${props.id}`}>EDIT</Button>
-                            <Button >DELETE</Button>
-                        </div>
                     </Card>
                 </li>
             </React.Fragment>

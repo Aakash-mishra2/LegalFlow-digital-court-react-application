@@ -23,6 +23,12 @@
   border-radius: 6px;
 }
 
+.modal__header>span {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
 .modal__header h2 {
   margin: 0.4rem;
 }

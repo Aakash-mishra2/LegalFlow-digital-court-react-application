@@ -82,4 +82,8 @@
     background: #f8df00;
     color: #292929;
   }
+
+  .nav-links a.active {
+    background: #eae3d2;
+  }
 }
