@@ -19,11 +19,19 @@
 
 .main-navigation__title {
   color: white;
+  letter-spacing: 0.9px;
+  text-align: left;
+
+}
+
+.main-navigation__title>.desktop-Title {
+  display: none;
 }
 
 .main-navigation__title a {
   text-decoration: none;
   color: white;
+  font-size: 1.8rem;
 }
 
 .main-navigation__header-nav {
@@ -35,9 +43,19 @@
 }
 
 @media (min-width: 768px) {
-  .main-navigation__menu-btn {}
+  .main-navigation__menu-btn {
+    display: none;
+  }
 
   .main-navigation__header-nav {
     display: block;
+  }
+
+  .main-navigation__title>.desktop-Title {
+    display: block;
+  }
+
+  .main-navigation__title>.mobile-Title {
+    display: none;
   }
 }

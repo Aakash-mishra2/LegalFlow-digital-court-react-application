@@ -35,7 +35,8 @@ export default function MainNavigation() {
                 </button>
 
                 <h1 className="main-navigation__title">
-                    <Link to='/'>Court Management</Link>
+                    <Link className="desktop-Title" to='/'>Court Case Management System</Link>
+                    <Link className="mobile-Title" to='/'>C.C.M.S.</Link>
                 </h1>
                 <nav className="main-navigation__header-nav">
                     <Navlinks />
