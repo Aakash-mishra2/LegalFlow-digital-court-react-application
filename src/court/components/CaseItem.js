@@ -44,7 +44,8 @@ export default function CaseItem(props) {
                             </div>
                         </div>
                         <div className="case-item__info">
-                            <h2>{props.court} </h2> <h3>Next Hearing Date: {props.nextDate}</h3>
+                            <h2>{props.court} </h2>
+                            <h3>Next Hearing Date: {props.nextDate}</h3>
                         </div>
 
                     </Card>

@@ -1,43 +1,37 @@
-import React from "react";
-import { CSSTransition } from "react-transition-group";
-import ReactDOM from "react-dom";
-
-import './styles/Modal.css';
+import "./styles/Modal.css";
 import Backdrop from "./Backdrop";
+import ReactDom from "react-dom";
 
-
-function ModalOverlay(props) {
-    const content = (
+const ModalOverlay = (props) => {
+    const ModalOverlay = (
         <div className={`modal ${props.className}`} style={props.style}>
-            <header className={`modal__header ${props.headerClass}`}>
-                {props.header}
-            </header>
-            <form onSubmit={props.onSubmit ? props.onSubmit : event => event.preventDefault()}>
+            <header className={`modal__header ${props.headerClass}`}>{props.header}</header>
+            <form onSubmit={props.onSubmit ? props.onSubmit : event => preventDefault()}>
                 <div className={`modal__content ${props.contentClass}`}>
-                    <h2>{props.children}</h2>
+                    {props.children}
                 </div>
-                <footer className={`modal__footer ${props.footerClass}`} >
-                    {props.footer}</footer>
+                <footer className={`modal__footer ${props.footerClass}`}>{props.footer}</footer>
             </form>
-        </div>
-    );
-
-    return ReactDOM.createPortal(content, document.getElementById('modal'));
+        </div >
+    )
+    return ReactDOM.createPortal(ModalOverlay, document.getElementById('modal'));
 }
 
-export default function Modal(props) {
+const Modal = (props) => {
+
     return (
-        <React.Fragment>
-            {props.show && <Backdrop onClick={props.closeBox} />}
+        <div>
+            {props.show && <Backdrop onClick={props.onClick} />}
             <CSSTransition
                 in={props.show}
                 mountOnEnter
                 unmountOnExit
                 timeout={200}
-                classNames="modal"
+                className="modal"
             >
                 <ModalOverlay {...props} />
             </CSSTransition>
-        </React.Fragment>
+        </div>
     );
-};
+}
+export default Modal;
