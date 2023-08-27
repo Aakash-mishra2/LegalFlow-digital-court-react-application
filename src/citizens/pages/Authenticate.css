@@ -1,15 +1,26 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@600&display=swap');
+
 .authenticate__header {
     color: white;
     text-align: center;
 }
 
 .authentication {
+    font-family: 'Rubik', sans-serif;
+    font-size: 16px;
+    color: beige;
+    background-color: #5c5470;
     width: 90%;
     max-width: 25rem;
     margin: 7rem auto;
     text-align: center;
+    padding: 1rem;
 }
 
 .authentication form {
     margin-bottom: 1rem;
+}
+
+.authentication button {
+    color: beige;
 }

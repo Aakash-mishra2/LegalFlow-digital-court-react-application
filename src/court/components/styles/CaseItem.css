@@ -1,5 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=REM&display=swap');
 
+p {
+  padding-top: 0px;
+  margin-top: 0px;
+}
+
 .case-item {
   margin: 1rem 0;
   font-family: 'REM', sans-serif;
@@ -65,7 +70,7 @@
 }
 
 .case-item__modal-content {
-  padding: 0;
+  padding: 0 0.5rem;
 }
 
 .case-item__modal-actions {
@@ -81,4 +86,20 @@
   .case-item__image {
     height: 20rem;
   }
+}
+
+@media (max-width: 500px) {
+  .case-item {
+    font-size: 13px;
+  }
+
+  .case-item__image {
+    display: none;
+  }
+
+  .case-item__content {
+    display: flex;
+    flex-direction: column-reverse;
+  }
+
 }

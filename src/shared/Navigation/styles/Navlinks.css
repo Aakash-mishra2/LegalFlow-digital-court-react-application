@@ -11,8 +11,8 @@
   justify-content: center;
   align-items: center;
   font-family: 'REM', sans-serif;
-  font-size: 1.2rem;
-  letter-spacing: 0.9px;
+  font-size: 0.7rem;
+  letter-spacing: 0.7px;
 }
 
 .nav-links li {
@@ -58,6 +58,7 @@
     flex-direction: row;
     align-items: center;
     gap: 20px;
+    font-size: 1.2rem;
   }
 
   .nav-links li {

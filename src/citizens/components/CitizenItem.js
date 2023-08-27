@@ -1,17 +1,17 @@
 import React from "react";
 import Card from "../../shared/UIelements/Card";
-import Avatar from "../../shared/UIelements/Avatar";
 import { Link } from "react-router-dom";
+import Avatar from "../../shared/UIelements/Avatar";
 import './styles/CitizenItem.css'
 
-export default function CitizenItem(props) {
+const CitizenItem = (props) => {
     return (
-        <li className="citizen-item">
+        <div className="citizen-item">
             <Card className="citizen-item__content">
                 <Link to={`${props.id}/cases`} >
 
                     <div className="citizen-item__image">
-                        <Avatar image={props.imgURL} alt={`Image of ${props.name}`} />
+                        <Avatar image={`${props.imgURL}`} alt={`Image of ${props.name}`} />
                     </div>
 
                     <div className="citizen-item__info">
@@ -22,6 +22,7 @@ export default function CitizenItem(props) {
                     </div>
                 </Link>
             </Card>
-        </li>
-    )
+        </div>
+    );
 }
+export default CitizenItem;

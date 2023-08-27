@@ -1,9 +1,9 @@
 import React from "react";
 import Card from "../../shared/UIelements/Card";
-import './styles/CitizenList.css';
 import CitizenItem from "./CitizenItem";
+import './styles/CitizenList.css';
 
-export default function CitizenList(props) {
+const CitizenList = (props) => {
     if (props.users.length === 0) {
         return (
             <div className="center">
@@ -16,18 +16,17 @@ export default function CitizenList(props) {
     return (
         <ul className="citizens-list">
             {
-                props.users.map((plaintiff) => {
-                    return (
-                        <CitizenItem
-                            id={plaintiff.id}
-                            name={plaintiff.name}
-                            imgURL={plaintiff.image}
-                            caseCount={plaintiff.cases}
-                        />
-                    )
-                }
-                )
+                props.users.map(plaintiff => (
+                    <CitizenItem
+                        key={plaintiff.id}
+                        id={plaintiff.id}
+                        name={plaintiff.name}
+                        imgURL={plaintiff.image}
+                        caseCount={plaintiff.cases}
+                    />
+                ))
             }
         </ul>
-    )
+    );
 }
+export default CitizenList;

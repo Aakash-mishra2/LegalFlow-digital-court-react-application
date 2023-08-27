@@ -1,37 +1,43 @@
-import "./styles/Modal.css";
+import React from "react";
+import { CSSTransition } from "react-transition-group";
+import ReactDOM from "react-dom";
 import Backdrop from "./Backdrop";
-import ReactDom from "react-dom";
+import "./styles/Modal.css";
 
 const ModalOverlay = (props) => {
-    const ModalOverlay = (
+    const content = (
         <div className={`modal ${props.className}`} style={props.style}>
-            <header className={`modal__header ${props.headerClass}`}>{props.header}</header>
-            <form onSubmit={props.onSubmit ? props.onSubmit : event => preventDefault()}>
-                <div className={`modal__content ${props.contentClass}`}>
+            <header className={`modal__header ${props.headerClass}`}>
+                {props.header}
+            </header>
+            <div className={`modal__content ${props.contentClass}`}>
+                <form onSubmit={props.onSubmit ? props.onSubmit : event => event.preventDefault()}>
                     {props.children}
-                </div>
-                <footer className={`modal__footer ${props.footerClass}`}>{props.footer}</footer>
-            </form>
+                </form>
+            </div>
+            <footer className={`modal__footer ${props.footerClass}`}>
+                {props.footer}
+            </footer>
         </div >
     )
-    return ReactDOM.createPortal(ModalOverlay, document.getElementById('modal'));
+    return ReactDOM.createPortal(content, document.getElementById('modal'));
 }
 
 const Modal = (props) => {
 
     return (
-        <div>
-            {props.show && <Backdrop onClick={props.onClick} />}
+        <React.Fragment>
+            {props.show && <Backdrop onClick={props.closeBox} />}
             <CSSTransition
                 in={props.show}
                 mountOnEnter
                 unmountOnExit
                 timeout={200}
-                className="modal"
+                classNames="modal"
             >
                 <ModalOverlay {...props} />
             </CSSTransition>
-        </div>
+        </React.Fragment>
     );
 }
 export default Modal;

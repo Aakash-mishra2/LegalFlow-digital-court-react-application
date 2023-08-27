@@ -58,6 +58,7 @@ export default function Input(props) {
                 onChange={changeHandler}
                 onBlur={touchHandler}
                 value={inputState.value}
+                autoComplete="off"
             />
         ) :
             (
@@ -69,6 +70,7 @@ export default function Input(props) {
                     onChange={changeHandler}
                     onBlur={touchHandler}
                     value={inputState.value}
+                    autoComplete="off"
                 />
             );
 

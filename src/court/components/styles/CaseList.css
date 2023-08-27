@@ -5,3 +5,9 @@
   width: auto;
   max-width: 35%;
 }
+
+@media (max-width: 500px) {
+  .case-list {
+    max-width: 75%;
+  }
+}

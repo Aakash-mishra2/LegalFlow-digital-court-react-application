@@ -14,7 +14,7 @@ export default function Authenticate() {
     }, false);
 
     function switchModeHandler() {
-        if (!isLogin) {
+        if (isLogin) {
             setFormData(
                 {
                     ...formState.inputs,
@@ -45,11 +45,11 @@ export default function Authenticate() {
         <React.Fragment>
             <Card className="authentication">
                 <form onSubmit={userSubmitHandler}>
-                    {isLogin && <Input
+                    {!isLogin && <Input
                         type="text"
                         element="input"
                         id="name"
-                        label=" Name: "
+                        label=" Name "
                         errorText="Please enter valid Name. "
                         validators={[VALIDATOR_REQUIRE()]}
                         onInput={inputHandler}
@@ -58,16 +58,16 @@ export default function Authenticate() {
                         type="text"
                         element="input"
                         id="email"
-                        label=" Your Email: "
+                        label=" Email "
                         errorText="Please enter a valid E-Mail input. "
                         validators={[VALIDATOR_EMAIL()]}
                         onInput={inputHandler}
                     />
                     <Input
-                        type="text"
+                        type="password"
                         element="input"
                         id="password"
-                        label=" Your Password: "
+                        label=" Password "
                         errorText="Enter a valid Password of 10 digits or more."
                         validators={[VALIDATOR_MINLENGTH(10)]}
                         onInput={inputHandler} l
@@ -75,6 +75,7 @@ export default function Authenticate() {
                     <Button type="submit" disabled={!formState.isValid}>{isLogin ? 'LOGIN' : 'SIGNUP'}</Button>
                 </form>
                 <hr />
+                <p><b><tt>Do not have an accout? Create one!</tt></b></p>
                 <Button inverse onClick={switchModeHandler}>Switch to {isLogin ? 'SIGNUP' : 'LOGIN'}</Button>
             </Card>
         </React.Fragment>
