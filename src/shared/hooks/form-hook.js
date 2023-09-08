@@ -1,63 +1,63 @@
 import { useCallback, useReducer } from "react";
 
-function parchiPadho(state, action) {
+function deduceFormValidity(state, action) {
     switch (action.type) {
-        case 'bhardiya': {
+    case 'boxAlter':{
+        let formisValid = true; 
+        for( const temp in state.inputs ){
+            if( action.id === temp ){
+                if(! state.inputs[temp]){ continue; }
 
-            let formIsValid = true;
-            let temp;
-            for (temp in state.inputs) {
-                if (temp === action.id) {
-
-                    if (!state.inputs[temp]) continue;
-
-                    formIsValid = formIsValid && action.isValid
-                } else
-                    formIsValid = formIsValid && state.inputs[temp].isValid;
+                formisValid = action.validity && formisValid
             }
-            return {
-                ...state,
-                inputs: {
-                    ...state.inputs,
-                    [action.id]: { value: action.value, isValid: action.isValid }
-                },
-                isValid: formIsValid
-            };
+            else {
+                formisValid = formisValid && state.inputs[temp].isValid
+            }
         }
-
-        case 'nayiParchi':
-            return {
-                inputs: action.inputs,
-                isValid: action.formValid
-            };
-        default:
-            return state;
+        return {
+            ...state,
+            inputs : {
+                ...state.inputs,
+                [action.id] : { action: action.value, isValid: action.isValid }
+            },
+            isValid: formisValid
+        };
+    }
+    case 'newForm' :
+        return{
+            inputs: action.newList,
+            isValid: action.validity 
+        }
+    default:
+        return state;
     }
 };
 
-export function useForm(sareDibbe, initialValidity) {
+const useForm = (inputsJson, initialValidity) => {
 
-    const [formState, parchiBharo] = useReducer(parchiPadho, {
-        inputs: sareDibbe,
-        isValid: initialValidity
+    const [formState, dispatch] = useReducer(deduceFormValidity, {
+        inputs: inputsJson,
+        isValid: initialValidity || false
     });
 
     const inputHandler = useCallback((id, value, isValid) => {
-        parchiBharo({
-            type: 'bhardiya',
+        dispatch({
+            type: 'boxAlter',
+            id: id,
             val: value,
-            isValid: isValid,
-            id: id
+            boxValidity: isValid
         });
-    }, []);
+    },[]);
 
-    const setFormData = useCallback((nayeDibbe, formValidity) => {
-        parchiBharo({
-            type: 'nayiParchi',
-            inputs: nayeDibbe,
-            formValid: formValidity
+    const setFormData = useCallback(( newState ) => {
+        dispatch({
+            type: 'newForm',
+            newList: newState,
+            validity: newState.isValid
         });
-    }, []);
+    },[]);
 
     return [formState, inputHandler, setFormData];
 }
+
+export {useForm};

@@ -6,78 +6,76 @@ import { useForm } from "../../shared/hooks/form-hook";
 import Card from "../../shared/UIelements/Card";
 import './Authenticate.css';
 
-export default function Authenticate() {
-    const [isLogin, setIsLogin] = useState(true);
-    const [formState, inputHandler, setFormData] = useForm({
-        email: { value: '', isValid: false },
-        password: { value: '', isValid: false }
+const Authenticate  = () => {
+    const {islogin, setIsLogin} = useState(false);
+    const { formState, inputHandler, setFormData } = useForm({
+        'email' : { value: ' ', isValid: false},
+        'password': {value: ' ', isValid: false}
     }, false);
-
-    function switchModeHandler() {
-        if (isLogin) {
-            setFormData(
-                {
-                    ...formState.inputs,
-                    name: undefined
-                },
-                false
-            )
-        } else {
-            setFormData(
-                {
-                    ...formState.inputs,
-                    name: {
-                        value: ' ',
-                        isValid: false
-                    }
-                },
-                false
-            );
+    const switchModeHandler = () => {
+        if(islogin) {
+            setFormData({
+                ...formState.inputs,
+                name: undefined
+            }, false)
         }
-        setIsLogin(prevMode => !prevMode);
+        else{
+            setFormData({
+                ...formState.inputs,
+                name: {
+                    value: ' ',
+                    isValid: false
+                }
+            }, false);
+        }
+        setIsLogin(prevMode => !prevMode)
     };
-
-    function userSubmitHandler(event) {
-        console.log(formState.inputs);
+    const submitHandler = (event) =>{
+        console.log("hello");
         event.preventDefault();
-    };
+    }
     return (
         <React.Fragment>
-            <Card className="authentication">
-                <form onSubmit={userSubmitHandler}>
-                    {!isLogin && <Input
-                        type="text"
-                        element="input"
-                        id="name"
-                        label=" Name "
-                        errorText="Please enter valid Name. "
-                        validators={[VALIDATOR_REQUIRE()]}
-                        onInput={inputHandler}
-                    />}
-                    <Input
-                        type="text"
-                        element="input"
-                        id="email"
-                        label=" Email "
-                        errorText="Please enter a valid E-Mail input. "
-                        validators={[VALIDATOR_EMAIL()]}
-                        onInput={inputHandler}
-                    />
-                    <Input
-                        type="password"
-                        element="input"
-                        id="password"
-                        label=" Password "
-                        errorText="Enter a valid Password of 10 digits or more."
-                        validators={[VALIDATOR_MINLENGTH(10)]}
-                        onInput={inputHandler} l
-                    />
-                    <Button type="submit" disabled={!formState.isValid}>{isLogin ? 'LOGIN' : 'SIGNUP'}</Button>
-                </form>
-                <hr />
-                <p><b><tt>Do not have an accout? Create one!</tt></b></p>
-                <Button inverse onClick={switchModeHandler}>Switch to {isLogin ? 'SIGNUP' : 'LOGIN'}</Button>
-            </Card>
+        <Card className = "authentication">
+            <form onSubmit={submitHandler}>
+            {!islogin && <Input 
+                element = "input"
+                id="name"
+                type="text"
+                validators= {[ VALIDATOR_REQUIRE() ]}
+                onInput = {inputHandler}
+                label = "Your Name :"
+                placeHolder=" Enter your full name "
+                errorText = "This is required field. Enter valid Name. "
+            />}
+            <Input 
+                element = "input"
+                id="email"
+                type="text"
+                validators = {[ VALIDATOR_REQUIRE() , VALIDATOR_EMAIL()]}
+                onInput = {inputHandler}
+                label = "Your email address is:"
+                placeHolder=" Enter your email address "
+                errorText=" This is required field "
+            />
+            <Input 
+                element = "input"
+                id="password"
+                type="password"
+                validators = {[ VALIDATOR_REQUIRE() , VALIDATOR_MINLENGTH(8), VALIDATOR_EMAIL()]}
+                onInput = {inputHandler}
+                label = "Your Password: "
+                placeHolder=" Enter your password min 8 digit "
+                errorText=" Enter a valid password of 8 digit or more"
+            />
+            <Button type="submit" disabled={!formState.isValid}>{islogin ? 'LOGIN' : 'SIGNUP'}</Button>
+            </form>
+            <hr />
+            <p><b><tt>Do not have an accout? Create one!</tt></b></p>
+            <Button onClick={switchModeHandler} > Switch to {islogin ? 'SIGNUP' : 'LOGIN'} </Button>
+        </Card>
         </React.Fragment>
-    );
+    )
 }
+
+export default Authenticate;

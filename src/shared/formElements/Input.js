@@ -1,54 +1,52 @@
 import React, { useEffect, useReducer } from "react";
-import { validate } from "../util/validators";
+import {validate} from "../util/validators";
 import './Input.css';
 
 function caseReducer(state, action) {
-    switch (action.type) {
+    switch(action.type){
         case 'ALTER':
             return {
                 ...state,
-                value: action.val,
-                isValid: validate(action.val, action.validators)
-            };
-        case 'TOUCH':
-            return {
-                ...state,
-                isTouched: true
-            };
-        default:
-            return state;
+                inputValue: action.newValue,
+                isValid: validate(action.newValue, action.validators)
+            }
+        case 'TOUCH': return{
+            ...state,
+            isTouched: true
+        }
+        default : return state
     }
 };
 
 export default function Input(props) {
 
     const [inputState, dispatch] = useReducer(caseReducer, {
-        isValid: props.initialValid || false,
-        value: props.initialValue || '',
+        inputValue : props.initialValue || '',
+        isValid: props.initialValidity || false,
         isTouched: false
     })
-
+//dispaltch(action object)
     function changeHandler(event) {
-        dispatch({
-            type: 'ALTER',
-            val: event.target.value,
-            validators: props.validators
-        });
+       dispatch({
+        type: 'ALTER',
+        validators: props.validators,
+        newValue : event.target.value,
+       })
     };
 
     function touchHandler(event) {
         dispatch({
-            type: 'TOUCH',
+            type: 'TOUCH'
         })
     }
-    const { id, onInput } = props;
-    const { isValid, value } = inputState;
-
-    //useEffect(() = > {trigger this action - function  },[when these things change - dependencies])
+   
+    //change layout on parent component and parent form validity dynamically
+   const { id, onInput } = props;
+   const { inputValue, isValid } = inputState;
     useEffect(() => {
-        onInput(id, value, isValid)
-    }, [id, isValid, value, onInput])
-
+        onInput(id, inputValue, isValid);
+    }, [id, onInput, inputValue, isValid ])
+    
     const element =
         props.element === "input" ? (
             <input
@@ -76,12 +74,11 @@ export default function Input(props) {
 
     return (
         <div
-            className={`form-control ${!inputState.isValid && inputState.isTouched &&
-                'form-control--invalid'}`}
+            className={`form-control ${!inputState.isValid && inputState.isTouched && 'form-control-invalid'}` }
         >
             <label htmlFor={props.id}>{props.label}</label>
             {element}
-            {!inputState.isValid && inputState.isTouched && <p>{props.errorText}</p>}
+            <p>{!inputState.isValid && inputState.isTouched && props.errorText}</p> 
         </div>
     )
 }
