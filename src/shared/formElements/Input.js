@@ -1,84 +1,85 @@
-import React, { useEffect, useReducer } from "react";
+import { useEffect, useReducer } from "react";
+import React from "react";
 import {validate} from "../util/validators";
-import './Input.css';
 
-function caseReducer(state, action) {
+import "./Input.css";
+
+const inputReducer = (action, state) =>{
     switch(action.type){
         case 'ALTER':
             return {
                 ...state,
-                inputValue: action.newValue,
-                isValid: validate(action.newValue, action.validators)
+                value: action.val,
+                isValid: validate(action.val, action.validator)
             }
-        case 'TOUCH': return{
-            ...state,
-            isTouched: true
-        }
-        default : return state
+        case 'TOUCH':
+            return {
+                ...state,
+                isTouched: true
+            }
+        default :
+            return state
     }
-};
+}
 
-export default function Input(props) {
+const Input = (props) => {
 
-    const [inputState, dispatch] = useReducer(caseReducer, {
-        inputValue : props.initialValue || '',
-        isValid: props.initialValidity || false,
+    const [ inputState, dispatch ] = useReducer(inputReducer, {
+        value: ' '||props.initialValue,
+        isValid: false || props.initialvalidity,
         isTouched: false
-    })
-//dispaltch(action object)
-    function changeHandler(event) {
-       dispatch({
-        type: 'ALTER',
-        validators: props.validators,
-        newValue : event.target.value,
-       })
-    };
+    });
 
-    function touchHandler(event) {
+    const changeHandler = (event) => {
+        dispatch({
+            type: 'ALTER',
+            val: event.target.value,
+            validator : props.validators,
+        })
+    }
+    const touchHandler = (event) => {
         dispatch({
             type: 'TOUCH'
         })
     }
-   
-    //change layout on parent component and parent form validity dynamically
-   const { id, onInput } = props;
-   const { inputValue, isValid } = inputState;
+    const [id, onInput] = props;
+    const [isValid, value] = inputState;
+
     useEffect(() => {
-        onInput(id, inputValue, isValid);
-    }, [id, onInput, inputValue, isValid ])
-    
-    const element =
-        props.element === "input" ? (
-            <input
-                type={props.type}
-                placeholder={props.placeholder}
-                id={props.id}
-                onChange={changeHandler}
-                onBlur={touchHandler}
-                value={inputState.value}
-                autoComplete="off"
-            />
-        ) :
-            (
-                <textarea
-                    type={props.type}
-                    placeholder={props.placeholder}
-                    id={props.id}
-                    rows={props.rows || 3}
-                    onChange={changeHandler}
-                    onBlur={touchHandler}
-                    value={inputState.value}
-                    autoComplete="off"
-                />
-            );
+        onInput(id, value, isValid);
+    },[id, onInput, isValid, value])
+
+    const element = 
+        props.element === 'input' ?
+        (<input 
+            id= {props.id}
+            type = {props.type}
+            placeholder={props.placeholder}
+            autoComplete="off"
+            onChange={changeHandler}
+            onBlur={touchHandler}
+            value = {inputState.value}
+        /> )
+        : (<textarea 
+            type={props.type}
+            id={props.id}
+            rows={ 3 || props.rows}
+            autoComplete="off"
+            onChange={changeHandler}
+            onBlur={touchHandler}
+            placeholder={props.placeholder}
+            value={inputState.value}
+        />)
+    ;
 
     return (
-        <div
-            className={`form-control ${!inputState.isValid && inputState.isTouched && 'form-control-invalid'}` }
-        >
-            <label htmlFor={props.id}>{props.label}</label>
-            {element}
-            <p>{!inputState.isValid && inputState.isTouched && props.errorText}</p> 
-        </div>
+        <React.Fragment>
+            <div className={`form-control ${ !inputState.isValid && inputState.isTouched && 'form-control-invalid' }`}>
+                <label htmlFor={props.id} >{props.label}</label>
+                {element}
+                {!inputState.isValid && inputState.isTouched && <p>{props.errorText}</p>}
+            </div>
+        </React.Fragment>
     )
 }
+export default Input;

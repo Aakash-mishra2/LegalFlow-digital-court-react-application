@@ -1,63 +1,62 @@
 import { useCallback, useReducer } from "react";
 
-function deduceFormValidity(state, action) {
-    switch (action.type) {
-    case 'boxAlter':{
-        let formisValid = true; 
-        for( const temp in state.inputs ){
-            if( action.id === temp ){
-                if(! state.inputs[temp]){ continue; }
-
-                formisValid = action.validity && formisValid
+const formReducer = (action, state) => {
+    let formValidity = true
+    switch(action.type){
+        case 'inputAltered':
+        
+        for(const temp in state.inputs){
+            if( temp.id === action.id){
+                if(!state.inputs[temp]){ continue; }
+                
+                formValidity = formValidity && action.validity
             }
-            else {
-                formisValid = formisValid && state.inputs[temp].isValid
-            }
+            else
+                formValidity = formValidity && state.inputs[temp].isValid
         }
+        
         return {
-            ...state,
-            inputs : {
-                ...state.inputs,
-                [action.id] : { action: action.value, isValid: action.isValid }
-            },
-            isValid: formisValid
-        };
-    }
-    case 'newForm' :
-        return{
-            inputs: action.newList,
-            isValid: action.validity 
+               inputs: { 
+                    ...state.inputs,
+                    [action.id] : { value: action.value, isValid: action.validity }
+                },
+                formValidity: formValidity
+            }
+    case 'changeForm' :
+        return {
+            inputs: action.newForm,
+            formValidity: action.validity
         }
-    default:
-        return state;
+        default: 
+            return state
     }
 };
 
-const useForm = (inputsJson, initialValidity) => {
+const useForm = (initialState, initialValidity) => {
 
-    const [formState, dispatch] = useReducer(deduceFormValidity, {
-        inputs: inputsJson,
-        isValid: initialValidity || false
+const [formstate, dispatch] = useReducer(formReducer,{
+    inputs: initialState,
+    formValidity: initialValidity
+});
+
+const inputHandler = useCallback((id, value, validity) => {
+    dispatch({
+        type: 'inputAltered',
+        id: id,
+        valueID: value,
+        validity: validity
     });
+},[])
 
-    const inputHandler = useCallback((id, value, isValid) => {
-        dispatch({
-            type: 'boxAlter',
-            id: id,
-            val: value,
-            boxValidity: isValid
-        });
-    },[]);
+const setFormData = useCallback((newForm, validity)=>{
+    dispatch({
+        type: 'changeForm',
+        validity: validity,
+        newInputs: newForm
+    })
+},[])
 
-    const setFormData = useCallback(( newState ) => {
-        dispatch({
-            type: 'newForm',
-            newList: newState,
-            validity: newState.isValid
-        });
-    },[]);
+    return [ formstate, inputHandler, setFormData];
 
-    return [formState, inputHandler, setFormData];
 }
-
 export {useForm};
