@@ -8,6 +8,7 @@ import MainNavigation from './shared/Navigation/MainNavigation';
 import UpdateCases from './court/pages/UpdateCases';
 import Authenticate from './citizens/pages/Authenticate';
 import './App.css';
+import Counter from './features/counter/Counter';
 
 function App() {
   let routes = (
@@ -17,6 +18,7 @@ function App() {
       <Route path="/:uid/cases" element={< RegisteredCases />} />
       <Route path="/update/:caseID" element={<UpdateCases />} />
       <Route path="/users/authenticate" element={<Authenticate />} />
+      <Route path="/counter" element={<Counter />} />
     </Routes>
   );
 
