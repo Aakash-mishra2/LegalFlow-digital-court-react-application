@@ -1,7 +1,8 @@
-import { useEffect, useReducer } from "react";
 import React from "react";
-import {validate} from "../util/validators";
-
+import { useEffect, useReducer } from "react";
+//import { useSelector, useDispatch } from "react-redux";
+//import { alter, touch } from "../../features/inputValidation/inputSlice";
+import { validate } from "../util/validators";
 import "./Input.css";
 
 const inputReducer = (action, state) =>{
@@ -24,29 +25,39 @@ const inputReducer = (action, state) =>{
 
 const Input = (props) => {
 
+    // const isInputValid = useSelector((state) => state.validBox.isValid);
+    // const isInputTouched = useSelector((state) => state.validBox.isTouched);
+    // const inputValue = useSelector((state) => state.validBox.value);
+    // const dispatchAction = useDispatch();
+
+
     const [ inputState, dispatch ] = useReducer(inputReducer, {
         value: ' '||props.initialValue,
         isValid: false || props.initialvalidity,
         isTouched: false
     });
-
     const changeHandler = (event) => {
+        // dispatchAction(alter({
+        //     value: event.target.value,
+        //     validator: props.validators,
+        // }));
         dispatch({
             type: 'ALTER',
             val: event.target.value,
-            validator : props.validators,
+            validator: props.validators
         })
     }
     const touchHandler = (event) => {
+        // dispatchAction(touch());
         dispatch({
             type: 'TOUCH'
         })
     }
-    const [id, onInput] = props;
+    const { id, onInput } = props;
     const [isValid, value] = inputState;
 
     useEffect(() => {
-        onInput(id, value, isValid);
+        onInput(id, isValid, value);
     },[id, onInput, isValid, value])
 
     const element = 
@@ -77,7 +88,7 @@ const Input = (props) => {
             <div className={`form-control ${ !inputState.isValid && inputState.isTouched && 'form-control-invalid' }`}>
                 <label htmlFor={props.id} >{props.label}</label>
                 {element}
-                {!inputState.isValid && inputState.isTouched && <p>{props.errorText}</p>}
+                {!inputState.isTouched && inputState.isTouched && <p>{props.errorText}</p>}
             </div>
         </React.Fragment>
     )

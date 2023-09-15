@@ -38,7 +38,7 @@ export default function NewCases() {
                 label="Your name"
                 placeHolder="Enter your full name"
                 errorText="Please Enter a valid name. "
-                validators={VALIDATOR_REQUIRE()}
+                validators={[VALIDATOR_REQUIRE()]}
                 onInput={inputHandler}
             />
             <Input
@@ -48,7 +48,7 @@ export default function NewCases() {
                 label="ID no. "
                 placeHolder="Enter your Aadhar Card NO. / Voter ID no. "
                 errorText="Please Enter a valid no. "
-                validators={VALIDATOR_MINLENGTH(12)}
+                validators={[VALIDATOR_MINLENGTH(12)]}
                 onInput={inputHandler}
             />
             <Input
@@ -58,7 +58,7 @@ export default function NewCases() {
                 label="Case Description"
                 placeHolder=" Brief Summary of your case Application (200 words )."
                 errorText="This is a required field. "
-                validators={VALIDATOR_REQUIRE()}
+                validators={[VALIDATOR_REQUIRE()]}
                 onInput={inputHandler}
             />
             <Button type="submit" disabled={!formState.isValid}>ADD CASE</Button>
