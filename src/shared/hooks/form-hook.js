@@ -1,62 +1,63 @@
 import { useCallback, useReducer } from "react";
 
-const formReducer = (action, state) => {
-    let formValidity = true
-    switch(action.type){
-        case 'inputAltered':
-        
-        for(const temp in state.inputs){
-            if( temp.id === action.id){
-                if(!state.inputs[temp]){ continue; }
-                
-                formValidity = formValidity && action.validity
+function parchiPadho(state, action) {
+    switch (action.type) {
+        case 'bhardiya': {
+
+            let formIsValid = true;
+            let temp;
+            for (temp in state.inputs) {
+                if (temp === action.id) {
+
+                    if (!state.inputs[temp]) continue;
+
+                    formIsValid = formIsValid && action.isValid
+                } else
+                    formIsValid = formIsValid && state.inputs[temp].isValid;
             }
-            else
-                formValidity = formValidity && state.inputs[temp].isValid
-        }
-        
-        return {
-               inputs: { 
+            return {
+                ...state,
+                inputs: {
                     ...state.inputs,
-                    [action.id] : { value: action.value, isValid: action.validity }
+                    [action.id]: { value: action.value, isValid: action.isValid }
                 },
-                formValidity: formValidity
-            }
-    case 'changeForm' :
-        return {
-            inputs: action.newForm,
-            formValidity: action.validity
+                isValid: formIsValid
+            };
         }
-        default: 
-            return state
+
+        case 'nayiParchi':
+            return {
+                inputs: action.inputs,
+                isValid: action.formValid
+            };
+        default:
+            return state;
     }
 };
 
-const useForm = (initialState, initialValidity) => {
+export function useForm(sareDibbe, initialValidity) {
 
-const [formstate, dispatch] = useReducer(formReducer,{
-    inputs: initialState,
-    formValidity: initialValidity
-});
-
-const inputHandler = useCallback((id, value, validity) => {
-    dispatch({
-        type: 'inputAltered',
-        id: id,
-        valueID: value,
-        validity: validity
+    const [formState, parchiBharo] = useReducer(parchiPadho, {
+        inputs: sareDibbe,
+        isValid: initialValidity
     });
-},[])
 
-const setFormData = useCallback((newForm, validity)=>{
-    dispatch({
-        type: 'changeForm',
-        validity: validity,
-        newInputs: newForm
-    })
-},[])
+    const inputHandler = useCallback((id, value, isValid) => {
+        parchiBharo({
+            type: 'bhardiya',
+            val: value,
+            isValid: isValid,
+            id: id
+        });
+    }, []);
 
-    return [ formstate, inputHandler, setFormData];
+    const setFormData = useCallback((nayeDibbe, formValidity) => {
+        parchiBharo({
+            type: 'nayiParchi',
+            inputs: nayeDibbe,
+            formValid: formValidity
+        });
+    }, []);
 
+    return [formState, inputHandler, setFormData];
 }
-export {useForm};
