@@ -28,7 +28,7 @@ function parchiPadho(state, action) {
         case 'nayiParchi':
             return {
                 inputs: action.inputs,
-                isValid: action.formValid
+                isValid: action.isValid
             };
         default:
             return state;
@@ -55,7 +55,7 @@ export function useForm(sareDibbe, initialValidity) {
         parchiBharo({
             type: 'nayiParchi',
             inputs: nayeDibbe,
-            formValid: formValidity
+            isValid: formValidity
         });
     }, []);
 

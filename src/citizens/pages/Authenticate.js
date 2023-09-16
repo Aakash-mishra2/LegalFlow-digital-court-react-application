@@ -7,8 +7,8 @@ import Card from "../../shared/UIelements/Card";
 import './Authenticate.css';
 
 const Authenticate  = () => {
-    const {islogin, setIsLogin} = useState(false);
-    const { formState, inputHandler, setFormData } = useForm({
+    const [islogin, setIsLogin] = useState(false);
+    const [ formState, inputHandler, setFormData ] = useForm({
         'email' : { value: ' ', isValid: false},
         'password': {value: ' ', isValid: false}
     }, false);
@@ -17,7 +17,7 @@ const Authenticate  = () => {
             setFormData({
                 ...formState.inputs,
                 name: undefined
-            }, false)
+            }, false);
         }
         else{
             setFormData({

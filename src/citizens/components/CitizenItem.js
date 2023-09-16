@@ -16,9 +16,9 @@ const CitizenItem = (props) => {
 
                     <div className="citizen-item__info">
                         <h2>{props.name}</h2>
-                        <h3>
+                        { props.name!== 'ADMIN' && <h3>
                             {props.caseCount} {props.caseCount === 1 ? "Case" : "Cases"}
-                        </h3>
+                        </h3>}
                     </div>
                 </Link>
             </Card>
