@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router";
-
 import { useDispatch, useSelector } from "react-redux";
+import { useForm } from "../../shared/hooks/form-hook";
 import { login, logOut } from "../../features/UserAccount/loginSlice";
 
+import ErrorModal from "../../shared/UIelements/ErrorModal";
+import LoadingSpinner from "../../shared/UIelements/LoadingSpinner";
 import api from "../../api/ccmsBase";
-import { useForm } from "../../shared/hooks/form-hook";
-
 import Button from "../../shared/formElements/Button";
 import Input from "../../shared/formElements/Input";
 import {
@@ -17,18 +17,13 @@ import {
 import Card from "../../shared/UIelements/Card";
 
 import "./Authenticate.css";
-import { ErrorModal } from "../../shared/UIelements/ErrorModal";
 const Authenticate = () => {
     const [islogin, setIsLogin] = useState(true);
-    const [error, setError] = useState({
-        header: null,
-        data: null,
-    });
-
+    const [isLoading, setIsLoading] = useState(false);
+    const [error, setError] = useState('');
+    const currentUserId = useSelector((state) => state.userAccount.UserId);
+  const currentUserName = useSelector((state) => state.userAccount.userName);
     const history = useNavigate();
-
-    const currentUser = useSelector((state) => state.userAccount.UserId);
-    const currentUserName = useSelector((state) => state.userAccount.userName);
     const dispatch = useDispatch();
 
     const [formState, inputHandler, setFormData] = useForm(
@@ -38,9 +33,7 @@ const Authenticate = () => {
         },
         false
     );
-    const clearError = () => {
-        setError(null);
-    }
+  
     const switchModeHandler = () => {
         if (!islogin) {
             setFormData(
@@ -71,6 +64,7 @@ const Authenticate = () => {
     };
     const submitHandler = async (event) => {
         event.preventDefault();
+        setIsLoading(true);
         if (islogin) {
             const loginUser = {
                 email: formState.inputs.email.value,
@@ -78,6 +72,7 @@ const Authenticate = () => {
             };
             try {
                 const response = await api.post("/public/login", loginUser);
+                setIsLoading(false);
                 dispatch(
                     login({
                         id: response.data.citizen.id,
@@ -85,19 +80,14 @@ const Authenticate = () => {
                     })
                 );
             } catch (err) {
+                setIsLoading(false);
                 if (err.response) {
-                    setError({
-                        header: err.response.header,
-                        data: err.response.data,
-                    })
+                    setError(err.response.data.message);
                     console.log(err.response.status);
+                    console.log(error);
                 } else {
-                    setError({
-                        header: 'An unexpected Error!!',
-                        data: err.message
-                    });
+                    setError(err.message);
                 }
-                throw error;
             }
         } else {
             try {
@@ -109,35 +99,35 @@ const Authenticate = () => {
                 };
 
                 const response = await api.post("/public/signup", newUser);
+                setIsLoading(false);
                 dispatch(
                     login({
                         id: response.data.added.id,
                         name: response.data.added.name,
                     })
-                );
+                    );
             } catch (err) {
+                setIsLoading(false); 
                 if (err.response) {
-                    setError({
-                        header: err.response.header,
-                        data: err.response.data,
-                    })
+                    setError(err.response.data.message)
                     console.log(err.response.status);
+                    console.log(error);
                 } else {
-                    setError({
-                        header: 'An unexpected Error!!',
-                        data: err.message
-                    });
+                    setError(err.message);
                 }
-                throw error;
             }
         }
-
-        console.log(currentUser + " " + currentUserName + ' user entered.');
-        history('/');
     };
+
+    const clearError = () => {
+        setError(null);
+    }
+
     return (
         <React.Fragment>
+            {isLoading && <LoadingSpinner asOverlay />}
             <ErrorModal error={error} onClear={clearError} />
+            <h1>{currentUserId} :: {currentUserName} is Logged In!</h1>
             <Card className="authentication">
                 <form onSubmit={submitHandler}>
                     {!islogin && (

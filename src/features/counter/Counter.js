@@ -6,6 +6,8 @@ const Counter = () => {
   const count = useSelector((state) => state.counter.count);
   const showCounter = useSelector((state) => state.counter.showCounter);
   const dispatch = useDispatch();
+  const currentUserId = useSelector((state) => state.userAccount.userId);
+  const currentUserName = useSelector((state) => state.userAccount.userName);
 
   const [incrementAmount, setIncrementAmount] = useState(0);
 
