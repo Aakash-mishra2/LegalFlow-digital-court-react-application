@@ -19,7 +19,7 @@ function parchiPadho(state, action) {
                 ...state,
                 inputs: {
                     ...state.inputs,
-                    [action.id]: { value: action.value, isValid: action.isValid }
+                    [action.id]: { value: action.val, isValid: action.isValid }
                 },
                 isValid: formIsValid
             };

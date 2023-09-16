@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import CitizenList from '../components/CitizenList';
-import api from '../../api/allcases';
+import api from '../../api/ccmsBase';
 
 const Citizens = () => {
     // const DUMMY_USERS = [

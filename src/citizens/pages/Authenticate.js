@@ -5,9 +5,12 @@ import { VALIDATOR_EMAIL, VALIDATOR_MINLENGTH, VALIDATOR_REQUIRE } from "../../s
 import { useForm } from "../../shared/hooks/form-hook";
 import Card from "../../shared/UIelements/Card";
 import './Authenticate.css';
+import api from "../../api/ccmsBase";
 
 const Authenticate  = () => {
-    const [islogin, setIsLogin] = useState(false);
+    const [islogin, setIsLogin] = useState(true);
+    const [loggedInUser, setLoggedInUser] = useState();
+
     const [ formState, inputHandler, setFormData ] = useForm({
         'email' : { value: ' ', isValid: false},
         'password': {value: ' ', isValid: false}
@@ -16,8 +19,11 @@ const Authenticate  = () => {
         if(islogin) {
             setFormData({
                 ...formState.inputs,
-                name: undefined
-            }, false);
+                name: undefined,
+                cardNo: undefined
+            },
+            ((formState.inputs.email.isValid) && (formState.inputs.password.isValid))
+        );
         }
         else{
             setFormData({
@@ -25,14 +31,67 @@ const Authenticate  = () => {
                 name: {
                     value: ' ',
                     isValid: false
+                },
+                cardNo: {
+                    value: ' ',
+                    isValid: false
                 }
-            }, false);
+            }, 
+            false
+        );
         }
         setIsLogin(prevMode => !prevMode)
     };
-    const submitHandler = (event) =>{
-        console.log("hello");
+    const submitHandler = async (event) =>{
         event.preventDefault();
+        if( islogin ){
+            const loginUser = {
+                email: formState.inputs.email.value,
+                password: formState.inputs.password.value,
+            };
+            console.log(loggedInUser);
+            try{
+                const response = api.post('/public/login',loginUser);
+                setLoggedInUser((await response).data.citizen);
+            }
+            catch(err){
+                if(err.response){
+                        console.log(err.response.data);
+                        console.log(err.response.header);
+                        console.log(err.response.status);
+                }
+                else{
+                        console.log("An unexpected error occured---");
+                        console.log(`Error: ${err.message}`);
+                    }
+                }
+        }
+        else{
+            try{
+                const newUser = {
+                    email: formState.inputs.email.value,
+                    password: formState.inputs.password.value,
+                    name: formState.inputs.name.value,
+                    idCardNo: formState.inputs.cardNo.value
+                };
+
+                const response = api.post('/public/signup',newUser);
+                setLoggedInUser((await response).data.added);
+            }
+            catch(err){
+                if(err.response){
+                    console.log(err.response.data);
+                    console.log(err.response.header);
+                    console.log(err.response.status);
+            }
+            else{
+                    console.log("An unexpected error occured---");
+                    console.log(`Error: ${err.message}`);
+                }
+            }
+            console.log(loggedInUser);
+        }
+        
     }
     return (
         <React.Fragment>
@@ -44,9 +103,19 @@ const Authenticate  = () => {
                 type="text"
                 validators= {[ VALIDATOR_REQUIRE() ]}
                 onInput = {inputHandler}
-                label = "Your Name :"
+                label = " Enter Name"
                 placeHolder=" Enter your full name "
                 errorText = "This is required field. Enter valid Name. "
+            />}
+            {!islogin && <Input 
+                element = "input"
+                id="cardNo"
+                type="number"
+                validators = {[ VALIDATOR_REQUIRE(), VALIDATOR_MINLENGTH(12)]}
+                onInput = {inputHandler}
+                label = "Your Aadhar-Card/ID no. "
+                placeHolder=" Enter your ID card no. s"
+                errorText=" This is required field.Min 12 Numbers"
             />}
             <Input 
                 element = "input"
@@ -54,7 +123,7 @@ const Authenticate  = () => {
                 type="text"
                 validators = {[ VALIDATOR_REQUIRE() , VALIDATOR_EMAIL()]}
                 onInput = {inputHandler}
-                label = "Your email address is:"
+                label = "Your Email address"
                 placeHolder=" Enter your email address "
                 errorText=" This is required field "
             />
@@ -62,9 +131,9 @@ const Authenticate  = () => {
                 element = "input"
                 id="password"
                 type="password"
-                validators = {[ VALIDATOR_REQUIRE() , VALIDATOR_MINLENGTH(8), VALIDATOR_EMAIL()]}
+                validators = {[ VALIDATOR_REQUIRE() , VALIDATOR_MINLENGTH(8)]}
                 onInput = {inputHandler}
-                label = "Your Password: "
+                label = { islogin ? 'Enter Password' : 'Create New Password'}
                 placeHolder=" Enter your password min 8 digit "
                 errorText=" Enter a valid password of 8 digit or more"
             />
