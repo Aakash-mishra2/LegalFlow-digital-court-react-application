@@ -13,11 +13,13 @@ import './App.css';
 function App() {
 
   const isloggedIn = useSelector((state) => state.userAccount.isloggedIn);
+  const currentUserId = useSelector((state) => state.userAccount.UserId);
   let routes;
   if (isloggedIn) {
       routes = (
       <Routes>
-        <Route path="/" element={< Citizens />} />
+        <Route path="/" element={<Navigate to={`/${currentUserId}/cases`} />} />
+        <Route path="/allParties" element={< Citizens />} />
         <Route path="/cases/new" element={<NewCases />} />
         <Route path={`/:uid/cases`} element={< RegisteredCases />} />
         <Route path="/update/:caseID" element={<UpdateCases />} />

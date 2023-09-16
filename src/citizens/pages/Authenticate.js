@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useForm } from "../../shared/hooks/form-hook";
-import { login, logOut } from "../../features/UserAccount/loginSlice";
-import { useNavigate } from "react-router";
+import { login } from "../../features/UserAccount/loginSlice";
 import ErrorModal from "../../shared/UIelements/ErrorModal";
 import LoadingSpinner from "../../shared/UIelements/LoadingSpinner";
 import api from "../../api/ccmsBase";
@@ -21,7 +20,6 @@ const Authenticate = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState('');
     const dispatch = useDispatch();
-    const history = useNavigate();
     const [formState, inputHandler, setFormData] = useForm(
         {
             email: { value: " ", isValid: false },

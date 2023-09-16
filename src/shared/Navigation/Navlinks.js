@@ -2,7 +2,7 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import Button from "../formElements/Button";
-import { login, logOut } from '../../features/UserAccount/loginSlice';
+import {logOut } from '../../features/UserAccount/loginSlice';
 import "./styles/Navlinks.css";
 
 export default function Navlinks() {
@@ -18,6 +18,9 @@ export default function Navlinks() {
             
             <li>
                 {isLoggedIn && <NavLink to={`/${currentUserId}/cases`}>My Cases</NavLink>}
+            </li>
+            <li>
+                {isLoggedIn && <NavLink to="/allParties">Other Parties</NavLink>}
             </li>
             <li>
                 {isLoggedIn && <NavLink to="/cases/new">New Case</NavLink>}
