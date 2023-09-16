@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useForm } from "../../shared/hooks/form-hook";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router";
+import MuiAlert from "@material-ui/lab/Alert";
 import api from "../../api/ccmsBase";
 
 import Input from "../../shared/formElements/Input";
@@ -47,7 +48,7 @@ export default function NewCases() {
     const [newCase, setNewCase] = useState({
         court: '', description: '', judge: ''
     });
-
+    const [regnSuccess, setSuccess] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState('');
     const history = useNavigate();
@@ -68,6 +69,10 @@ export default function NewCases() {
     const clearError = () => {
         setError(null);
     }
+    function Alert(props) {
+        return <MuiAlert elevation={6}
+            variant="filled" {...props} />;
+    }
     const submitApplication = async () => {
         caseConfirmation();
         setIsLoading(true);
@@ -86,15 +91,19 @@ export default function NewCases() {
                 setError(err.message);
             }
         }
-        
+        setSuccess(true);
+        history('/');
     }
 
 return (
     <React.Fragment>
+        {regnSuccess && <Alert severity="success" color="info">
+            Success! New Case registered. Check out in Your Cases tab
+        </Alert>}
         <Modal
             show={isDescBox && confirmCase}
             closeBox={closeDescBox}
-            header="Confirm Your New Case Application "
+            header={"Confirm Your New Case Application "}
             contentClass="case-item__modal-content"
             footerClass="case-item__modal-actions"
             footer={

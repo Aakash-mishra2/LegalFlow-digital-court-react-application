@@ -11,11 +11,11 @@ import './App.css';
 import Counter from './features/counter/Counter';
 
 function App() {
-  let routes = (
+    const routes = ( 
     <Routes>
       <Route path="/" element={< Citizens />} />
       <Route path="/cases/new" element={<NewCases />} />
-      <Route path="/:uid/cases" element={< RegisteredCases />} />
+      <Route path={`/:uid/cases`} element={< RegisteredCases />} />
       <Route path="/update/:caseID" element={<UpdateCases />} />
       <Route path="/users/authenticate" element={<Authenticate />} />
       <Route path="/counter" element={<Counter />} />
