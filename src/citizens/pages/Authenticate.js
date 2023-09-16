@@ -1,4 +1,12 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router";
+
+import { useDispatch, useSelector } from "react-redux";
+import { login, logOut } from "../../features/UserAccount/loginSlice";
+
+import api from "../../api/ccmsBase";
+import { useForm } from "../../shared/hooks/form-hook";
+
 import Button from "../../shared/formElements/Button";
 import Input from "../../shared/formElements/Input";
 import {
@@ -6,16 +14,18 @@ import {
     VALIDATOR_MINLENGTH,
     VALIDATOR_REQUIRE,
 } from "../../shared/util/validators";
-import { useForm } from "../../shared/hooks/form-hook";
 import Card from "../../shared/UIelements/Card";
-import "./Authenticate.css";
-import api from "../../api/ccmsBase";
-import { useDispatch, useSelector } from "react-redux";
-import { login, logOut } from "../../features/UserAccount/loginSlice";
 
+import "./Authenticate.css";
+import { ErrorModal } from "../../shared/UIelements/ErrorModal";
 const Authenticate = () => {
     const [islogin, setIsLogin] = useState(true);
-    const [loggedInUser, setLoggedInUser] = useState();
+    const [error, setError] = useState({
+        header: null,
+        data: null,
+    });
+
+    const history = useNavigate();
 
     const currentUser = useSelector((state) => state.userAccount.UserId);
     const currentUserName = useSelector((state) => state.userAccount.userName);
@@ -28,6 +38,9 @@ const Authenticate = () => {
         },
         false
     );
+    const clearError = () => {
+        setError(null);
+    }
     const switchModeHandler = () => {
         if (!islogin) {
             setFormData(
@@ -58,7 +71,6 @@ const Authenticate = () => {
     };
     const submitHandler = async (event) => {
         event.preventDefault();
-        setLoggedInUser(null);
         if (islogin) {
             const loginUser = {
                 email: formState.inputs.email.value,
@@ -66,7 +78,6 @@ const Authenticate = () => {
             };
             try {
                 const response = await api.post("/public/login", loginUser);
-                setLoggedInUser(response.data.citizen);
                 dispatch(
                     login({
                         id: response.data.citizen.id,
@@ -75,17 +86,19 @@ const Authenticate = () => {
                 );
             } catch (err) {
                 if (err.response) {
-                    console.log(err.response.data);
-                    console.log(err.response.header);
+                    setError({
+                        header: err.response.header,
+                        data: err.response.data,
+                    })
                     console.log(err.response.status);
                 } else {
-                    console.log("An unexpected error occured---");
-                    console.log(`Error: ${err.message}`);
+                    setError({
+                        header: 'An unexpected Error!!',
+                        data: err.message
+                    });
                 }
+                throw error;
             }
-            console.log(loggedInUser);
-
-            console.log(currentUser + " " + currentUserName);
         } else {
             try {
                 const newUser = {
@@ -96,7 +109,6 @@ const Authenticate = () => {
                 };
 
                 const response = await api.post("/public/signup", newUser);
-                setLoggedInUser(response.data.added);
                 dispatch(
                     login({
                         id: response.data.added.id,
@@ -105,20 +117,27 @@ const Authenticate = () => {
                 );
             } catch (err) {
                 if (err.response) {
-                    console.log(err.response.data);
-                    console.log(err.response.header);
+                    setError({
+                        header: err.response.header,
+                        data: err.response.data,
+                    })
                     console.log(err.response.status);
                 } else {
-                    console.log("An unexpected error occured---");
-                    console.log(`Error: ${err.message}`);
+                    setError({
+                        header: 'An unexpected Error!!',
+                        data: err.message
+                    });
                 }
+                throw error;
             }
         }
 
-        console.log(currentUser + " " + currentUserName);
+        console.log(currentUser + " " + currentUserName + ' user entered.');
+        history('/');
     };
     return (
         <React.Fragment>
+            <ErrorModal error={error} onClear={clearError} />
             <Card className="authentication">
                 <form onSubmit={submitHandler}>
                     {!islogin && (
