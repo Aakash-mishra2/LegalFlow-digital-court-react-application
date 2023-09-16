@@ -5,7 +5,7 @@ import CaseItem from "./CaseItem";
 import './styles/CaseList.css';
 
 export default function CaseList(props) {
-    if (props.cases.length === 0) {
+    if (!props.cases) {
         return (
             <div className="case-list center" >
                 <Card>
@@ -23,10 +23,10 @@ export default function CaseList(props) {
                     id={items.id}
                     court={items.court}
                     description={items.description}
-                    image={items.imageUrl}
+                    image={items.image}
                     judge={items.judge}
                     status={items.status}
-                    nextDate={items.nextHearing}
+                    nextDate={items.next_hearing}
                 />
             ))}
         </ul>
