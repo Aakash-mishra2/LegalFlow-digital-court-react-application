@@ -35,10 +35,8 @@ export default function NewCases() {
         const newCase = {
             court: courtName.value,
             description: caseDesc.value,
-            location: {
-                city: "Delhi",
-                pincode: "11000088",
-            },
+            location_city: 'Delhi',
+            location_pincode: 1100998,
             judge: "To Be Decided",
         }
         try{
