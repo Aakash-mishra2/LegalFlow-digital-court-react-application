@@ -11,7 +11,7 @@ export const loginSlice = createSlice({
     initialState,
     reducers: {
         login: (state, action) => {
-            state.isloggedIn = true;
+            state.isloggedIn = !state.isloggedIn;
             state.UserId = action.payload.id;
             state.userName = action.payload.name;
         },

@@ -1,9 +1,8 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router";
 import { useDispatch } from "react-redux";
 import { useForm } from "../../shared/hooks/form-hook";
 import { login, logOut } from "../../features/UserAccount/loginSlice";
-
+import { useNavigate } from "react-router";
 import ErrorModal from "../../shared/UIelements/ErrorModal";
 import LoadingSpinner from "../../shared/UIelements/LoadingSpinner";
 import api from "../../api/ccmsBase";
@@ -21,9 +20,8 @@ const Authenticate = () => {
     const [islogin, setIsLogin] = useState(true);
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState('');
-    const history = useNavigate();
     const dispatch = useDispatch();
-
+    const history = useNavigate();
     const [formState, inputHandler, setFormData] = useForm(
         {
             email: { value: " ", isValid: false },
@@ -31,7 +29,6 @@ const Authenticate = () => {
         },
         false
     );
-  
     const switchModeHandler = () => {
         if (!islogin) {
             setFormData(

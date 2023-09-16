@@ -98,7 +98,7 @@ export default function NewCases() {
 return (
     <React.Fragment>
         {regnSuccess && <Alert severity="success" color="info">
-            Success! New Case registered. Check out in Your Cases tab
+            Success! New Case registered. Check out in My Cases tab
         </Alert>}
         <Modal
             show={isDescBox && confirmCase}
