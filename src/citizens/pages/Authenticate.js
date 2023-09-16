@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useForm } from "../../shared/hooks/form-hook";
 import { login, logOut } from "../../features/UserAccount/loginSlice";
 
@@ -21,8 +21,6 @@ const Authenticate = () => {
     const [islogin, setIsLogin] = useState(true);
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState('');
-    const currentUserId = useSelector((state) => state.userAccount.UserId);
-  const currentUserName = useSelector((state) => state.userAccount.userName);
     const history = useNavigate();
     const dispatch = useDispatch();
 
@@ -127,7 +125,6 @@ const Authenticate = () => {
         <React.Fragment>
             {isLoading && <LoadingSpinner asOverlay />}
             <ErrorModal error={error} onClear={clearError} />
-            <h1>{currentUserId} :: {currentUserName} is Logged In!</h1>
             <Card className="authentication">
                 <form onSubmit={submitHandler}>
                     {!islogin && (
