@@ -16,7 +16,7 @@ const Authenticate  = () => {
         'password': {value: ' ', isValid: false}
     }, false);
     const switchModeHandler = () => {
-        if(islogin) {
+        if(!islogin) {
             setFormData({
                 ...formState.inputs,
                 name: undefined,
@@ -44,29 +44,30 @@ const Authenticate  = () => {
     };
     const submitHandler = async (event) =>{
         event.preventDefault();
+        setLoggedInUser(null);
         if( islogin ){
             const loginUser = {
                 email: formState.inputs.email.value,
                 password: formState.inputs.password.value,
             };
-            console.log(loggedInUser);
             try{
-                const response = api.post('/public/login',loginUser);
-                setLoggedInUser((await response).data.citizen);
+                const response = await api.post('/public/login',loginUser);
+                setLoggedInUser(response.data.citizen); 
             }
             catch(err){
                 if(err.response){
                         console.log(err.response.data);
                         console.log(err.response.header);
                         console.log(err.response.status);
-                }
-                else{
+                    }
+                    else{
                         console.log("An unexpected error occured---");
                         console.log(`Error: ${err.message}`);
                     }
                 }
-        }
-        else{
+                console.log(loggedInUser);
+            }
+            else{
             try{
                 const newUser = {
                     email: formState.inputs.email.value,
@@ -75,8 +76,8 @@ const Authenticate  = () => {
                     idCardNo: formState.inputs.cardNo.value
                 };
 
-                const response = api.post('/public/signup',newUser);
-                setLoggedInUser((await response).data.added);
+                const response = await api.post('/public/signup',newUser);
+                setLoggedInUser(response.data.added);
             }
             catch(err){
                 if(err.response){
