@@ -9,7 +9,8 @@ export default function CaseList(props) {
         return (
             <div className="case-list center" >
                 <Card>
-                    <p>No projects found ! Maybe create one. </p>
+                    <h2>No registered cases found yet!! </h2>
+                    <p> Please wait we are fetching server data!!</p>
                 </Card>
             </div>
         );

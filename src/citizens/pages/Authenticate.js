@@ -98,9 +98,9 @@ const Authenticate = () => {
                         id: response.data.added.id,
                         name: response.data.added.name,
                     })
-                    );
+                );
             } catch (err) {
-                setIsLoading(false); 
+                setIsLoading(false);
                 if (err.response) {
                     setError(err.response.data.message)
                     console.log(err.response.status);
@@ -120,6 +120,7 @@ const Authenticate = () => {
         <React.Fragment>
             {isLoading && <LoadingSpinner asOverlay />}
             <ErrorModal error={error} onClear={clearError} />
+            <div className="loginSection">
             <Card className="authentication">
                 <form onSubmit={submitHandler}>
                     {!islogin && (
@@ -181,6 +182,19 @@ const Authenticate = () => {
                     Switch to {islogin ? "SIGNUP" : "LOGIN"}{" "}
                 </Button>
             </Card>
+            <Card className="authentication">
+                <p> Save 10-15 sec of backend server response to create new account.</p>
+                <p>Login by default user account instead to view all features of app. </p>
+                <Button danger onClick={() => dispatch(login(
+                    {
+                        id: "648db724c8dfa0ec049c6cbd",
+                        name: "Sharma Ji"
+                    }
+                ))
+                }
+                > FAST LOGIN </Button>
+            </Card>
+            </div>
         </React.Fragment>
     );
 };
