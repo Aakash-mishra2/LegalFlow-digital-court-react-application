@@ -92,7 +92,7 @@ export default function NewCases() {
             }
         }
         setSuccess(true);
-        history('/');
+        if(error === '') history('/');
     }
 
 return (

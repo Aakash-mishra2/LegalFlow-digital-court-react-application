@@ -8,7 +8,8 @@ export default function CitizenList(props){
     return (
       <div className="center">
         <Card>
-          <h2>No Citizens found.</h2>
+          <h2> No other users found yet! </h2>
+          <p> Please wait we are fetching server data!! </p>
         </Card>
       </div>
     );
