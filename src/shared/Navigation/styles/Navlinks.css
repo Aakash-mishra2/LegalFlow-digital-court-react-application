@@ -16,14 +16,14 @@
 }
 
 .nav-links li {
-  margin: 0.5rem;
+  margin: 1rem;
 }
 
 .nav-links a {
   border: 1px solid transparent;
   color: #292929;
   text-decoration: none;
-  padding: 0;
+  padding: 0.3rem 0.1rem;
 }
 
 .nav-links a:hover,
@@ -38,7 +38,7 @@
   border: 1px solid #292929;
   color: #292929;
   background: transparent;
-  padding: 0;
+  padding: 0.3rem 0.1rem;
   font: inherit;
 }
 
