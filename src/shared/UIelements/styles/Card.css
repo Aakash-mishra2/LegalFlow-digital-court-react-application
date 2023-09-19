@@ -5,3 +5,6 @@
   overflow: hidden;
   background: transparent;
 }
+.card h3{
+  padding: 10px;
+}

@@ -5,12 +5,14 @@ import CaseItem from "./CaseItem";
 import './styles/CaseList.css';
 
 export default function CaseList(props) {
-    if (!props.cases) {
+    if (props.cases.length === 0) {
         return (
             <div className="case-list center" >
                 <Card>
                     <h2>No registered cases found yet!! </h2>
                     <p> Please wait we are fetching server data!!</p>
+                    <hr />
+                    <h3> Register New case in 'New Case' Tab instead !</h3>
                 </Card>
             </div>
         );

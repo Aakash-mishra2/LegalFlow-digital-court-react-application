@@ -4,19 +4,46 @@ import Card from "../../shared/UIelements/Card";
 import Button from "../../shared/formElements/Button";
 import "./styles/CaseItem.css";
 import { useSelector } from "react-redux";
-const CaseItem = (props) => {
+import api from "../../api/ccmsBase";
+import ErrorModal from "../../shared/UIelements/ErrorModal";
+import LoadingSpinner from "../../shared/UIelements/LoadingSpinner";
 
+const CaseItem = (props) => {
+    const [isLoading, setIsLoading] = useState(false);
+    const [error, setError] = useState('');
     const [isDescBox, setIsBox] = useState(false);
     const openDescBox = () => { setIsBox(true); }
     const closeDescBox = () => { setIsBox(false); }
     const currentUserId = useSelector((state) => state.userAccount.UserId);
     const [deleteCase, setDeleteCase] = useState(false);
     const deleteCaseHandler = () => { setDeleteCase(prevMode => !prevMode); }
+    const clearError = () => {
+        setError(null);
+    }
     const withdraw = async () => {
         console.log(props.id);
-    }
+        setIsLoading(true);
+            try {
+                const response = await api.delete(`/admin/remove/${props.id}`);
+                console.log(response.data.message);
+                setIsLoading(false);
+            } catch (err) {
+                setIsLoading(false);
+                if (err.response) {
+                    setError(err.response.data.message);
+                    console.log(err.response.status);
+                    console.log(error);
+                } else {
+                    setError(err.message);
+                }
+            }
+            deleteCaseHandler();
+        }
+
     return (
         <React.Fragment>
+            {isLoading && <LoadingSpinner asOverlay />}
+            <ErrorModal error={error} onClear={clearError} />
             <Modal
                 show={isDescBox}
                 closeBox={closeDescBox}
@@ -46,9 +73,9 @@ const CaseItem = (props) => {
                 contentClass="case-item__modal-content"
                 footerClass="case-item__modal-actions"
             >
-                <h4><b>Registered User Id:</b><em>{currentUserId}</em></h4>
-                <p><b>Case Id:</b><em>{props.id}</em></p>
-                <p> Withdraw this case application will be sent to Court. Further actions will be
+                <h4><b>Registered User Id:  </b><em>{currentUserId}</em></h4>
+                <p><b>Case Id:  </b><em>{props.id}</em></p>
+                <p> CASE WITHDRAW application will be sent to Court. Further actions will be
                     decided by Judge, {props.judge}. Do you want to continue?</p>
                 <h4>This is a non-Reversible Action.</h4>
             </Modal>

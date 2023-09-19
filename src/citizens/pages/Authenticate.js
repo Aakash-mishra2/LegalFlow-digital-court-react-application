@@ -184,7 +184,7 @@ const Authenticate = () => {
             </Card>
             <Card className="authentication">
                 <p> Save 10-15 sec of backend server response to create new account.</p>
-                <p>Login by default user account instead to view all features of app. </p>
+                <p>Login by default user account instead to view all features of the project. </p>
                 <Button danger onClick={() => dispatch(login(
                     {
                         id: "648db724c8dfa0ec049c6cbd",
@@ -193,6 +193,9 @@ const Authenticate = () => {
                 ))
                 }
                 > FAST LOGIN </Button>
+                <hr />
+                <p> If you really want us to know that you visited and your use your email to ask for reviews!</p>
+                <p> Use the Left One ! </p>
             </Card>
             </div>
         </React.Fragment>
