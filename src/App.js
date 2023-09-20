@@ -2,10 +2,10 @@ import React, { Suspense } from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
-import RegisteredCases from './court/pages/RegisteredCases';
 import MainNavigation from './shared/Navigation/MainNavigation';
 import Counter from './features/counter/Counter';
 import LoadingSpinner from './shared/UIelements/LoadingSpinner';
+import RegisteredCases from './court/pages/RegisteredCases';
 import './App.css';
 
 const Citizens = React.lazy(() => import ('./citizens/pages/Citizens'));
