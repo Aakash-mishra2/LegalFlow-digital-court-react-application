@@ -5,7 +5,7 @@ import CaseItem from "./CaseItem";
 import './styles/CaseList.css';
 
 export default function CaseList(props) {
-    if (!props.cases === 0) {
+    if (!props.cases) {
         return (
             <div className="case-list center" >
                 <Card>
