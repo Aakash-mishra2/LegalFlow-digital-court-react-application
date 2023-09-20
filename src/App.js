@@ -2,15 +2,18 @@ import React from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
-import Citizens from './citizens/pages/Citizens';
-import NewCases from './court/pages/NewCases';
 import RegisteredCases from './court/pages/RegisteredCases';
 import MainNavigation from './shared/Navigation/MainNavigation';
-import UpdateCases from './court/pages/UpdateCases';
-import Authenticate from './citizens/pages/Authenticate';
 import Counter from './features/counter/Counter';
 import './App.css';
-function App() {
+const Citizens = React.lazy(() => import ('./citizens/pages/Citizens'));
+const NewCases = React.lazy(() => import('./court/pages/NewCases'));
+const UpdateCases = React.lazy(() => import('./court/pages/UpdateCases'));
+const Authenticate = React.lazy(()=> import('./citizens/pages/Authenticate'));
+
+
+
+const App = () => {
 
   const isloggedIn = useSelector((state) => state.userAccount.isloggedIn);
   const currentUserId = useSelector((state) => state.userAccount.UserId);
