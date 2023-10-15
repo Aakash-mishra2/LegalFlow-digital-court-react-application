@@ -36,7 +36,7 @@ const App = () => {
       routes = (
       <Routes>
         <Route path="/allParties" element={<Navigate to="/" />} />
-        <Route path="/counter" element={<Navigate to="/" />} />
+        <Route path="/counter" element={<Counter />} />
         <Route path="/cases/new" element={<Navigate to="/" />} />
         <Route path="/:uid/cases" element={<Navigate to="/" />} />
         <Route path="/update/:caseID" element={<Navigate to="/" />} />

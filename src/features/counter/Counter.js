@@ -16,6 +16,7 @@ const Counter = () => {
   };
   return (
       <section>
+      <h1>Counter is here</h1>
         {showCounter && <p>{count}</p>}
         <div>
           <button onClick={() => dispatch(increment())}>+</button>

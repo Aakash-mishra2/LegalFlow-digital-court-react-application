@@ -193,9 +193,6 @@ const Authenticate = () => {
                 ))
                 }
                 > FAST LOGIN </Button>
-                <hr />
-                <p> If you really want us to know that you visited and your use your email to ask for reviews!</p>
-                <p> Use the Left One ! </p>
             </Card>
             </div>
         </React.Fragment>
