@@ -184,7 +184,7 @@ const Authenticate = () => {
             </Card>
             <Card className="authentication">
                 <p> Save 10-15 sec of backend server response to create new account.</p>
-                <p>Login by default user account instead to view all features of the project. </p>
+                <p>Login by default user account instead to view all features of the App. </p>
                 <Button danger onClick={() => dispatch(login(
                     {
                         id: "648db724c8dfa0ec049c6cbd",

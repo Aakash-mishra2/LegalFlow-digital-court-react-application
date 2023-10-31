@@ -35,9 +35,9 @@ export default function Navlinks() {
             <li>
                 <Button inverse href="https://github.com/Aakash-mishra2/CCMS-frontEnd#readme" target="_blank"> New User Guide</Button>
             </li>
-            <li>
+            {/* <li>
                 <Button inverse href="https://github.com/Aakash-mishra2/CCMS-frontEnd#readme" target="_blank">The Idea Behind!!</Button>
-            </li>
+            </li> */}
         </ul>
     );
 }
