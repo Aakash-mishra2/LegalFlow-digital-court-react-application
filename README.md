@@ -1,5 +1,5 @@
-# CCMS-Backend Node Backend
-This project is backend of My personal Full-Stack project Court Case Management. This project uses React-Redux framework of state management, Axios for API Calls and Exhaustive HTML-CSS-Javascript structure overall.  
+# CCMS- FrontEnd 
+This project is Frontend of My personal Full-Stack project Court Case Management. This project uses React-Redux framework of state management, Axios for API Calls and Exhaustive HTML-CSS-Javascript structure overall.  
 Backend data is supported by MongoDB and Mongoose. Thank you for visiting/contributing/updating.
 
 [CCMS Back End Repository and API Documentation](https://github.com/Aakash-mishra2/node-express-mongodb-court-case-management-backend)
