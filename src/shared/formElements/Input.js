@@ -1,6 +1,5 @@
 import React, { useEffect, useReducer } from "react";
 import { validate } from "../util/validators";
-import './Input.css';
 
 function caseReducer(state, action) {
     switch (action.type) {
@@ -53,35 +52,37 @@ export default function Input(props) {
         props.element === "input" ? (
             <input
                 type={props.type}
-                placeholder={props.placeholder}
+                placeholder={props.placeHolder}
                 id={props.id}
                 onChange={changeHandler}
                 onBlur={touchHandler}
                 value={inputState.value}
                 autoComplete="off"
+                className="block w-full border-[1px] border-gray-300 h-fit font-circular font-thin p-2 mt-1 bg-white text-sm text-gray-500 rounded-md placeholder-gray-400 placeholder:font-extralight placeholder:font-circular"
             />
         ) :
             (
                 <textarea
                     type={props.type}
-                    placeholder={props.placeholder}
+                    placeholder={props.placeHolder}
                     id={props.id}
                     rows={props.rows || 3}
                     onChange={changeHandler}
                     onBlur={touchHandler}
                     value={inputState.value}
                     autoComplete="off"
+                    className="block w-full border-[1px] border-gray-300 h-16 font-circular p-2 mt-2 font-thin bg-white text-sm text-gray-500"
                 />
             );
 
     return (
         <div
-            className={`form-control ${!inputState.isValid && inputState.isTouched &&
-                'form-control--invalid'}`}
+            className={`mt-2 mb-1 m-0 ${!inputState.isValid && inputState.isTouched &&
+                'text-red-600'}`}
         >
-            <label htmlFor={props.id}>{props.label}</label>
+            <label className="font-circular text-sm font-thin" htmlFor={props.id}>{props.label}</label>
             {element}
-            {!inputState.isValid && inputState.isTouched && <p>{props.errorText}</p>}
+            {!inputState.isValid && inputState.isTouched && <p className="font-circular text-wider text-xs mt-2">{props.errorText}</p>}
         </div>
     )
 }

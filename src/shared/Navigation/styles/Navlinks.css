@@ -1,15 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=REM:wght@400&display=swap');
 
 .nav-links {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
   font-family: 'REM', sans-serif;
   font-size: 1rem;
   letter-spacing: 0.7px;

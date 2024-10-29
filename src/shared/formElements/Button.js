@@ -1,42 +1,21 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
 
-import './Button.css';
-
-const Button = props => {
-    if (props.href) {
-        return (
-            <a
-                className={`button button--${props.size || 'default'} ${props.inverse &&
-                    'button--inverse'} ${props.danger && 'button--danger'}`}
-                href={props.href}
-                target={props.target}
-            >
-                {props.children}
-            </a>
-        );
-    }
-    if (props.to) {
-        return (
-            <Link
-                to={props.to}
-                exact={props.exact}
-                className={`button button--${props.size || 'default'} ${props.inverse &&
-                    'button--inverse'} ${props.danger && 'button--danger'}`}
-            >
-                {props.children}
-            </Link>
-        );
-    }
+export const Button = ({
+    id,
+    type,
+    handler,
+    disabled,
+    children,
+    className,
+}) => {
     return (
         <button
-            className={`button button--${props.size || 'default'} ${props.inverse &&
-                'button--inverse'} ${props.danger && 'button--danger'}`}
-            type={props.type}
-            onClick={props.onClick}
-            disabled={props.disabled}
+            id={id}
+            onClick={handler}
+            disabled={disabled}
+            type={type || "button"}
+            className={`flex justify-center gap-1 items-center cursor-none lg:cursor-pointer transition-all ease-in-out duration-300 ${className}`}
         >
-            {props.children}
+            {children}{" "}
         </button>
     );
 };
