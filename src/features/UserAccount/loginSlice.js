@@ -1,9 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialState =  {
-    isloggedIn: false,
-    UserId: '',
-    userName: '',
+const initialState = {
+    isloggedIn: true,
+    UserId: '648db724c8dfa0ec049c6cb',
+    userName: 'Sharma Ji',
 };
 
 export const loginSlice = createSlice({
@@ -20,7 +20,7 @@ export const loginSlice = createSlice({
             state.UserId = '';
             state.userName = ''
         }
-    }    
+    }
 });
 export const { login, logOut } = loginSlice.actions;
 export default loginSlice.reducer;

@@ -4,10 +4,11 @@ import CaseList from "../components/CaseList";
 import api from "../../api/ccmsBase";
 import ErrorModal from "../../shared/UIelements/ErrorModal";
 import LoadingSpinner from "../../shared/UIelements/LoadingSpinner";
+import { allDummyCases } from "../../data/dummyCasesList";
 
 export default function RegisteredCases() {
   const userID = useParams().uid;
-  const [allCases, setAllCases] = useState();
+  const [allCases, setAllCases] = useState(allDummyCases);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
 
@@ -27,20 +28,19 @@ export default function RegisteredCases() {
         }
       }
     }
-    getCases();
+    //getCases();
   }, [userID, setAllCases, error, setIsLoading]);
 
-  
+
   const clearError = () => {
     setError(null);
   }
 
-  //const reqCases = DUMMMY_CASES.filter((items) => items.plaintiff === userID);
   return (
-    <section>
-     {isLoading && <LoadingSpinner asOverlay />}
-      <ErrorModal error={error} onClear={clearError} />
+    <>
+      {isLoading && <LoadingSpinner asOverlay />}
+      <ErrorModal error={null} onClear={clearError} />
       <CaseList cases={allCases} />;
-    </section>
-    )
+    </>
+  )
 }

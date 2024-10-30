@@ -16,29 +16,29 @@ const CaseItem = (props) => {
     const closeDescBox = () => { setIsBox(false); }
     const currentUserId = useSelector((state) => state.userAccount.UserId);
     const [deleteCase, setDeleteCase] = useState(false);
-    const deleteCaseHandler = () => { setDeleteCase(prevMode => !prevMode); }
+    const deleteCaseHandler = () => setDeleteCase(prevMode => !prevMode);
     const clearError = () => {
         setError(null);
     }
     const withdraw = async () => {
         console.log(props.id);
         setIsLoading(true);
-            try {
-                const response = await api.delete(`/admin/remove/${props.id}`);
-                console.log(response.data.message);
-                setIsLoading(false);
-            } catch (err) {
-                setIsLoading(false);
-                if (err.response) {
-                    setError(err.response.data.message);
-                    console.log(err.response.status);
-                    console.log(error);
-                } else {
-                    setError(err.message);
-                }
+        try {
+            const response = await api.delete(`/admin/remove/${props.id}`);
+            console.log(response.data.message);
+            setIsLoading(false);
+        } catch (err) {
+            setIsLoading(false);
+            if (err.response) {
+                setError(err.response.data.message);
+                console.log(err.response.status);
+                console.log(error);
+            } else {
+                setError(err.message);
             }
-            deleteCaseHandler();
         }
+        deleteCaseHandler();
+    }
 
     return (
         <React.Fragment>
@@ -79,7 +79,7 @@ const CaseItem = (props) => {
                     decided by Judge, {props.judge}. Do you want to continue?</p>
                 <h4>This is a non-Reversible Action.</h4>
             </Modal>
-            <li className="case-item">
+            <div className="case-item !max-w-[27%]">
                 <Card className="case-item__content">
                     <div className="top-half">
                         <div className="case-item__image">
@@ -97,7 +97,7 @@ const CaseItem = (props) => {
                         <h3>Next Hearing Date: {props.nextDate}</h3>
                     </div>
                 </Card>
-            </li>
+            </div>
         </React.Fragment>
     );
 }

@@ -17,16 +17,6 @@ export default function Navlinks() {
             <li>
                 {isLoggedIn && <NavLink to="/cases/new">New Case</NavLink>}
             </li>
-            {/* {!isLoggedIn && <li>
-                <NavLink to="/"> LOGIN </NavLink>
-            </li>}
-
-            <li>
-                {isLoggedIn && <Button onClick={() => dispatch(logOut())}> LOGOUT </Button>}
-            </li>
-            <li>
-                <Button inverse href="https://github.com/Aakash-mishra2/CCMS-frontEnd#readme" target="_blank"> New User Guide</Button>
-            </li> */}
         </ul>
     );
 }
