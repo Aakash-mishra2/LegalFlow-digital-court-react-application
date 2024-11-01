@@ -1,19 +1,24 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useForm } from "../../shared/hooks/form-hook";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router";
 import MuiAlert from "@material-ui/lab/Alert";
 import api from "../../api/ccmsBase";
+import Dropdown from "../../shared/formElements/Dropdown";
 
 import Input from "../../shared/formElements/Input";
 import Button from "../../shared/formElements/Button";
 import Modal from "../../shared/UIelements/Modal";
+
 import { VALIDATOR_REQUIRE, VALIDATOR_MINLENGTH } from "../../shared/util/validators";
 
 import './CasesForm.css';
 import '../components/styles/CaseItem.css';
 import ErrorModal from "../../shared/UIelements/ErrorModal";
 import LoadingSpinner from "../../shared/UIelements/LoadingSpinner";
+import StateAndDistrict from "../components/StateAndDistrict";
+
+import { typeOfCases } from "../../data/dummyCasesList";
 
 export default function NewCases() {
     const currentUserId = useSelector((state) => state.userAccount.UserId);
@@ -21,17 +26,26 @@ export default function NewCases() {
     const [confirmCase, setConfirmCase] = useState(false);
     const [isDescBox, setIsBox] = useState(false);
     const openDescBox = () => { setIsBox(true); }
-    const closeDescBox = () => { 
+    const closeDescBox = () => {
         setError(' Application Not Submitted! Recheck your Application and ADD CASE again.')
-        setConfirmCase(false); 
-        setIsBox(false); }
+        setConfirmCase(false);
+        setIsBox(false);
+    }
 
     const [formState, inputHandler] = useForm({
         aadhar_no: {
             value: '',
             isValid: false
         },
-        courtName: {
+        state: {
+            value: '',
+            isValid: false
+        },
+        district: {
+            value: '',
+            isValid: false
+        },
+        caseType: {
             value: '',
             isValid: false
         },
@@ -92,70 +106,89 @@ export default function NewCases() {
             }
         }
         setSuccess(true);
-        if(error === '') history('/');
+        if (error === '') history('/');
     }
+    return (
+        <>
+            {regnSuccess && <Alert severity="success" color="info">
+                Success! New Case registered. Check out in My Cases tab
+            </Alert>}
+            <Modal
+                show={isDescBox && confirmCase}
+                closeBox={closeDescBox}
+                header={"Confirm Your New Case Application "}
+                contentClass="case-item__modal-content"
+                footerClass="case-item__modal-actions"
+                footer={
+                    <span>
+                        <p style={{ fontSize: 13, textAlign: "left" }}> I hereby confirm all above details for my new case application.
+                            Correctness of all details while verification is my responsibility. </p>
+                        <Button onClick={submitApplication}>SUBMIT</Button>
+                        <Button danger onClick={closeDescBox}>GO BACK </Button>
+                    </span>
+                }
+            >
+                <h5><b>Registered User-ID : </b><tt>{currentUserId}</tt></h5>
+                <h4><b>Your Full Name : </b><em>{currentUserName}</em></h4>
+                <p><b>Court Name : </b><em>{newCase.court}</em></p>
+                <h4><b>Description : </b><em>{newCase.description}</em></h4>
+                <p><b>Judge : </b><em>{newCase.judge}</em></p>
+            </Modal>
+            {isLoading && <LoadingSpinner asOverlay />}
+            <ErrorModal error={error} onClear={clearError} />
+            <div className="bg-gray-200 h-screen p-4 font-circular">
 
-return (
-    <React.Fragment>
-        {regnSuccess && <Alert severity="success" color="info">
-            Success! New Case registered. Check out in My Cases tab
-        </Alert>}
-        <Modal
-            show={isDescBox && confirmCase}
-            closeBox={closeDescBox}
-            header={"Confirm Your New Case Application "}
-            contentClass="case-item__modal-content"
-            footerClass="case-item__modal-actions"
-            footer={
-                <span>
-                    <p style={{ fontSize: 13, textAlign: "left" }}> I hereby confirm all above details for my new case application.
-                        Correctness of all details while verification is my responsibility. </p>
-                    <Button onClick={submitApplication}>SUBMIT</Button>
-                    <Button danger onClick={closeDescBox}>GO BACK </Button>
-                </span>
-            }
-        >
-            <h5><b>Registered User-ID : </b><tt>{currentUserId}</tt></h5>
-            <h4><b>Your Full Name : </b><em>{currentUserName}</em></h4>
-            <p><b>Court Name : </b><em>{newCase.court}</em></p>
-            <h4><b>Description : </b><em>{newCase.description}</em></h4>
-            <p><b>Judge : </b><em>{newCase.judge}</em></p>
-        </Modal>
-        {isLoading && <LoadingSpinner asOverlay />}
-        <ErrorModal error={error} onClear={clearError} />
-        <form className="case-form" onSubmit={caseSubmitHandler}>
-            <Input
-                id="aadhar_no"
-                element="input"
-                type="text"
-                label="Your AADHAR/ID card no. "
-                placeHolder="Enter your Aadhar Card NO. / Voter ID no. "
-                errorText="Please Enter a valid no. "
-                validators={[VALIDATOR_MINLENGTH(12)]}
-                onInput={inputHandler}
-            />
-            <Input
-                id="courtName"
-                element="textarea"
-                type="text"
-                label="Court Name"
-                placeHolder="Name of your Court"
-                errorText="This is a required field. "
-                validators={[VALIDATOR_REQUIRE()]}
-                onInput={inputHandler}
-            />
-            <Input
-                id="caseDesc"
-                element="textarea"
-                type="text"
-                label="Case Description"
-                placeHolder=" Brief Summary of your case Application (200 words )."
-                errorText="This is a required field! Minimum 10 words. "
-                validators={[VALIDATOR_REQUIRE(), VALIDATOR_MINLENGTH(10)]}
-                onInput={inputHandler}
-            />
-            <Button type="submit" disabled={!formState.isValid}>ADD CASE</Button>
-        </form>
-    </React.Fragment>
-);
+                <p className="text-xl font-circular font-thin mt-2">Register New Case </p>
+                <div className="mt-4 mb-0 p-4 w-full shadow-card bg-white" onSubmit={caseSubmitHandler}>
+                    <p className="text-sm font-circular font-thin mt-2">Basic information</p>
+                    <div className="flex flex-row W-full">
+
+
+                        <div className="flex flex-col w-1/2 p-2">
+                            <Input
+                                id="aadhar_no"
+                                element="input"
+                                type="text"
+                                label="Verify your ID "
+                                placeHolder="Enter your Aadhar Card NO. / Voter ID no. "
+                                errorText="Must contain 12 digits (0-9)"
+                                validators={[VALIDATOR_MINLENGTH(12)]}
+                                onInput={inputHandler}
+                            />
+                            <StateAndDistrict
+                                inputHandler={inputHandler}
+                                formState={formState}
+                                validators={[VALIDATOR_REQUIRE()]}
+                            />
+                        </div>
+                        <div className="flex flex-col w-1/2 p-2">
+                            <Dropdown
+                                id="case_type"
+                                label="Select type of case"
+                                data={typeOfCases}
+                                setSelectedItem={(type) => {
+                                    inputHandler("case_type", type.name, true);
+                                }}
+                                placeholder="Enter case type"
+                                dropdownWithDescription={true}
+                            />
+                            <Input
+                                id="caseDesc"
+                                element="textarea"
+                                type="text"
+                                label="Case Description"
+                                rows="5"
+                                placeHolder=" Write Summary...  (200 words )."
+                                errorText="Must contain min 10 words. "
+                                validators={[VALIDATOR_REQUIRE(), VALIDATOR_MINLENGTH(10)]}
+                                onInput={inputHandler}
+                            />
+                        </div>
+                    </div>
+
+                    <Button className="rounded-full bg-blue-500 px-8 py-2 text-white font-circular font-thin" disabled={!formState.isValid}> Save and Continue </Button>
+                </div>
+            </div>
+        </>
+    );
 }

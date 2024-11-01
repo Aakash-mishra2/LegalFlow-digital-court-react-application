@@ -7,19 +7,23 @@ import { useSelector } from "react-redux";
 import api from "../../api/ccmsBase";
 import ErrorModal from "../../shared/UIelements/ErrorModal";
 import LoadingSpinner from "../../shared/UIelements/LoadingSpinner";
+import { useNavigate } from "react-router-dom";
+
 
 const CaseItem = (props) => {
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState('');
     const [isDescBox, setIsBox] = useState(false);
-    const openDescBox = () => { setIsBox(true); }
-    const closeDescBox = () => { setIsBox(false); }
+    const openDescBox = () => setIsBox(true);
+    const closeDescBox = () => setIsBox(false);
     const currentUserId = useSelector((state) => state.userAccount.UserId);
     const [deleteCase, setDeleteCase] = useState(false);
     const deleteCaseHandler = () => setDeleteCase(prevMode => !prevMode);
-    const clearError = () => {
-        setError(null);
-    }
+    const clearError = () => setError(null);
+    const navigate = useNavigate();
+
+    const handleRedirection = () => { navigate(`/update/${props.id}`); }
+
     const withdraw = async () => {
         console.log(props.id);
         setIsLoading(true);
@@ -37,7 +41,7 @@ const CaseItem = (props) => {
                 setError(err.message);
             }
         }
-        deleteCaseHandler();
+        //  deleteCaseHandler();
     }
 
     return (
@@ -79,26 +83,29 @@ const CaseItem = (props) => {
                     decided by Judge, {props.judge}. Do you want to continue?</p>
                 <h4>This is a non-Reversible Action.</h4>
             </Modal>
-            <div className="case-item !max-w-[27%]">
-                <Card className="case-item__content">
-                    <div className="top-half">
-                        <div className="case-item__image">
-                            <img src={props.image} alt={props.court} />
+            <div className="mt-4 mb-4 m-0 max-w-[27%]">
+                <Card className="mt-4 mb-4 m-0 text-xl bg-[#607eaa] rounded-2xl h-full">
+                    <div className="flex flex-col p-0 gap-2 justify-center">
+                        <div className="w-fit min-h-50">
+                            <img src={props.image} alt={props.court} className="w-full h-ful object-cover" />
                         </div>
-                        <div className="case-item__actions">
+                        <div className="text-center flex flex-col items-center justify-center text-lg font-bold tracking-wider m-0 ">
 
-                            <Button onClick={openDescBox}><b></b>DESCRIPTION</Button>
-                            <Button to={`/update/${props.id}`}>EDIT</Button>
-                            <Button danger onClick={deleteCaseHandler}>DELETE</Button>
+                            <Button className="m-1" handler={openDescBox}><b></b>DESCRIPTION</Button>
+                            <div className="flex flex-row gap-2">
+
+                                <Button handler={handleRedirection}>EDIT</Button>
+                                <Button danger handler={deleteCaseHandler}>DELETE</Button>
+                            </div>
                         </div>
                     </div>
-                    <div className="case-item__info">
-                        <h2>{props.court} </h2>
-                        <h3>Next Hearing Date: {props.nextDate}</h3>
+                    <div className="p-1 mt-1 text-center flex flex-col text-md font-circular items-center text-white justify-center">
+                        <p className="text-md font-circular tracking-wider" >{props.court} </p>
+                        <p className="text-sm mt-2 font-circular text-white">Hearing Date: {props.nextDate}</p>
                     </div>
                 </Card>
-            </div>
-        </React.Fragment>
+            </div >
+        </React.Fragment >
     );
 }
 

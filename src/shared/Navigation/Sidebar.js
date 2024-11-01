@@ -1,5 +1,5 @@
 import { sidebarOptions } from "../../data/dummyCasesList";
-
+import { Link } from "react-router-dom";
 
 const Sidebar = () => {
 
@@ -13,11 +13,13 @@ const Sidebar = () => {
                     return (
                         <li
                             key={index}
-                            className="flex cursor-pointer items-center pl-4 space-x-3 p-3 transition ease-in-out duration-150 text-gray-200 
+                            className=" cursor-pointer pl-4 p-3 transition ease-in-out duration-150 text-gray-200 
                             hover:text-white hover:bg-[#3b5e97]"
                         >
-                            <Icon className="text-lg" />
-                            <span>{item.title}</span>
+                            <Link to={item.url} className="flex items-center space-x-3">
+                                <Icon className="text-lg" />
+                                <span>{item.title}</span>
+                            </Link>
                         </li>
                     )
                 })

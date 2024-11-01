@@ -20,7 +20,7 @@ const App = () => {
   const isloggedIn = useSelector((state) => state.userAccount.isloggedIn);
   const currentUserId = useSelector((state) => state.userAccount.UserId);
   let routes;
-  if (!isloggedIn) {
+  if (isloggedIn) {
     routes = (
       <Routes>
         <Route path="/" element={<Navigate to={`/${currentUserId}/cases`} />} />

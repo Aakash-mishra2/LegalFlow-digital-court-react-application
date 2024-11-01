@@ -28,7 +28,7 @@ export const allDummyCases = [
             "pincode": 1100998
         },
         "_id": "657adb4e27834ed8ee19a825",
-        "court": "tis hazari court",
+        "court": "Tis Hazari Court",
         "description": "stolen watch",
         "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRholMhydH0A3KqdWelqNqBG_YgCPQaOXa2vS2SufTU5w&usqp=CAU&ec=48600113",
         "judge": "To Be Decided",
@@ -44,7 +44,7 @@ export const allDummyCases = [
             "pincode": 1100998
         },
         "_id": "66f1947d098c0d165df697",
-        "court": "443314r",
+        "court": "Court ABC",
         "description": "4r43rt4t24354t",
         "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRholMhydH0A3KqdWelqNqBG_YgCPQaOXa2vS2SufTU5w&usqp=CAU&ec=48600113",
         "judge": "To Be Decided",
@@ -76,7 +76,7 @@ export const allDummyCases = [
             "pincode": 1100998
         },
         "_id": "657adb4e27834ed8ee19a25",
-        "court": "tis hazari court",
+        "court": "Tis Hazari Court",
         "description": "stolen watch",
         "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRholMhydH0A3KqdWelqNqBG_YgCPQaOXa2vS2SufTU5w&usqp=CAU&ec=48600113",
         "judge": "To Be Decided",
@@ -92,7 +92,7 @@ export const allDummyCases = [
             "pincode": 1100998
         },
         "_id": "66f1947d098c0d165df6b27",
-        "court": "443314r",
+        "court": "Court abcd",
         "description": "4r43rt4t24354t",
         "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRholMhydH0A3KqdWelqNqBG_YgCPQaOXa2vS2SufTU5w&usqp=CAU&ec=48600113",
         "judge": "To Be Decided",
@@ -148,5 +148,98 @@ export const sidebarOptions = [
     {
         icon: TbLogout,
         title: 'Logout'
+    }
+]
+
+export const typeOfCases = [
+    {
+        "id": 1,
+        "name": "Criminal Case",
+        "description": "Cases involving offenses against the state or society, prosecuted by the government.",
+        "examples": ["Theft", "Murder", "Fraud", "Cybercrime"]
+    },
+    {
+        "id": 2,
+        "name": "Civil Case",
+        "description": "Disputes between individuals or entities involving rights, obligations, or compensation.",
+        "examples": ["Breach of Contract", "Property Dispute", "Defamation", "Consumer Protection Claim"]
+    },
+    {
+        "id": 3,
+        "name": "Family Law Case",
+        "description": "Cases related to domestic relations and family matters.",
+        "examples": ["Divorce", "Child Custody", "Adoption", "Domestic Violence"]
+    },
+    {
+        "id": 4,
+        "name": "Constitutional Case",
+        "description": "Cases involving challenges to the constitutionality of laws or government actions.",
+        "examples": ["Fundamental Rights Violation", "Election Disputes", "Law Interpretation"]
+    },
+    {
+        "id": 5,
+        "name": "Administrative Law Case",
+        "description": "Disputes between individuals or organizations and government agencies over administrative decisions.",
+        "examples": ["License Denial", "Tax Disputes", "Pension Issues", "Regulatory Challenges"]
+    },
+    {
+        "id": 6,
+        "name": "Labor and Employment Case",
+        "description": "Disputes between employers and employees over workplace rights and contracts.",
+        "examples": ["Unlawful Termination", "Wage Disputes", "Workplace Harassment", "Union Matters"]
+    },
+    {
+        "id": 7,
+        "name": "Property and Land Dispute",
+        "description": "Disputes involving the ownership, use, or transfer of property or land.",
+        "examples": ["Land Title Disputes", "Tenant-Landlord Issues", "Easement Conflicts"]
+    },
+    {
+        "id": 8,
+        "name": "Commercial and Corporate Case",
+        "description": "Disputes related to business transactions and corporate governance.",
+        "examples": ["Breach of Business Contracts", "Bankruptcy", "Shareholder Disputes", "Intellectual Property Issues"]
+    },
+    {
+        "id": 9,
+        "name": "Environmental Case",
+        "description": "Cases dealing with violations of environmental laws and regulations.",
+        "examples": ["Pollution Control", "Illegal Deforestation", "Wildlife Conservation"]
+    },
+    {
+        "id": 10,
+        "name": "Juvenile Case",
+        "description": "Cases involving offenses committed by minors, focusing on rehabilitation.",
+        "examples": ["Vandalism", "Substance Abuse", "Truancy", "Underage Curfew Violation"]
+    },
+    {
+        "id": 11,
+        "name": "Tax Case",
+        "description": "Disputes between individuals or businesses and tax authorities over assessments or collections.",
+        "examples": ["Income Tax Disputes", "GST Disputes", "Property Tax Appeals", "Customs Duty Cases"]
+    },
+    {
+        "id": 12,
+        "name": "Intellectual Property Case",
+        "description": "Cases involving the protection of intellectual property rights.",
+        "examples": ["Trademark Infringement", "Copyright Violations", "Patent Disputes", "Trade Secret Theft"]
+    },
+    {
+        "id": 13,
+        "name": "Election Dispute",
+        "description": "Disputes arising from elections or electoral processes.",
+        "examples": ["Voter Fraud Allegations", "Disqualification of Candidates", "Election Result Challenges"]
+    },
+    {
+        "id": 14,
+        "name": "Public Interest Litigation (PIL)",
+        "description": "Cases filed to protect public interest or enforce public policies.",
+        "examples": ["Environmental Protection PIL", "Healthcare Improvement", "Human Rights Violation PIL"]
+    },
+    {
+        "id": 15,
+        "name": "Arbitration and Dispute Resolution Case",
+        "description": "Disputes resolved through arbitration or alternative dispute resolution methods.",
+        "examples": ["Commercial Arbitration", "Mediation in Family Disputes", "Construction Contract Arbitration"]
     }
 ]

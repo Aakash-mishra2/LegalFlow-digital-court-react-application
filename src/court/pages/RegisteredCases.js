@@ -13,21 +13,21 @@ export default function RegisteredCases() {
   const [error, setError] = useState('');
 
   useEffect(() => {
-    const getCases = async () => {
-      try {
-        const response = await api.get(`/admin/user/${userID}`);
-        setAllCases(response.data.allCases);
-      } catch (err) {
-        setIsLoading(false);
-        if (err.response) {
-          setError(err.response.data.message);
-          console.log(err.response.status);
-          console.log(error);
-        } else {
-          setError(err.message);
-        }
-      }
-    }
+    // const getCases = async () => {
+    //   try {
+    //     const response = await api.get(`/admin/user/${userID}`);
+    //     setAllCases(response.data.allCases);
+    //   } catch (err) {
+    //     setIsLoading(false);
+    //     if (err.response) {
+    //       setError(err.response.data.message);
+    //       console.log(err.response.status);
+    //       console.log(error);
+    //     } else {
+    //       setError(err.message);
+    //     }
+    //   }
+    // }
     //getCases();
   }, [userID, setAllCases, error, setIsLoading]);
 
