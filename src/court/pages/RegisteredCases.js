@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import CaseList from "../components/CaseList";
-import api from "../../api/ccmsBase";
-import ErrorModal from "../../shared/UIelements/ErrorModal";
+import ErrorModal from "../../shared/modals/ErrorModal";
 import LoadingSpinner from "../../shared/UIelements/LoadingSpinner";
 import { allDummyCases } from "../../data/dummyCasesList";
 

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useForm } from "../../shared/hooks/form-hook";
 import { login } from "../../features/UserAccount/loginSlice";
-import ErrorModal from "../../shared/UIelements/ErrorModal";
+import ErrorModal from "../../shared/modals/ErrorModal";
 import LoadingSpinner from "../../shared/UIelements/LoadingSpinner";
 import api from "../../api/ccmsBase";
 import Button from "../../shared/formElements/Button";

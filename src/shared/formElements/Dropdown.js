@@ -12,8 +12,6 @@ const Dropdown = ({
     const [searchTerm, setSearchTerm] = useState("");
     const [filteredData, setFilteredData] = useState(() => data || []);
     const [isOpen, setIsOpen] = useState(false);
-    const [hoveredOption, setHoveredOption] = useState(null);
-
 
     const dropdownRef = useRef(null);
 
@@ -72,7 +70,7 @@ const Dropdown = ({
                 placeholder={placeholder}
                 onClick={() => setIsOpen(!isOpen)}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className='w-full p-2 border-[1px] border-gray-300 text-md font-circular placeholder:text-gray-200 placehoder:text-sm rounded-md relative '
+                className='w-full p-2 border-[1px] border-gray-300 text-md font-circular placeholder:text-gray-200 placehoder:text-sm rounded-md relative focus:outline-none focus:ring-opacity-50 focus:ring-gray-500'
                 disabled={disabled}
             />
             {isOpen && (

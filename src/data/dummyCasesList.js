@@ -4,6 +4,11 @@ import { TbLogout } from "react-icons/tb";
 import { HiOutlineHome } from "react-icons/hi";
 import { BsWallet } from "react-icons/bs";
 import { IoSettingsOutline } from "react-icons/io5";
+import { BsBank } from "react-icons/bs";
+import { IoCashOutline } from "react-icons/io5";
+import { FaLaptop } from "react-icons/fa";
+import iciciImage from "../assets/images/iciciLogo.png";
+import axisImage from "../assets/images/axisBank.png";
 
 export const allDummyCases = [
     {
@@ -134,112 +139,167 @@ export const sidebarOptions = [
     {
         icon: RiAccountCircleLine,
         title: 'Profile',
-        url: '/cases'
+        url: '/profile'
     },
     {
         icon: BsWallet,
         title: 'Transactions',
-        url: '/cases'
+        url: '/payments'
     },
     {
         icon: IoSettingsOutline,
         title: 'Settings',
+        url: '/cases'
     },
     {
         icon: TbLogout,
-        title: 'Logout'
+        title: 'Logout',
+        url: '/cases'
+    }
+];
+
+export const paymentMethods = [
+    {
+        title: "UPI",
+        value: 'upi',
+        icon: BsBank,
+    },
+    {
+        title: "Net Banking",
+        value: "net-banking",
+        icon: FaLaptop,
+
+    },
+    {
+        title: "Cash On Delivery",
+        value: "COD",
+        icon: IoCashOutline,
     }
 ]
-
+export const paymentCards = [
+    {
+        id: 1,
+        bankName: "ICICI Debit card",
+        holderName: 'Mr. abc def kumar',
+        cardNumber: '1324-1231-1231-7456',
+        cvv: '123',
+        bankImage: iciciImage,
+        expiry: '12/24'
+    },
+    {
+        id: 1,
+        bankName: "Axis Debit card",
+        holderName: 'Mr. abc def kumar',
+        cardNumber: '1324-1231-1231-7456',
+        cvv: '123',
+        bankImage: axisImage,
+        expiry: '12/24'
+    },
+]
 export const typeOfCases = [
     {
         "id": 1,
         "name": "Criminal Case",
         "description": "Cases involving offenses against the state or society, prosecuted by the government.",
-        "examples": ["Theft", "Murder", "Fraud", "Cybercrime"]
+        "examples": ["Theft", "Murder", "Fraud", "Cybercrime"],
+        "fees": 500,
     },
     {
         "id": 2,
         "name": "Civil Case",
         "description": "Disputes between individuals or entities involving rights, obligations, or compensation.",
-        "examples": ["Breach of Contract", "Property Dispute", "Defamation", "Consumer Protection Claim"]
+        "examples": ["Breach of Contract", "Property Dispute", "Defamation", "Consumer Protection Claim"],
+        "fees": 650,
     },
     {
         "id": 3,
         "name": "Family Law Case",
         "description": "Cases related to domestic relations and family matters.",
-        "examples": ["Divorce", "Child Custody", "Adoption", "Domestic Violence"]
+        "examples": ["Divorce", "Child Custody", "Adoption", "Domestic Violence"],
+        "fees": 820,
     },
     {
         "id": 4,
         "name": "Constitutional Case",
         "description": "Cases involving challenges to the constitutionality of laws or government actions.",
-        "examples": ["Fundamental Rights Violation", "Election Disputes", "Law Interpretation"]
+        "examples": ["Fundamental Rights Violation", "Election Disputes", "Law Interpretation"],
+        "fees": 740,
     },
     {
         "id": 5,
         "name": "Administrative Law Case",
         "description": "Disputes between individuals or organizations and government agencies over administrative decisions.",
-        "examples": ["License Denial", "Tax Disputes", "Pension Issues", "Regulatory Challenges"]
+        "examples": ["License Denial", "Tax Disputes", "Pension Issues", "Regulatory Challenges"],
+        "fees": 480,
     },
     {
         "id": 6,
         "name": "Labor and Employment Case",
         "description": "Disputes between employers and employees over workplace rights and contracts.",
-        "examples": ["Unlawful Termination", "Wage Disputes", "Workplace Harassment", "Union Matters"]
+        "examples": ["Unlawful Termination", "Wage Disputes", "Workplace Harassment", "Union Matters"],
+        "fees": 690,
     },
     {
         "id": 7,
         "name": "Property and Land Dispute",
         "description": "Disputes involving the ownership, use, or transfer of property or land.",
-        "examples": ["Land Title Disputes", "Tenant-Landlord Issues", "Easement Conflicts"]
+        "examples": ["Land Title Disputes", "Tenant-Landlord Issues", "Easement Conflicts"],
+        "fees": 580,
     },
     {
         "id": 8,
         "name": "Commercial and Corporate Case",
         "description": "Disputes related to business transactions and corporate governance.",
-        "examples": ["Breach of Business Contracts", "Bankruptcy", "Shareholder Disputes", "Intellectual Property Issues"]
+        "examples": ["Breach of Business Contracts", "Bankruptcy", "Shareholder Disputes", "Intellectual Property Issues"],
+        "fees": 620,
     },
     {
         "id": 9,
         "name": "Environmental Case",
         "description": "Cases dealing with violations of environmental laws and regulations.",
-        "examples": ["Pollution Control", "Illegal Deforestation", "Wildlife Conservation"]
+        "examples": ["Pollution Control", "Illegal Deforestation", "Wildlife Conservation"],
+        "fees": 620,
     },
     {
         "id": 10,
         "name": "Juvenile Case",
         "description": "Cases involving offenses committed by minors, focusing on rehabilitation.",
-        "examples": ["Vandalism", "Substance Abuse", "Truancy", "Underage Curfew Violation"]
+        "examples": ["Vandalism", "Substance Abuse", "Truancy", "Underage Curfew Violation"],
+        "fees": 650,
     },
     {
         "id": 11,
         "name": "Tax Case",
         "description": "Disputes between individuals or businesses and tax authorities over assessments or collections.",
-        "examples": ["Income Tax Disputes", "GST Disputes", "Property Tax Appeals", "Customs Duty Cases"]
+        "examples": ["Income Tax Disputes", "GST Disputes", "Property Tax Appeals", "Customs Duty Cases"],
+        "fees": 760,
     },
     {
         "id": 12,
         "name": "Intellectual Property Case",
         "description": "Cases involving the protection of intellectual property rights.",
-        "examples": ["Trademark Infringement", "Copyright Violations", "Patent Disputes", "Trade Secret Theft"]
+        "examples": ["Trademark Infringement", "Copyright Violations", "Patent Disputes", "Trade Secret Theft"],
+        "fees": 700,
     },
     {
         "id": 13,
         "name": "Election Dispute",
         "description": "Disputes arising from elections or electoral processes.",
-        "examples": ["Voter Fraud Allegations", "Disqualification of Candidates", "Election Result Challenges"]
+        "examples": ["Voter Fraud Allegations", "Disqualification of Candidates", "Election Result Challenges"],
+        "fees": 680,
     },
     {
         "id": 14,
         "name": "Public Interest Litigation (PIL)",
         "description": "Cases filed to protect public interest or enforce public policies.",
-        "examples": ["Environmental Protection PIL", "Healthcare Improvement", "Human Rights Violation PIL"]
+        "examples": ["Environmental Protection PIL", "Healthcare Improvement", "Human Rights Violation PIL"],
+        "fees": 570,
     },
     {
         "id": 15,
         "name": "Arbitration and Dispute Resolution Case",
         "description": "Disputes resolved through arbitration or alternative dispute resolution methods.",
-        "examples": ["Commercial Arbitration", "Mediation in Family Disputes", "Construction Contract Arbitration"]
+        "examples": ["Commercial Arbitration", "Mediation in Family Disputes", "Construction Contract Arbitration"],
+        "fees": 510,
     }
 ]

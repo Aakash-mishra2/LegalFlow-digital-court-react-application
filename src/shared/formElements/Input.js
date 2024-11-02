@@ -49,6 +49,7 @@ export default function Input(props) {
     const element =
         props.element === "input" ? (
             <input
+                {...props}
                 type={props.type}
                 placeholder={props.placeHolder}
                 id={props.id}
@@ -57,7 +58,7 @@ export default function Input(props) {
                 value={inputState.value}
                 autoComplete="off"
                 className="block w-full border-[1px] border-gray-300 h-fit font-circular font-thin p-2 mt-1 bg-white text-sm text-gray-500 rounded-md placeholder-gray-400 placeholder:font-extralight placeholder:font-circular
-                focus:outline-nonefocus:ring-opacity-50 focus:ring-gray-300
+                focus:outline-none focus:ring-opacity-50 focus:ring-gray-500
                 "
             />
         ) :
@@ -71,7 +72,7 @@ export default function Input(props) {
                     onBlur={touchHandler}
                     value={inputState.value}
                     autoComplete="off"
-                    className="block w-full border-[1px] border-gray-300 h-16 font-circular p-2 mt-2 font-thin bg-white text-sm text-gray-500"
+                    className="block w-full border-[1px] border-gray-300 rounded-md h-16 font-circular p-2 mt-2 font-thin bg-white text-sm text-gray-500 focus:outline-none focus:ring-opacity-50 focus:ring-gray-500"
                 />
             );
 
@@ -79,6 +80,7 @@ export default function Input(props) {
         <div
             className={`mt-2 mb-1 m-0 ${!inputState.isValid && inputState.isTouched &&
                 'text-red-600'}`}
+            style={props.customStyle}
         >
             <label className={`font-circular text-sm font-thin ${props.labelStyles}`} htmlFor={props.id}>{props.label}</label>
             {element}

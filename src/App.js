@@ -6,6 +6,8 @@ import Header from './shared/Navigation/Header';
 import Counter from './features/counter/Counter';
 import LoadingSpinner from './shared/UIelements/LoadingSpinner';
 import RegisteredCases from './court/pages/RegisteredCases';
+import Payments from './court/components/Payments';
+
 import './App.css';
 
 const Citizens = React.lazy(() => import('./citizens/pages/Citizens'));
@@ -28,6 +30,7 @@ const App = () => {
         <Route path="/new-case" element={<NewCases />} />
         <Route path={`/cases`} element={< RegisteredCases />} />
         <Route path="/update/:caseID" element={<UpdateCases />} />
+        <Route path="/payments" element={<Payments />} />
         <Route path="/counter" element={<Counter />} />
       </Routes>
     )

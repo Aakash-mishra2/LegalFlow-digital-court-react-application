@@ -1,14 +1,13 @@
 import React, { useState } from "react";
-import Modal from "../../shared/UIelements/Modal";
+import Modal from "../../shared/modals/Modal";
 import Card from "../../shared/UIelements/Card";
 import Button from "../../shared/formElements/Button";
 import "./styles/CaseItem.css";
 import { useSelector } from "react-redux";
 import api from "../../api/ccmsBase";
-import ErrorModal from "../../shared/UIelements/ErrorModal";
+import ErrorModal from "../../shared/modals/ErrorModal";
 import LoadingSpinner from "../../shared/UIelements/LoadingSpinner";
 import { useNavigate } from "react-router-dom";
-
 
 const CaseItem = (props) => {
     const [isLoading, setIsLoading] = useState(false);
