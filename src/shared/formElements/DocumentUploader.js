@@ -34,6 +34,7 @@ const DocumentUploader = ({
 
   return (
     <div className='mt-4 mb-2 rounded-lg border-2 border-gray-300 flex flex-col w-fit p-2 pt-4'>
+      <p className="text-md font-circular mb-2">Upload Documents (FIR, PIL etc.)</p>
       {
         !file ? (
           <MdOutlineUploadFile className='text-5xl text-blue-700 ml-12' />

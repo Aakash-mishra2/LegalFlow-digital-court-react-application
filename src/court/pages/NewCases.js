@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useForm } from "../../shared/hooks/form-hook";
 import { useSelector } from "react-redux";
-import { useNavigate } from "react-router";
 import Dropdown from "../../shared/formElements/Dropdown";
 
 import Input from "../../shared/formElements/Input";
@@ -17,6 +16,7 @@ import StateAndDistrict from "../components/StateAndDistrict";
 import CaseDetails from "../components/CaseDetails";
 
 import { typeOfCases } from "../../data/dummyCasesList";
+import { handleKeyPress } from "../../shared/util/generalFunc";
 
 export default function NewCases() {
     const currentUserId = useSelector((state) => state.userAccount.UserId);
@@ -48,7 +48,7 @@ export default function NewCases() {
 
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState('');
-    const history = useNavigate();
+    //const history = useNavigate();
     const clearError = () => {
         setError(null);
     }
@@ -59,10 +59,14 @@ export default function NewCases() {
             userAadhar: formState.inputs.aadhar_no.value,
             caseType: formState.inputs.caseType.value.name,
             state: formState.inputs.state.value,
-            district: formState.inputs.state.value,
+            district: formState.inputs.district.value,
             description: formState.inputs.caseDesc.value,
+            registrationFees: formState.inputs.caseType.value.fees,
         }
+        console.log('before saving', newcase);
+        localStorage.setItem("CCMS_NEW_CASE", JSON.stringify(newcase));
         try {
+            //api call here
             setIsLoading(false);
             setProceedToDetails(true);
         }
@@ -70,8 +74,6 @@ export default function NewCases() {
             setIsLoading(false);
             if (err.response) {
                 setError(err.response.data.message);
-                console.log(err.response.status);
-                console.log(error);
             } else {
                 setError(err.message);
             }
@@ -84,18 +86,17 @@ export default function NewCases() {
             {isLoading && <LoadingSpinner asOverlay />}
             <ErrorModal error={error} onClear={clearError} />
             <div className="bg-gray-200 h-screen p-4 font-circular overflow-y-scroll">
-
-                <p className="text-xl font-circular font-thin mt-2">Register New Case </p>
-                <div className="mt-4 mb-0 p-4 w-full shadow-card bg-white">
+                <p className="text-lg font-circular font-thin mt-2">Register New Case </p>
+                <div className="mt-2 mb-0 p-4 w-full shadow-card bg-white">
                     <p className="text-sm font-circular font-thin mt-2">Basic information</p>
                     <div className="flex flex-row W-full">
-
-
                         <div className="flex flex-col w-1/2 p-2">
                             <Input
                                 id="aadhar_no"
                                 element="input"
-                                type="text"
+                                type="numeric"
+                                maxLength={12}
+                                onKeyDown={handleKeyPress}
                                 label="Verify your ID "
                                 placeHolder="Enter your Aadhar Card NO. / Voter ID no. "
                                 errorText="Must contain 12 digits (0-9)"
@@ -114,7 +115,7 @@ export default function NewCases() {
                                 label="Select type of case"
                                 data={typeOfCases}
                                 setSelectedItem={(type) => {
-                                    inputHandler("caseType", type.name, true);
+                                    inputHandler("caseType", type, true);
                                 }}
                                 placeholder="Enter case type"
                                 dropdownWithDescription={true}
@@ -134,7 +135,7 @@ export default function NewCases() {
                     </div>
 
                     <Button
-                        className={`rounded-full px-8 mt-1 py-2 text-white font-circular font-thin ${!formState.isValid ? "!cursor-not-allowed bg-blue-300" : " bg-blue-500"}`} disabled={false}
+                        className={`rounded-full px-8    py-2 text-white font-circular font-thin ${!formState.isValid ? "!cursor-not-allowed bg-blue-300" : " bg-blue-500"}`} disabled={!formState.isValid}
                         handler={handleSubmit}
                     >
                         Save and Continue

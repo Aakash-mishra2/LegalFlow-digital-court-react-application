@@ -38,12 +38,8 @@ const App = () => {
   else {
     routes = (
       <Routes>
-        <Route path="/allParties" element={<Navigate to="/" />} />
         <Route path="/counter" element={<Counter />} />
-        <Route path="/cases/new" element={<Navigate to="/" />} />
-        <Route path="/cases" element={<RegisteredCases />} />
-        <Route path="/update/:caseID" element={<Navigate to="/" />} />
-        <Route path="/" element={< Authenticate />} />
+        <Route path="/*" element={< Authenticate />} />
       </Routes>
     )
   }

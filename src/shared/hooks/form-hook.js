@@ -1,9 +1,8 @@
 import { useCallback, useReducer } from "react";
 
-function parchiPadho(state, action) {
+function editForm(state, action) {
     switch (action.type) {
-        case 'bhardiya': {
-
+        case 'filledForm': {
             let formIsValid = true;
             let temp;
             for (temp in state.inputs) {
@@ -25,7 +24,7 @@ function parchiPadho(state, action) {
             };
         }
 
-        case 'nayiParchi':
+        case 'newForm':
             return {
                 inputs: action.inputs,
                 isValid: action.isValid
@@ -35,26 +34,26 @@ function parchiPadho(state, action) {
     }
 };
 
-export function useForm(sareDibbe, initialValidity) {
+export function useForm(initialInput, initialValidity) {
 
-    const [formState, parchiBharo] = useReducer(parchiPadho, {
-        inputs: sareDibbe,
+    const [formState, updateFormState] = useReducer(editForm, {
+        inputs: initialInput,
         isValid: initialValidity
     });
 
     const inputHandler = useCallback((id, value, isValid) => {
-        parchiBharo({
-            type: 'bhardiya',
+        updateFormState({
+            type: 'filledForm',
             val: value,
             isValid: isValid,
             id: id
         });
     }, []);
 
-    const setFormData = useCallback((nayeDibbe, formValidity) => {
-        parchiBharo({
-            type: 'nayiParchi',
-            inputs: nayeDibbe,
+    const setFormData = useCallback((newInputs, formValidity) => {
+        updateFormState({
+            type: 'newForm',
+            inputs: newInputs,
             isValid: formValidity
         });
     }, []);

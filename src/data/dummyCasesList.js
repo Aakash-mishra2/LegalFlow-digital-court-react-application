@@ -187,7 +187,7 @@ export const paymentCards = [
         expiry: '12/24'
     },
     {
-        id: 1,
+        id: 2,
         bankName: "Axis Debit card",
         holderName: 'Mr. abc def kumar',
         cardNumber: '1324-1231-1231-7456',

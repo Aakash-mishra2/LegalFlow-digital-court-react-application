@@ -42,11 +42,8 @@ const StateAndDistrict = ({ inputHandler, formState, validators }) => {
         }
         setAllDistricts([]);
         setIsDistrictsDisabled(true);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [selectedState]);
-
-    useEffect(() => {
-        if (formState) console.log('formstate', formState);
-    }, [formState]);
 
     return (
         <div className="flex flex-row gap-4 justify-between mt-2">

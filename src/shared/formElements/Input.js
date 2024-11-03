@@ -49,7 +49,6 @@ export default function Input(props) {
     const element =
         props.element === "input" ? (
             <input
-                {...props}
                 type={props.type}
                 placeholder={props.placeHolder}
                 id={props.id}
@@ -57,6 +56,8 @@ export default function Input(props) {
                 onBlur={touchHandler}
                 value={inputState.value}
                 autoComplete="off"
+                onKeyDown={props.onKeyDown}
+                maxLength={props.maxLength}
                 className="block w-full border-[1px] border-gray-300 h-fit font-circular font-thin p-2 mt-1 bg-white text-sm text-gray-500 rounded-md placeholder-gray-400 placeholder:font-extralight placeholder:font-circular
                 focus:outline-none focus:ring-opacity-50 focus:ring-gray-500
                 "
