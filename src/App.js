@@ -8,10 +8,10 @@ import LoadingSpinner from './shared/UIelements/LoadingSpinner';
 import RegisteredCases from './court/pages/RegisteredCases';
 import './App.css';
 
-const Citizens = React.lazy(() => import ('./citizens/pages/Citizens'));
+const Citizens = React.lazy(() => import('./citizens/pages/Citizens'));
 const NewCases = React.lazy(() => import('./court/pages/NewCases'));
 const UpdateCases = React.lazy(() => import('./court/pages/UpdateCases'));
-const Authenticate = React.lazy(()=> import('./citizens/pages/Authenticate'));
+const Authenticate = React.lazy(() => import('./citizens/pages/Authenticate'));
 
 
 
@@ -21,7 +21,7 @@ const App = () => {
   const currentUserId = useSelector((state) => state.userAccount.UserId);
   let routes;
   if (isloggedIn) {
-      routes = (
+    routes = (
       <Routes>
         <Route path="/" element={<Navigate to={`/${currentUserId}/cases`} />} />
         <Route path="/allParties" element={< Citizens />} />
@@ -29,31 +29,27 @@ const App = () => {
         <Route path={`/:uid/cases`} element={< RegisteredCases />} />
         <Route path="/update/:caseID" element={<UpdateCases />} />
         <Route path="/counter" element={<Counter />} />
-        </Routes>
-      )
-  } 
-  else {
-      routes = (
-      <Routes>
-        <Route path="/allParties" element={<Navigate to="/" />} />
-        <Route path="/counter" element={<Counter />} />
-        <Route path="/cases/new" element={<Navigate to="/" />} />
-        <Route path="/:uid/cases" element={<Navigate to="/" />} />
-        <Route path="/update/:caseID" element={<Navigate to="/" />} />
-        <Route path="/" element={< Authenticate />} />
       </Routes>
-      )
-  } 
+    )
+  }
+  else {
+    routes = (
+      <Routes>
+        <Route path="/counter" element={<Counter />} />
+        <Route path="/*" element={< Authenticate />} />
+      </Routes>
+    )
+  }
   return (
     <BrowserRouter>
       <MainNavigation />
       <main>
-      <Suspense
-                fallback={
-                  <div className='center'><LoadingSpinner asOverlay /></div>
-                }>
-                {routes}
-              </Suspense>
+        <Suspense
+          fallback={
+            <div className='center'><LoadingSpinner asOverlay /></div>
+          }>
+          {routes}
+        </Suspense>
       </main>
     </BrowserRouter>
   );
