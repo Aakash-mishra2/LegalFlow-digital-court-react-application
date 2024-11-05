@@ -16,7 +16,7 @@ export default function CaseList(props) {
     }
 
     return (
-        <div className="flex flex-wrap gap-8 h-full m-16 mt-8 mb-4 w-auto overflow-auto">
+        <div className="flex flex-wrap gap-8 h-full m-16 mt-8 mb-4 pb-4 w-auto overflow-auto">
             {props.cases.map(items => (
                 <CaseItem
                     key={items.id}
@@ -30,5 +30,5 @@ export default function CaseList(props) {
                 />
             ))}
         </div>
-    );
+    )
 };

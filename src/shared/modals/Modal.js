@@ -47,6 +47,7 @@ const customStyles = {
         bottom: "auto",
         maxWidth: "90%",
         overflow: "none",
+        border: "#f5f0f7",
         borderRadius: "12px",
         backgroundColor: "white",
         outline: "none",
@@ -59,7 +60,7 @@ const customStyles = {
         width: "100vw",
         overflow: "none",
         backdropFilter: "blur(5px)",
-        background: "rgba(54, 54, 54, 0.75)",
+        background: "rgba(255, 255, 255, 0.2)",
     },
 };
 Modal.setAppElement("#root");

@@ -38,7 +38,7 @@ export default function RegisteredCases() {
   return (
     <>
       {isLoading && <LoadingSpinner asOverlay />}
-      <ErrorModal error={null} onClear={clearError} />
+      {/* <ErrorModal error={error} onClear={clearError} /> */}
       <CaseList cases={allCases} />;
     </>
   )

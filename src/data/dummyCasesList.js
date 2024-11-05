@@ -12,102 +12,111 @@ import axisImage from "../assets/images/axisBank.png";
 
 export const allDummyCases = [
     {
-        "location": {
-            "city": "Delhi",
-            "pincode": 11232424
+        id: "C12345",
+        caseTitle: "State vs. John Doe",
+        summary: "In the case of State vs. John Doe, the defendant is charged with aggravated assault following an altercation at a local bar. The prosecution argues that Doe's actions were premeditated and resulted in severe injuries to the victim, who required hospitalization. The defense claims self-defense, asserting that Doe was provoked and acted in response to a physical threat. ",
+        judge: {
+            judgeName: "Judge Emily Carter",
+            judgeId: "J1001"
         },
-        "_id": "650a9d2ddf9bb7700d91d3f6",
-        "court": " Allahabad High Court",
-        "description": " Vehicle stolen case",
-        "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRholMhydH0A3KqdWelqNqBG_YgCPQaOXa2vS2SufTU5w&usqp=CAU&ec=48600113",
-        "judge": "Mrs. Surbhi tiwari",
-        "status": "Pending",
-        "next_hearing": " 28-11-2023 ",
-        "plaintiff": "648db724c8dfa0ec049c6cbd",
-        "__v": 0,
-        "id": "650a9d2ddf9bb7700d91d3f6"
+        lawyer: {
+            lawyerName: "Michael Johnson",
+            lawyerId: "L2001"
+        },
+        court: {
+            courtName: "District Court A",
+            courtAddress: "123 Main St, Springfield, IL",
+            courtId: "DCA100"
+        },
+        date: "2024-11-10",
+        caseStatus: "Scheduled",
+        timings: "10:00 AM - 11:00 AM"
     },
     {
-        "location": {
-            "city": "Delhi",
-            "pincode": 1100998
+        id: "C12346",
+        caseTitle: "Doe Corporation vs. Smith Inc.",
+        summary: "In the case of Doe Corporation vs. Smith Inc., Doe Corporation alleges that Smith Inc. breached their contract by failing to deliver goods within the agreed-upon timeframe. As a result, Doe Corporation claims substantial financial losses due to production delays. Smith Inc. argues that unforeseen supply chain disruptions caused delays, and they notified Doe Corporation accordingly.",
+        judge: {
+            judgeName: "Judge Michael Brown",
+            judgeId: "J1002"
         },
-        "_id": "657adb4e27834ed8ee19a825",
-        "court": "Tis Hazari Court",
-        "description": "stolen watch",
-        "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRholMhydH0A3KqdWelqNqBG_YgCPQaOXa2vS2SufTU5w&usqp=CAU&ec=48600113",
-        "judge": "To Be Decided",
-        "status": "Under trial",
-        "next_hearing": " TO BE DECIDED ",
-        "plaintiff": "648db724c8dfa0ec049c6cbd",
-        "__v": 0,
-        "id": "657adb4e27834ed8ee19a825"
+        lawyer: {
+            lawyerName: "Sarah Lee",
+            lawyerId: "L2002"
+        },
+        court: {
+            courtName: "High Court B",
+            courtAddress: "456 Justice Ave, Metropolis, NY",
+            courtId: "HCB200"
+        },
+        date: "2024-11-10",
+        caseStatus: "Scheduled",
+        timings: "10:00 AM - 11:00 AM"
     },
     {
-        "location": {
-            "city": "Delhi",
-            "pincode": 1100998
+        id: "C12347",
+        caseTitle: "City of Metropolis vs. Alex Johnson",
+        summary: "City of Metropolis vs. Alex Johnson involves allegations of environmental violations by the defendant. Johnson, the owner of a local factory, is accused of discharging waste into nearby water sources, causing harm to the ecosystem. The prosecution, representing the city, presents evidence from environmental tests showing elevated levels of toxic substances.",
+        judge: {
+            judgeName: "Judge Sarah Lee",
+            judgeId: "J1003"
         },
-        "_id": "66f1947d098c0d165df697",
-        "court": "Court ABC",
-        "description": "4r43rt4t24354t",
-        "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRholMhydH0A3KqdWelqNqBG_YgCPQaOXa2vS2SufTU5w&usqp=CAU&ec=48600113",
-        "judge": "To Be Decided",
-        "status": "Decision Reserved",
-        "next_hearing": " TO BE DECIDED ",
-        "plaintiff": "648db724c8dfa0ec049c6cbd",
-        "__v": 0,
-        "id": "66f1947d098c0d165df697"
+        lawyer: {
+            lawyerName: "David Roberts",
+            lawyerId: "L2003"
+        },
+        court: {
+            courtName: "Supreme Court C",
+            courtAddress: "789 Court Plaza, Gotham, NJ",
+            courtId: "SCC300"
+        },
+        date: "2024-11-10",
+        caseStatus: "Scheduled",
+        timings: "10:00 AM - 11:00 AM"
     },
     {
-        "location": {
-            "city": "Delhi",
-            "pincode": 11232424
+        id: "C12348",
+        caseTitle: "Jane Doe vs. John Smith",
+        summary: "In the case of Jane Doe vs. John Smith, Jane Doe is filing for divorce, citing irreconcilable differences. The couple has been married for over 10 years and has two children. Doe seeks primary custody, claiming Smith’s work commitments leave him unable to adequately care for the children. Smith argues for joint custody, citing a strong bond with the children. ",
+        judge: {
+            judgeName: "Judge Robert Green",
+            judgeId: "J1004"
         },
-        "_id": "650a9d2ddf9bb7700dd3f6",
-        "court": " Allahabad High Court",
-        "description": " Vehicle stolen case",
-        "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRholMhydH0A3KqdWelqNqBG_YgCPQaOXa2vS2SufTU5w&usqp=CAU&ec=48600113",
-        "judge": "Mrs. Surbhi tiwari",
-        "status": "Accepted",
-        "next_hearing": " 28-11-2023 ",
-        "plaintiff": "648db724c8dfa0ec049c6cbd",
-        "__v": 0,
-        "id": "650a9d2ddf9bb7700dd3f6"
+        lawyer: {
+            lawyerName: "Laura White",
+            lawyerId: "L2004"
+        },
+        court: {
+            courtName: "Family Court D",
+            courtAddress: "101 Family St, Hill Valley, CA",
+            courtId: "FCD400"
+        },
+        date: "2024-11-10",
+        caseStatus: "Scheduled",
+        timings: "10:00 AM - 11:00 AM"
     },
     {
-        "location": {
-            "city": "Delhi",
-            "pincode": 1100998
+        id: "C12349",
+        caseTitle: "ACME Corp vs. New Technologies Ltd.",
+        summary: "In the commercial dispute ACME Corp vs. New Technologies Ltd., ACME alleges that New Technologies breached a licensing agreement by using proprietary technology beyond the scope permitted. ACME is seeking damages and an injunction to prevent further unauthorized use. New Technologies contends that the contract terms are ambiguous and that they acted within their rights.",
+        judge: {
+            judgeName: "Judge Laura White",
+            judgeId: "J1005"
         },
-        "_id": "657adb4e27834ed8ee19a25",
-        "court": "Tis Hazari Court",
-        "description": "stolen watch",
-        "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRholMhydH0A3KqdWelqNqBG_YgCPQaOXa2vS2SufTU5w&usqp=CAU&ec=48600113",
-        "judge": "To Be Decided",
-        "status": "NOT ACCEPTED",
-        "next_hearing": " TO BE DECIDED ",
-        "plaintiff": "648db724c8dfa0ec049c6cbd",
-        "__v": 0,
-        "id": "657adb4e27834ed8ee19a25"
-    },
-    {
-        "location": {
-            "city": "Delhi",
-            "pincode": 1100998
+        lawyer: {
+            lawyerName: "Benjamin Carter",
+            lawyerId: "L2005"
         },
-        "_id": "66f1947d098c0d165df6b27",
-        "court": "Court abcd",
-        "description": "4r43rt4t24354t",
-        "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRholMhydH0A3KqdWelqNqBG_YgCPQaOXa2vS2SufTU5w&usqp=CAU&ec=48600113",
-        "judge": "To Be Decided",
-        "status": "NOT ACCEPTED",
-        "next_hearing": " TO BE DECIDED ",
-        "plaintiff": "648db724c8dfa0ec049c6cbd",
-        "__v": 0,
-        "id": "66f1947d098c0d165df6b27"
+        court: {
+            courtName: "Commercial Court E",
+            courtAddress: "202 Market St, Silicon City, CA",
+            courtId: "CCE500"
+        },
+        date: "2024-11-10",
+        caseStatus: "Scheduled",
+        timings: "10:00 AM - 11:00 AM"
     }
-];
+]
 
 export const dummyUser = {
     "_id": "648db724c8dfa0ec049c6cbd",
@@ -129,18 +138,18 @@ export const sidebarOptions = [
     {
         icon: HiOutlineHome,
         title: 'Dashboard',
-        url: '/cases'
+        url: '/dashboard'
     },
     {
         icon: AiOutlineFileAdd,
         title: 'New Case',
         url: '/new-case'
     },
-    {
-        icon: RiAccountCircleLine,
-        title: 'Profile',
-        url: '/profile'
-    },
+    // {
+    //     icon: RiAccountCircleLine,
+    //     title: 'Profile',
+    //     url: '/profile'
+    // },
     {
         icon: BsWallet,
         title: 'Transactions',
@@ -149,7 +158,7 @@ export const sidebarOptions = [
     {
         icon: IoSettingsOutline,
         title: 'Settings',
-        url: '/cases'
+        url: '/settings'
     },
     {
         icon: TbLogout,
@@ -302,4 +311,238 @@ export const typeOfCases = [
         "examples": ["Commercial Arbitration", "Mediation in Family Disputes", "Construction Contract Arbitration"],
         "fees": 510,
     }
+];
+
+export const lawyersData = [
+    {
+        fullName: "Adv. Rohan Mehta",
+        enrollmentNumber: "D/1234/2020",
+        barCouncilAffiliation: "Bar Council of Delhi",
+        practiceCertificate: "DL123456",
+        cases: [
+            {
+
+                id: "C12345",
+                caseTitle: "State vs. John Doe",
+            },
+            {
+                id: "C12349",
+                caseTitle: "ACME Corp vs. New Technologies Ltd.",
+            }
+        ],
+        officeAddress: {
+            street: "123 Law Chambers",
+            city: "New Delhi",
+            state: "Delhi",
+            postalCode: "110001"
+        },
+        contactDetails: {
+            phoneNumber: "+91-9876543210",
+            email: "rohan.mehta@lawfirm.com"
+        },
+        vakalatnamaSigned: true,
+        authorizedRepresentative: {
+            firmName: "Mehta & Associates",
+            representingLawyer: "Adv. Rohan Mehta"
+        },
+        courtDetails: {
+            courtName: "Delhi High Court",
+            jurisdiction: "Delhi",
+            caseNumber: "HC12345678"
+        },
+        feeAgreement: {
+            retainerFee: 50000,
+            feeCurrency: "INR",
+            paymentTerms: "50% advance, 50% upon completion of case"
+        }
+    },
+    {
+        fullName: "Adv. Priya Sharma",
+        enrollmentNumber: "MH/5678/2018",
+        barCouncilAffiliation: "Bar Council of Maharashtra & Goa",
+        practiceCertificate: "MH567890",
+        cases: [
+            {
+
+                id: "C12345",
+                caseTitle: "State vs. John Doe",
+            },
+            {
+                id: "C12347",
+                caseTitle: "City of Metropolis vs. Alex Johnson",
+            }
+        ],
+        officeAddress: {
+            street: "456 Justice Avenue",
+            city: "Mumbai",
+            state: "Maharashtra",
+            postalCode: "400001"
+        },
+        contactDetails: {
+            phoneNumber: "+91-9123456789",
+            email: "priya.sharma@lawfirm.com"
+        },
+        vakalatnamaSigned: true,
+        authorizedRepresentative: {
+            firmName: "Sharma Legal Services",
+            representingLawyer: "Adv. Priya Sharma"
+        },
+        courtDetails: {
+            courtName: "Bombay High Court",
+            jurisdiction: "Maharashtra",
+            caseNumber: "BHC98765432"
+        },
+        feeAgreement: {
+            retainerFee: 60000,
+            feeCurrency: "INR",
+            paymentTerms: "30% advance, 70% upon case progress"
+        }
+    },
+    {
+        fullName: "Adv. Priya Sharma",
+        enrollmentNumber: "MH/5678/2018",
+        barCouncilAffiliation: "Bar Council of Maharashtra & Goa",
+        practiceCertificate: "MH567890",
+        cases: [
+            {
+
+                id: "C12345",
+                caseTitle: "State vs. John Doe",
+            },
+            {
+                id: "C12347",
+                caseTitle: "City of Metropolis vs. Alex Johnson",
+            }
+        ],
+        officeAddress: {
+            street: "456 Justice Avenue",
+            city: "Mumbai",
+            state: "Maharashtra",
+            postalCode: "400001"
+        },
+        contactDetails: {
+            phoneNumber: "+91-9123456789",
+            email: "priya.sharma@lawfirm.com"
+        },
+        vakalatnamaSigned: true,
+        authorizedRepresentative: {
+            firmName: "Sharma Legal Services",
+            representingLawyer: "Adv. Priya Sharma"
+        },
+        courtDetails: {
+            courtName: "Bombay High Court",
+            jurisdiction: "Maharashtra",
+            caseNumber: "BHC98765432"
+        },
+        feeAgreement: {
+            retainerFee: 60000,
+            feeCurrency: "INR",
+            paymentTerms: "30% advance, 70% upon case progress"
+        }
+    },
+    {
+        fullName: "Adv. Priya Sharma",
+        enrollmentNumber: "MH/5678/2018",
+        barCouncilAffiliation: "Bar Council of Maharashtra & Goa",
+        practiceCertificate: "MH567890",
+        cases: [
+            {
+
+                id: "C12345",
+                caseTitle: "State vs. John Doe",
+            },
+            {
+                id: "C12347",
+                caseTitle: "City of Metropolis vs. Alex Johnson",
+            }
+        ],
+        officeAddress: {
+            street: "456 Justice Avenue",
+            city: "Mumbai",
+            state: "Maharashtra",
+            postalCode: "400001"
+        },
+        contactDetails: {
+            phoneNumber: "+91-9123456789",
+            email: "priya.sharma@lawfirm.com"
+        },
+        vakalatnamaSigned: true,
+        authorizedRepresentative: {
+            firmName: "Sharma Legal Services",
+            representingLawyer: "Adv. Priya Sharma"
+        },
+        courtDetails: {
+            courtName: "Bombay High Court",
+            jurisdiction: "Maharashtra",
+            caseNumber: "BHC98765432"
+        },
+        feeAgreement: {
+            retainerFee: 60000,
+            feeCurrency: "INR",
+            paymentTerms: "30% advance, 70% upon case progress"
+        }
+    }
 ]
+
+export const trackStatusCase = [
+    {
+        "id": "1",
+        "title": "State vs. John Doe",
+        "courtName": "Distirct Court A",
+        "judgeName": "Laura White",
+        "lawyerName": "Adv. Priya Sharma",
+        "status": "rescheduled",
+        "caseType": "criminal case",
+        "actionRequired": "null"
+    },
+    {
+        "id": "2",
+        "title": "State vs. John Doe",
+        "courtName": "Distirct Court A",
+        "judgeName": "Surbhi Tiwari",
+        "lawyerName": "Mrs. Surbhi tiwari",
+        "status": "adjourned",
+        "caseType": "civil case",
+        "actionRequired": "upload_documents"
+    },
+    {
+        "id": "3",
+        "title": "State vs. John Doe",
+        "courtName": "Distirct Court A",
+        "judgeName": "Laura White",
+        "lawyerName": "Adv. Priya Sharma",
+        "status": "dismissed",
+        "caseType": "family law case",
+        "actionRequired": "null"
+    },
+    {
+        "id": "4",
+        "title": "State vs. John Doe",
+        "courtName": "Distirct Court A",
+        "judgeName": "Laura White",
+        "lawyerName": "Adv. Priya Sharma",
+        "status": "closed",
+        "caseType": "labor case",
+        "actionRequired": "null"
+    },
+    {
+        "id": "5",
+        "title": "State vs. John Doe",
+        "courtName": "Distirct Court A",
+        "judgeName": "Laura White",
+        "lawyerName": "Adv. Priya Sharma",
+        "status": "In progress",
+        "caseType": "juvenile case",
+        "actionRequired": "upload_documents"
+    },
+    {
+        "id": "6",
+        "title": "State vs. John Doe",
+        "courtName": "Distirct Court A",
+        "judgeName": "Laura White",
+        "lawyerName": "Adv. Priya Sharma",
+        "status": "pending",
+        "caseType": "intellectual case",
+        "actionRequired": "null"
+    }
+];

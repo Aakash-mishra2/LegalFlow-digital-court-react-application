@@ -17,3 +17,7 @@ export const handleKeyPress = (e) => {
     ];
     if (!allowedKeys.includes(e.key)) e.preventDefault();
 };
+
+export function toTitleCase(str) {
+    return str.replace(/\b\w/g, (char) => char.toUpperCase());
+}

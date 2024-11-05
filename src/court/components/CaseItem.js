@@ -44,46 +44,43 @@ const CaseItem = (props) => {
     }
 
     return (
-        <React.Fragment>
+        <>
             {isLoading && <LoadingSpinner asOverlay />}
-            <ErrorModal error={error} onClear={clearError} />
-            <Modal
-                show={isDescBox}
-                closeBox={closeDescBox}
-                header={<span><p>CASE-ID: {props.id}</p><p>STATUS: {props.status}</p></span>}
-                footer={
-                    <span>
-                        <Button onClick={closeDescBox} danger>CLOSE</Button>
-                        <Button> ADD TO CALENDER </Button>
-                    </span>
-                }
-                contentClass="case-item__modal-content"
-                footerClass="case-item__modal-actions"
+            {error && <ErrorModal error={error} onClear={clearError} />}
+            {isDescBox && <Modal
+                openModal={isDescBox}
+                handleClose={closeDescBox}
             >
+                <div className="case-item__modal-content">
+                    <span><p>CASE-ID: {props.id}</p><p>STATUS: {props.status}</p></span>
+                </div>
                 <h4><b>Description : </b><em>{props.description}</em></h4>
                 <p><b>Next Hearing  : </b><em>{props.nextDate}</em></p>
                 <p><b>Judge : </b><em>{props.judge}</em></p>
-            </Modal>
-            <Modal
-                show={deleteCase}
-                closeBox={deleteCaseHandler}
-
-                header={<span><p> Withdraw this Case Confirmation </p></span>}
-                footer={<span>
-                    <Button danger onClick={deleteCaseHandler}> GO BACK</Button>
-                    <Button onClick={withdraw}> CONFIRM </Button>
-                </span>}
-                contentClass="case-item__modal-content"
-                footerClass="case-item__modal-actions"
+                <span className="case-item__modal-actions">
+                    <Button onClick={closeDescBox} danger>CLOSE</Button>
+                    <Button> ADD TO CALENDER </Button>
+                </span>
+            </Modal>}
+            {deleteCase && <Modal
+                openModal={deleteCase}
+                handleClose={deleteCaseHandler}
             >
-                <h4><b>Registered User Id:  </b><em>{currentUserId}</em></h4>
+                <span><p> Withdraw this Case Confirmation </p></span>
+                <div className="case-item__modal-content">
+                    <h4><b>Registered User Id:  </b><em>{currentUserId}</em></h4>
+                </div>
                 <p><b>Case Id:  </b><em>{props.id}</em></p>
                 <p> CASE WITHDRAW application will be sent to Court. Further actions will be
                     decided by Judge, {props.judge}. Do you want to continue?</p>
                 <h4>This is a non-Reversible Action.</h4>
-            </Modal>
-            <div className="mt-4 mb-4 m-0 max-w-[27%]">
-                <Card className="mt-4 mb-4 m-0 text-xl bg-[#607eaa] rounded-2xl h-full">
+                <span className="case-item__modal-actions">
+                    <Button danger onClick={deleteCaseHandler}> GO BACK</Button>
+                    <Button onClick={withdraw}> CONFIRM </Button>
+                </span>
+            </Modal>}
+            <div className="mt-0 mb-2 m-0 max-w-[28%]">
+                <Card className="mt-4 mb-4 m-0 text-xl bg-[#607eaa] rounded-3xl h-full">
                     <div className="flex flex-col p-0 gap-2 justify-center">
                         <div className="w-fit min-h-50">
                             <img src={props.image} alt={props.court} className="w-full h-ful object-cover" />
@@ -104,8 +101,8 @@ const CaseItem = (props) => {
                     </div>
                 </Card>
             </div >
-        </React.Fragment >
-    );
+        </ >
+    )
 }
 
 export default CaseItem;
