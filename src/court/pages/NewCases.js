@@ -63,7 +63,7 @@ export default function NewCases() {
             description: formState.inputs.caseDesc.value,
             registrationFees: formState.inputs.caseType.value.fees,
         }
-        console.log('before saving', newcase);
+        // console.log('before saving', newcase);
         localStorage.setItem("CCMS_NEW_CASE", JSON.stringify(newcase));
         try {
             //api call here
@@ -135,7 +135,7 @@ export default function NewCases() {
                     </div>
 
                     <Button
-                        className={`rounded-full px-8    py-2 text-white font-circular font-thin ${!formState.isValid ? "!cursor-not-allowed bg-blue-300" : " bg-blue-500"}`} disabled={!formState.isValid}
+                        className={`rounded-full px-8    py-2 text-white font-circular font-thin ${!formState.isValid ? "!cursor-not-allowed bg-blue-300" : " bg-blue-500"}`} disabled={false}
                         handler={handleSubmit}
                     >
                         Save and Continue

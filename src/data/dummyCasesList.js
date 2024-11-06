@@ -1,5 +1,4 @@
 import { AiOutlineFileAdd } from "react-icons/ai";
-import { RiAccountCircleLine } from "react-icons/ri";
 import { TbLogout } from "react-icons/tb";
 import { HiOutlineHome } from "react-icons/hi";
 import { BsWallet } from "react-icons/bs";
@@ -10,113 +9,118 @@ import { FaLaptop } from "react-icons/fa";
 import iciciImage from "../assets/images/iciciLogo.png";
 import axisImage from "../assets/images/axisBank.png";
 
-export const allDummyCases = [
-    {
-        id: "C12345",
-        caseTitle: "State vs. John Doe",
-        summary: "In the case of State vs. John Doe, the defendant is charged with aggravated assault following an altercation at a local bar. The prosecution argues that Doe's actions were premeditated and resulted in severe injuries to the victim, who required hospitalization. The defense claims self-defense, asserting that Doe was provoked and acted in response to a physical threat. ",
-        judge: {
-            judgeName: "Judge Emily Carter",
-            judgeId: "J1001"
+export const allDummyCases = {
+    activeCases: 8,
+    closedCases: 123,
+    totalCases: 130,
+    allCases: [
+        {
+            id: "C12345",
+            caseTitle: "State vs. John Doe",
+            summary: "In the case of State vs. John Doe, the defendant is charged with aggravated assault following an altercation at a local bar. The prosecution argues that Doe's actions were premeditated and resulted in severe injuries to the victim, who required hospitalization. The defense claims self-defense, asserting that Doe was provoked and acted in response to a physical threat. ",
+            judge: {
+                judgeName: "Judge Emily Carter",
+                judgeId: "J1001"
+            },
+            lawyer: {
+                lawyerName: "Michael Johnson",
+                lawyerId: "L2001"
+            },
+            court: {
+                courtName: "District Court A",
+                courtAddress: "123 Main St, Springfield, IL",
+                courtId: "DCA100"
+            },
+            hearingDate: "2024-11-10",
+            caseStatus: "Scheduled",
+            timings: "10:00 AM - 11:00 AM"
         },
-        lawyer: {
-            lawyerName: "Michael Johnson",
-            lawyerId: "L2001"
+        {
+            id: "C12346",
+            caseTitle: "Doe Corporation vs. Smith Inc.",
+            summary: "In the case of Doe Corporation vs. Smith Inc., Doe Corporation alleges that Smith Inc. breached their contract by failing to deliver goods within the agreed-upon timeframe. As a result, Doe Corporation claims substantial financial losses due to production delays. Smith Inc. argues that unforeseen supply chain disruptions caused delays, and they notified Doe Corporation accordingly.",
+            judge: {
+                judgeName: "Judge Michael Brown",
+                judgeId: "J1002"
+            },
+            lawyer: {
+                lawyerName: "Sarah Lee",
+                lawyerId: "L2002"
+            },
+            court: {
+                courtName: "High Court B",
+                courtAddress: "456 Justice Ave, Metropolis, NY",
+                courtId: "HCB200"
+            },
+            hearingDate: "2024-11-10",
+            caseStatus: "In Progress",
+            timings: "10:00 AM - 11:00 AM"
         },
-        court: {
-            courtName: "District Court A",
-            courtAddress: "123 Main St, Springfield, IL",
-            courtId: "DCA100"
+        {
+            id: "C12347",
+            caseTitle: "City of Metropolis vs. Alex Johnson",
+            summary: "City of Metropolis vs. Alex Johnson involves allegations of environmental violations by the defendant. Johnson, the owner of a local factory, is accused of discharging waste into nearby water sources, causing harm to the ecosystem. The prosecution, representing the city, presents evidence from environmental tests showing elevated levels of toxic substances.",
+            judge: {
+                judgeName: "Judge Sarah Lee",
+                judgeId: "J1003"
+            },
+            lawyer: {
+                lawyerName: "David Roberts",
+                lawyerId: "L2003"
+            },
+            court: {
+                courtName: "Supreme Court C",
+                courtAddress: "789 Court Plaza, Gotham, NJ",
+                courtId: "SCC300"
+            },
+            hearingDate: "2024-11-10",
+            caseStatus: "Adjourned",
+            timings: "10:00 AM - 11:00 AM"
         },
-        date: "2024-11-10",
-        caseStatus: "Scheduled",
-        timings: "10:00 AM - 11:00 AM"
-    },
-    {
-        id: "C12346",
-        caseTitle: "Doe Corporation vs. Smith Inc.",
-        summary: "In the case of Doe Corporation vs. Smith Inc., Doe Corporation alleges that Smith Inc. breached their contract by failing to deliver goods within the agreed-upon timeframe. As a result, Doe Corporation claims substantial financial losses due to production delays. Smith Inc. argues that unforeseen supply chain disruptions caused delays, and they notified Doe Corporation accordingly.",
-        judge: {
-            judgeName: "Judge Michael Brown",
-            judgeId: "J1002"
+        {
+            id: "C12348",
+            caseTitle: "Jane Doe vs. John Smith",
+            summary: "In the case of Jane Doe vs. John Smith, Jane Doe is filing for divorce, citing irreconcilable differences. The couple has been married for over 10 years and has two children. Doe seeks primary custody, claiming Smith’s work commitments leave him unable to adequately care for the children. Smith argues for joint custody, citing a strong bond with the children. ",
+            judge: {
+                judgeName: "Judge Robert Green",
+                judgeId: "J1004"
+            },
+            lawyer: {
+                lawyerName: "Laura White",
+                lawyerId: "L2004"
+            },
+            court: {
+                courtName: "Family Court D",
+                courtAddress: "101 Family St, Hill Valley, CA",
+                courtId: "FCD400"
+            },
+            hearingDate: "2024-11-10",
+            caseStatus: "Dismissed",
+            timings: "10:00 AM - 11:00 AM"
         },
-        lawyer: {
-            lawyerName: "Sarah Lee",
-            lawyerId: "L2002"
-        },
-        court: {
-            courtName: "High Court B",
-            courtAddress: "456 Justice Ave, Metropolis, NY",
-            courtId: "HCB200"
-        },
-        date: "2024-11-10",
-        caseStatus: "Scheduled",
-        timings: "10:00 AM - 11:00 AM"
-    },
-    {
-        id: "C12347",
-        caseTitle: "City of Metropolis vs. Alex Johnson",
-        summary: "City of Metropolis vs. Alex Johnson involves allegations of environmental violations by the defendant. Johnson, the owner of a local factory, is accused of discharging waste into nearby water sources, causing harm to the ecosystem. The prosecution, representing the city, presents evidence from environmental tests showing elevated levels of toxic substances.",
-        judge: {
-            judgeName: "Judge Sarah Lee",
-            judgeId: "J1003"
-        },
-        lawyer: {
-            lawyerName: "David Roberts",
-            lawyerId: "L2003"
-        },
-        court: {
-            courtName: "Supreme Court C",
-            courtAddress: "789 Court Plaza, Gotham, NJ",
-            courtId: "SCC300"
-        },
-        date: "2024-11-10",
-        caseStatus: "Scheduled",
-        timings: "10:00 AM - 11:00 AM"
-    },
-    {
-        id: "C12348",
-        caseTitle: "Jane Doe vs. John Smith",
-        summary: "In the case of Jane Doe vs. John Smith, Jane Doe is filing for divorce, citing irreconcilable differences. The couple has been married for over 10 years and has two children. Doe seeks primary custody, claiming Smith’s work commitments leave him unable to adequately care for the children. Smith argues for joint custody, citing a strong bond with the children. ",
-        judge: {
-            judgeName: "Judge Robert Green",
-            judgeId: "J1004"
-        },
-        lawyer: {
-            lawyerName: "Laura White",
-            lawyerId: "L2004"
-        },
-        court: {
-            courtName: "Family Court D",
-            courtAddress: "101 Family St, Hill Valley, CA",
-            courtId: "FCD400"
-        },
-        date: "2024-11-10",
-        caseStatus: "Scheduled",
-        timings: "10:00 AM - 11:00 AM"
-    },
-    {
-        id: "C12349",
-        caseTitle: "ACME Corp vs. New Technologies Ltd.",
-        summary: "In the commercial dispute ACME Corp vs. New Technologies Ltd., ACME alleges that New Technologies breached a licensing agreement by using proprietary technology beyond the scope permitted. ACME is seeking damages and an injunction to prevent further unauthorized use. New Technologies contends that the contract terms are ambiguous and that they acted within their rights.",
-        judge: {
-            judgeName: "Judge Laura White",
-            judgeId: "J1005"
-        },
-        lawyer: {
-            lawyerName: "Benjamin Carter",
-            lawyerId: "L2005"
-        },
-        court: {
-            courtName: "Commercial Court E",
-            courtAddress: "202 Market St, Silicon City, CA",
-            courtId: "CCE500"
-        },
-        date: "2024-11-10",
-        caseStatus: "Scheduled",
-        timings: "10:00 AM - 11:00 AM"
-    }
-]
+        {
+            id: "C12349",
+            caseTitle: "ACME Corp vs. New Technologies Ltd.",
+            summary: "In the commercial dispute ACME Corp vs. New Technologies Ltd., ACME alleges that New Technologies breached a licensing agreement by using proprietary technology beyond the scope permitted. ACME is seeking damages and an injunction to prevent further unauthorized use. New Technologies contends that the contract terms are ambiguous and that they acted within their rights.",
+            judge: {
+                judgeName: "Judge Laura White",
+                judgeId: "J1005"
+            },
+            lawyer: {
+                lawyerName: "Benjamin Carter",
+                lawyerId: "L2005"
+            },
+            court: {
+                courtName: "Commercial Court E",
+                courtAddress: "202 Market St, Silicon City, CA",
+                courtId: "CCE500"
+            },
+            hearingDate: "2024-11-10",
+            caseStatus: "Closed",
+            timings: "10:00 AM - 11:00 AM"
+        }
+    ]
+};
 
 export const dummyUser = {
     "_id": "648db724c8dfa0ec049c6cbd",
@@ -357,7 +361,7 @@ export const lawyersData = [
         }
     },
     {
-        fullName: "Adv. Priya Sharma",
+        fullName: "Adv. Neha Sharma",
         enrollmentNumber: "MH/5678/2018",
         barCouncilAffiliation: "Bar Council of Maharashtra & Goa",
         practiceCertificate: "MH567890",
@@ -399,7 +403,7 @@ export const lawyersData = [
         }
     },
     {
-        fullName: "Adv. Priya Sharma",
+        fullName: "Adv. Jiya Sharma",
         enrollmentNumber: "MH/5678/2018",
         barCouncilAffiliation: "Bar Council of Maharashtra & Goa",
         practiceCertificate: "MH567890",
@@ -483,66 +487,3 @@ export const lawyersData = [
         }
     }
 ]
-
-export const trackStatusCase = [
-    {
-        "id": "1",
-        "title": "State vs. John Doe",
-        "courtName": "Distirct Court A",
-        "judgeName": "Laura White",
-        "lawyerName": "Adv. Priya Sharma",
-        "status": "rescheduled",
-        "caseType": "criminal case",
-        "actionRequired": "null"
-    },
-    {
-        "id": "2",
-        "title": "State vs. John Doe",
-        "courtName": "Distirct Court A",
-        "judgeName": "Surbhi Tiwari",
-        "lawyerName": "Mrs. Surbhi tiwari",
-        "status": "adjourned",
-        "caseType": "civil case",
-        "actionRequired": "upload_documents"
-    },
-    {
-        "id": "3",
-        "title": "State vs. John Doe",
-        "courtName": "Distirct Court A",
-        "judgeName": "Laura White",
-        "lawyerName": "Adv. Priya Sharma",
-        "status": "dismissed",
-        "caseType": "family law case",
-        "actionRequired": "null"
-    },
-    {
-        "id": "4",
-        "title": "State vs. John Doe",
-        "courtName": "Distirct Court A",
-        "judgeName": "Laura White",
-        "lawyerName": "Adv. Priya Sharma",
-        "status": "closed",
-        "caseType": "labor case",
-        "actionRequired": "null"
-    },
-    {
-        "id": "5",
-        "title": "State vs. John Doe",
-        "courtName": "Distirct Court A",
-        "judgeName": "Laura White",
-        "lawyerName": "Adv. Priya Sharma",
-        "status": "In progress",
-        "caseType": "juvenile case",
-        "actionRequired": "upload_documents"
-    },
-    {
-        "id": "6",
-        "title": "State vs. John Doe",
-        "courtName": "Distirct Court A",
-        "judgeName": "Laura White",
-        "lawyerName": "Adv. Priya Sharma",
-        "status": "pending",
-        "caseType": "intellectual case",
-        "actionRequired": "null"
-    }
-];
