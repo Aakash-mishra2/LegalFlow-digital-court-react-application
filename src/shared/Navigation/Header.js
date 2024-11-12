@@ -9,7 +9,6 @@ const Header = () => {
             <div className="text-lg font-thin font-circular">Welcome back, {username}</div>
             <div className="flex items-center space-x-8 mr-4">
                 <AiOutlineBell className="text-white text-2xl hover:text-[#5889d8]" />
-
                 <img
                     src={dummyUser.image}
                     alt="Profile"

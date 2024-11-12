@@ -1,7 +1,5 @@
 import ProgressBarCircular from "./CircularProgressBar";
 import UpcomingHearings from "./UpcomingHearings";
-import DocumentUploader from "../../../shared/formElements/DocumentUploader";
-
 const Overview = ({ data }) => {
     return (
         <>
@@ -16,7 +14,6 @@ const Overview = ({ data }) => {
                     data={data.allCases}
                 />
             </div>
-            <DocumentUploader />
         </>
     )
 };

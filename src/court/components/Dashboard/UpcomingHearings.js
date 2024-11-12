@@ -7,9 +7,9 @@ const UpcomingHearings = ({ data }) => {
                     data.map((item, index) => {
                         return (
                             <div key={index} className="rounded-xl p-2 min-w-[33%] bg-blue-200 flex flex-col my-2">
-                                <p className="text-sm font-light">{item.hearingDate}</p>
-                                <p className="text-xs font-light ">{item.timings}</p>
-                                <p className="text-xs mt-2 mb-1 font-light">{item.caseTitle}</p>
+                                <p className="text-sm font-light">{item?.nextHearing?.date}</p>
+                                <p className="text-xs font-light ">{item?.nextHearing?.timings}</p>
+                                <p className="text-xs mt-2 mb-1 font-light">{item?.caseTitle}</p>
                             </div>
                         )
                     })

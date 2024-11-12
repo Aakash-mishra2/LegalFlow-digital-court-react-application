@@ -11,6 +11,7 @@ const LawyersSection = () => {
         setSelectedLawyer(lawyersData[index]);
         setOpenModal(open => !open);
     }
+
     return (
         <div id="adv" className="bg-transparent rounded-xl w-[35%] mr-4 flex-col mt-4">
             <p className="text-md font-semibold mt-2 ml-2">Your lawyers</p>

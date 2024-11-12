@@ -16,6 +16,7 @@ export const allDummyCases = {
     allCases: [
         {
             id: "C12345",
+            status: "Scheduled",
             caseTitle: "State vs. John Doe",
             summary: "In the case of State vs. John Doe, the defendant is charged with aggravated assault following an altercation at a local bar. The prosecution argues that Doe's actions were premeditated and resulted in severe injuries to the victim, who required hospitalization. The defense claims self-defense, asserting that Doe was provoked and acted in response to a physical threat. ",
             judge: {
@@ -31,12 +32,14 @@ export const allDummyCases = {
                 courtAddress: "123 Main St, Springfield, IL",
                 courtId: "DCA100"
             },
-            hearingDate: "2024-11-10",
-            caseStatus: "Scheduled",
-            timings: "10:00 AM - 11:00 AM"
+            nextHearing: {
+                date: "2024-11-10",
+                timings: "10:00 AM - 11:00 AM",
+            }
         },
         {
             id: "C12346",
+            status: "In Progress",
             caseTitle: "Doe Corporation vs. Smith Inc.",
             summary: "In the case of Doe Corporation vs. Smith Inc., Doe Corporation alleges that Smith Inc. breached their contract by failing to deliver goods within the agreed-upon timeframe. As a result, Doe Corporation claims substantial financial losses due to production delays. Smith Inc. argues that unforeseen supply chain disruptions caused delays, and they notified Doe Corporation accordingly.",
             judge: {
@@ -52,12 +55,14 @@ export const allDummyCases = {
                 courtAddress: "456 Justice Ave, Metropolis, NY",
                 courtId: "HCB200"
             },
-            hearingDate: "2024-11-10",
-            caseStatus: "In Progress",
-            timings: "10:00 AM - 11:00 AM"
+            nextHearing: {
+                date: "2024-11-10",
+                timings: "10:00 AM - 11:00 AM"
+            },
         },
         {
             id: "C12347",
+            status: "Adjourned",
             caseTitle: "City of Metropolis vs. Alex Johnson",
             summary: "City of Metropolis vs. Alex Johnson involves allegations of environmental violations by the defendant. Johnson, the owner of a local factory, is accused of discharging waste into nearby water sources, causing harm to the ecosystem. The prosecution, representing the city, presents evidence from environmental tests showing elevated levels of toxic substances.",
             judge: {
@@ -73,9 +78,10 @@ export const allDummyCases = {
                 courtAddress: "789 Court Plaza, Gotham, NJ",
                 courtId: "SCC300"
             },
-            hearingDate: "2024-11-10",
-            caseStatus: "Adjourned",
-            timings: "10:00 AM - 11:00 AM"
+            nextHearing: {
+                date: "2024-11-10",
+                timings: "10:00 AM - 11:00 AM"
+            }
         },
         {
             id: "C12348",
@@ -94,9 +100,11 @@ export const allDummyCases = {
                 courtAddress: "101 Family St, Hill Valley, CA",
                 courtId: "FCD400"
             },
-            hearingDate: "2024-11-10",
-            caseStatus: "Dismissed",
-            timings: "10:00 AM - 11:00 AM"
+            nextHearing: {
+                date: "2024-11-10",
+                timings: "10:00 AM - 11:00 AM"
+            },
+            status: "Dismissed"
         },
         {
             id: "C12349",
@@ -115,9 +123,11 @@ export const allDummyCases = {
                 courtAddress: "202 Market St, Silicon City, CA",
                 courtId: "CCE500"
             },
-            hearingDate: "2024-11-10",
-            caseStatus: "Closed",
-            timings: "10:00 AM - 11:00 AM"
+            nextHearing: {
+                date: "2024-11-10",
+                timings: "10:00 AM - 11:00 AM"
+            },
+            status: "Closed"
         }
     ]
 };
@@ -149,11 +159,6 @@ export const sidebarOptions = [
         title: 'New Case',
         url: '/new-case'
     },
-    // {
-    //     icon: RiAccountCircleLine,
-    //     title: 'Profile',
-    //     url: '/profile'
-    // },
     {
         icon: BsWallet,
         title: 'Transactions',
@@ -319,6 +324,7 @@ export const typeOfCases = [
 
 export const lawyersData = [
     {
+        id: '1',
         fullName: "Adv. Rohan Mehta",
         enrollmentNumber: "D/1234/2020",
         barCouncilAffiliation: "Bar Council of Delhi",
@@ -367,7 +373,6 @@ export const lawyersData = [
         practiceCertificate: "MH567890",
         cases: [
             {
-
                 id: "C12345",
                 caseTitle: "State vs. John Doe",
             },

@@ -1,6 +1,5 @@
 import { toTitleCase } from "../../../shared/util/generalFunc";
 import { CiCircleChevRight } from "react-icons/ci";
-import DocumentUploader from "../../../shared/formElements/DocumentUploader";
 
 import { useState } from "react";
 import CaseDetailsModal from "../../../shared/modals/CaseDetailsModal";
@@ -30,11 +29,11 @@ const CaseStatusTracker = ({ data }) => {
                                 <div key={index}>
                                     <div key={index} className="w-[95%] h-12 py-2 px-4 flex flex-row justify-between items-center bg-gray-100 rounded-xl">
                                         <div>
-                                            <p className="text-sm" >{item.caseTitle}</p>
-                                            <div className="text-xs italic font-medium"><p>{item.judge.judgeName}, {item.court.courtName}</p></div>
+                                            <p className="text-sm" >{item?.caseTitle}</p>
+                                            <div className="text-xs italic font-medium"><p>{item?.judge?.judgeName}, {item?.court?.courtName}</p></div>
                                         </div>
                                         <div className="flex flex-row gap-2">
-                                            <p className="text-md animate-pulse font-light tracking-wider font-circular text-[#006A67]">{toTitleCase(item.caseStatus)}</p>
+                                            <p className="text-md animate-pulse font-light tracking-wider font-circular text-[#006A67]">{toTitleCase(item.status)}</p>
                                             <CiCircleChevRight className="text-2xl cursor-pointer text-[#006A67]" onClick={() => handleOpenModal(index)} />
                                         </div>
                                     </div>
