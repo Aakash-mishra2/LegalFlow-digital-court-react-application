@@ -14,7 +14,7 @@ function editForm(state, action) {
                 } else
                     formIsValid = formIsValid && state.inputs[temp].isValid;
             }
-            if (!Object(state).hasOwnProperty(action.id)) {
+            if (!Object(state.inputs).hasOwnProperty(action.id)) {
                 state[action.id] = { value: action.val, isValid: action.isValid };
                 return state;
             }
