@@ -15,7 +15,7 @@ import LoadingSpinner from "../../shared/UIelements/LoadingSpinner";
 import StateAndDistrict from "../components/StateAndDistrict";
 import CaseDetails from "../components/CaseDetails";
 
-import { typeOfCases } from "../../data/dummyCasesList";
+import { typeOfCases } from "../../constants/data/dummyCasesList";
 import { handleKeyPress } from "../../shared/util/generalFunc";
 
 export default function NewCases() {
@@ -96,6 +96,7 @@ export default function NewCases() {
                                 element="input"
                                 type="numeric"
                                 maxLength={12}
+                                minValue={0}
                                 onKeyDown={handleKeyPress}
                                 label="Verify your ID "
                                 placeHolder="Enter your Aadhar Card NO. / Voter ID no. "

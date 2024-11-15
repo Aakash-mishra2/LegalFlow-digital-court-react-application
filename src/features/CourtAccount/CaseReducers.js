@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { allDummyCases } from "../../data/dummyCasesList";
+import { allDummyCases } from "../../constants/data/dummyCasesList";
 
 const initialState = allDummyCases;
 
@@ -10,7 +10,7 @@ export const courtSlice = createSlice({
         addNewCase: (state, action) => {
             // console.log('action.payload')
             const existingData = state.allCases;
-            const updatedData = [...existingData, action.payload];
+            const updatedData = [action.payload, ...existingData];
             state.allCases = updatedData;
         }
     },

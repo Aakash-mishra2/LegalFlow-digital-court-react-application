@@ -113,20 +113,18 @@ const Authenticate = () => {
         }
     };
 
-    const clearError = () => {
-        setError(null);
-    }
+    const clearError = () => setError(null);
 
     return (
-        <React.Fragment>
+        <>
             {isLoading && <LoadingSpinner asOverlay />}
             <ErrorModal error={error} onClear={clearError} />
-            <div className="flex flex-col lg:flex-row mt-24 items-center lg:items-end h-full">
+            <div className="flex flex-col lg:flex-row mt-24 items-center lg:items-end h-max">
                 <div className="hidden md:block h-fit w-auto md:w-full lg:w-1/2 pt-0 pb-0 pl-8 pr-8 object-cover">
 
                     <img src={loginImg} className="aspect-auto mr-auto bg-transparent md:max-h-[40vh] lg:max-h-[65vh] " alt="loginImage" />
                 </div>
-                <Card className={` md:min-h-[35vh] lg:min-h-[65vh] max-h-[90vh] min-w-[85%] lg:min-w-[35%] flex flex-col justify-between h-full max-w-fit bg-white rounded-3xl sm:rounded-2xl text-left ml-8 mr-8 lg:ml-16 lg:mr-16 p-4 pl-8 pr-8 ${islogin ? "mt-8" : 'mt-0'}`}>
+                <Card className={` md:min-h-[35vh] lg:min-h-[60vh]  min-w-[85%] lg:min-w-[35%] flex flex-col justify-between h-full max-w-fit bg-white rounded-3xl sm:rounded-2xl text-left ml-8 mr-8 lg:ml-16 lg:mr-16 p-4 pl-8 pr-8 ${islogin ? "mt-8" : 'mt-0'}`}>
                     <div id="login-signup-form">
                         {!islogin && (
                             <div className="flex flex-col">
@@ -145,6 +143,7 @@ const Authenticate = () => {
                                     element="input"
                                     id="cardNo"
                                     type="number"
+                                    minValue="0"
                                     validators={[VALIDATOR_REQUIRE(), VALIDATOR_MINLENGTH(12)]}
                                     onInput={inputHandler}
                                     label="Aadhar-Card/ID no. "
@@ -170,6 +169,7 @@ const Authenticate = () => {
                                 type="password"
                                 validators={[VALIDATOR_REQUIRE(), VALIDATOR_MINLENGTH(8)]}
                                 onInput={inputHandler}
+                                autocomplete="new-password"
                                 label={islogin ? "Password" : "New Password"}
                                 placeHolder=" Your 8 digit password"
                                 errorText=" Enter a valid password of 8 digit or more"
@@ -195,7 +195,7 @@ const Authenticate = () => {
 
                 </Card>
             </div>
-        </React.Fragment >
+        </>
     );
 };
 

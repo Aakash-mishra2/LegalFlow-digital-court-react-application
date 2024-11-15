@@ -86,7 +86,7 @@ const PdfUploader = ({
               </div>
             )
           }
-          <form className="mt-4 flex flex-col gap-1 " onSubmit={handleUpload}>
+          <form className="mt-4 flex flex-col gap-2 " onSubmit={handleUpload}>
             {message && <p className="text-md text-gray-500 font-light">{message}</p>}
             <input
               id="input_file"

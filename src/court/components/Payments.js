@@ -1,6 +1,6 @@
 import { React, useState } from "react";
-import { paymentCards } from "../../data/dummyCasesList";
-import { paymentMethods } from "../../data/dummyCasesList";
+import { paymentCards } from "../../constants/data/dummyCasesList";
+import { paymentMethods } from "../../constants/data/dummyCasesList";
 import Input from "../../shared/formElements/Input";
 import Button from "../../shared/formElements/Button";
 import { useForm } from "../../shared/hooks/form-hook";

@@ -5,11 +5,18 @@ const UpcomingHearings = ({ data }) => {
             <div className="overflow-x-scroll overflow-hidden px-2 flex flex-row gap-2 cursor-pointer custom-scrollbar">
                 {
                     data.map((item, index) => {
+                        const {
+                            nextHearing = {
+                                date: "To Be Decided",
+                                timings: "To Be Decided",
+                            },
+                            caseTitle = "New Case Application"
+                        } = item;
                         return (
                             <div key={index} className="rounded-xl p-2 min-w-[33%] bg-blue-200 flex flex-col my-2">
-                                <p className="text-sm font-light">{item?.nextHearing?.date}</p>
-                                <p className="text-xs font-light ">{item?.nextHearing?.timings}</p>
-                                <p className="text-xs mt-2 mb-1 font-light">{item?.caseTitle}</p>
+                                <p className="text-sm font-light">{nextHearing?.date}</p>
+                                <p className="text-xs font-light ">{nextHearing?.timings}</p>
+                                <p className="text-xs mt-2 mb-1 font-light">{caseTitle}</p>
                             </div>
                         )
                     })

@@ -39,15 +39,14 @@ const CaseDetails = () => {
             ...existingCase,
             documents: formState?.inputs?.documents.value,
         }
-        localStorage.setItem("CCMS_NEW_CASE", updatedObject);
+        localStorage.setItem("CCMS_NEW_CASE", JSON.stringify(updatedObject));
         try {
             const response = await api.post('/admin/newcase', updatedObject);
-            //console.log('after uploading', response.caseObject);
 
             //update all cases object to render by status tracker
             dispatch(addNewCase(response.data.caseObject));
             setIsLoading(false);
-            history('/');
+            history('/dashboard');
         }
         catch (err) {
             setIsLoading(false);
@@ -108,7 +107,7 @@ const CaseDetails = () => {
                     {
                         formState.inputs.documents.value && formState.inputs.documents.value.length > 0 && (
                             <div className="w-1/2 h-100 flex flex-col justify-between ">
-                                <div>
+                                <div className="mb-4">
                                     <p className="text-md text-light mb-1 text-gray-600 font-cicular">Uploaded documents</p>
                                     {
                                         formState.inputs.documents.value.map((item, index) =>

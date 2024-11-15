@@ -1,6 +1,6 @@
 import { useSelector } from "react-redux";
 import { AiOutlineBell } from "react-icons/ai";
-import { dummyUser } from "../../data/dummyCasesList";
+import { dummyUser } from "../../constants/data/dummyCasesList";
 
 const Header = () => {
     const username = useSelector((state) => state.userAccount.userName);

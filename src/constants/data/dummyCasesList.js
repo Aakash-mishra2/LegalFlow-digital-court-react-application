@@ -6,8 +6,8 @@ import { IoSettingsOutline } from "react-icons/io5";
 import { BsBank } from "react-icons/bs";
 import { IoCashOutline } from "react-icons/io5";
 import { FaLaptop } from "react-icons/fa";
-import iciciImage from "../assets/images/iciciLogo.png";
-import axisImage from "../assets/images/axisBank.png";
+import iciciImage from "../../assets/images/iciciLogo.png";
+import axisImage from "../../assets/images/axisBank.png";
 
 export const allDummyCases = {
     activeCases: 8,
@@ -152,27 +152,32 @@ export const sidebarOptions = [
     {
         icon: HiOutlineHome,
         title: 'Dashboard',
-        url: '/dashboard'
+        url: '/dashboard',
+        type: 'redirection'
     },
     {
         icon: AiOutlineFileAdd,
         title: 'New Case',
-        url: '/new-case'
+        url: '/new-case',
+        type: 'redirection',
     },
     {
         icon: BsWallet,
         title: 'Transactions',
-        url: '/payments'
+        url: '/payments',
+        type: 'redirection',
     },
     {
         icon: IoSettingsOutline,
         title: 'Settings',
+        type: "redirection",
         url: '/settings'
     },
     {
         icon: TbLogout,
         title: 'Logout',
-        url: '/cases'
+        type: 'button',
+        url: '/logout'
     }
 ];
 

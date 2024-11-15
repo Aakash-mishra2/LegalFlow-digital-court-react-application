@@ -57,7 +57,7 @@ export default function UpdateCases() {
     }
 
     return (
-        <React.Fragment>
+        <>
             {isLoading && <LoadingSpinner asOverlay />}
             <ErrorModal error={error} onClear={clearError} />
             <form className="case-form" onSubmit={caseSubmitHandler}>
@@ -87,6 +87,6 @@ export default function UpdateCases() {
                     Update
                 </Button>
             </form>
-        </React.Fragment>
+        </>
     );
 };

@@ -10,7 +10,7 @@ import Payments from './court/components/Payments';
 import Settings from './court/components/Settings';
 import Dashboard from './court/components/Dashboard/Dashboard';
 import './App.css';
-
+import MainNavigation from './shared/Navigation/MainNavigation';
 const Citizens = React.lazy(() => import('./citizens/pages/Citizens'));
 const NewCases = React.lazy(() => import('./court/pages/NewCases'));
 const UpdateCases = React.lazy(() => import('./court/pages/UpdateCases'));
@@ -21,12 +21,11 @@ const Authenticate = React.lazy(() => import('./citizens/pages/Authenticate'));
 const App = () => {
 
   const isloggedIn = useSelector((state) => state.userAccount.isloggedIn);
-  const currentUserId = useSelector((state) => state.userAccount.UserId);
   let routes;
   if (isloggedIn) {
     routes = (
       <Routes>
-        <Route path="/" element={<Navigate to={`/${currentUserId}/cases`} />} />
+        <Route path="/" element={<Navigate to={'/dashboard'} />} />
         <Route path="/allParties" element={< Citizens />} />
         <Route path="/new-case" element={<NewCases />} />
         <Route path={`/cases`} element={< RegisteredCases />} />
@@ -49,10 +48,10 @@ const App = () => {
   return (
     <BrowserRouter>
       <main className='flex h-screen'>
-        <Sidebar />
+        {isloggedIn && <Sidebar />}
         <div className='flex-1 flex flex-col'>
+          {isloggedIn ? <Header /> : <MainNavigation />}
 
-          <Header />
           <Suspense
             fallback={
               <div className='center'><LoadingSpinner asOverlay /></div>

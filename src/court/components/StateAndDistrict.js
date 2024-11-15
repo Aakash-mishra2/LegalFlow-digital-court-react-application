@@ -22,6 +22,9 @@ const StateAndDistrict = ({ inputHandler, formState, validators }) => {
             }
         };
         fetchStates();
+        return () => {
+            setStates([]);
+        }
     }, [setStates])
 
     useEffect(() => {
@@ -39,6 +42,9 @@ const StateAndDistrict = ({ inputHandler, formState, validators }) => {
                 }
             };
             fetchDistricts();
+            return () => {
+                setAllDistricts([]);
+            }
         }
         setAllDistricts([]);
         setIsDistrictsDisabled(true);

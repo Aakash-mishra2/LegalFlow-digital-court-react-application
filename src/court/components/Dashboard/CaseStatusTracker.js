@@ -1,6 +1,5 @@
 import { toTitleCase } from "../../../shared/util/generalFunc";
 import { CiCircleChevRight } from "react-icons/ci";
-
 import { useState } from "react";
 import CaseDetailsModal from "../../../shared/modals/CaseDetailsModal";
 
@@ -30,7 +29,10 @@ const CaseStatusTracker = ({ data }) => {
                                     <div key={index} className="w-[95%] h-12 py-2 px-4 flex flex-row justify-between items-center bg-gray-100 rounded-xl">
                                         <div>
                                             <p className="text-sm" >{item?.caseTitle}</p>
-                                            <div className="text-xs italic font-medium"><p>{item?.judge?.judgeName}, {item?.court?.courtName}</p></div>
+                                            {(item.judge && item.court) ? <div className="text-xs italic font-medium"><p>{item?.judge?.judgeName}, {item?.court?.courtName}</p></div>
+                                                :
+                                                <p className="text-sm italic font-medium">TO BE DECIDED</p>
+                                            }
                                         </div>
                                         <div className="flex flex-row gap-2">
                                             <p className="text-md animate-pulse font-light tracking-wider font-circular text-[#006A67]">{toTitleCase(item.status)}</p>

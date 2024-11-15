@@ -38,9 +38,9 @@ export default function MainNavigation() {
                     <Link className="hidden md:block font-circular" to='/'>Court Case Management System</Link>
                     <Link className="block md:hidden" to='/'>C.C.M.S.</Link>
                 </h1>
-                <nav className="hidden md:block">
+                {/* <nav className="hidden md:block">
                     <Navlinks />
-                </nav>
+                </nav> */}
 
             </MainHeader>
         </>

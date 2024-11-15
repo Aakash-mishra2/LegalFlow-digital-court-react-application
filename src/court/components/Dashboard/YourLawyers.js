@@ -1,4 +1,4 @@
-import { lawyersData } from "../../../data/dummyCasesList";
+import { lawyersData } from "../../../constants/data/dummyCasesList";
 import { CiCircleChevRight } from "react-icons/ci";
 import LawyerDetailsModal from "../../../shared/modals/LawyerDetailsModal";
 import { useState } from "react";
@@ -13,7 +13,7 @@ const LawyersSection = () => {
     }
 
     return (
-        <div id="adv" className="bg-transparent rounded-xl w-[35%] mr-4 flex-col mt-4">
+        <div id="adv" className="bg-transparent rounded-xl mr-4 flex-col ">
             <p className="text-md font-semibold mt-2 ml-2">Your lawyers</p>
             <LawyerDetailsModal
                 show={openModal}

@@ -3,7 +3,7 @@ import { useParams } from "react-router";
 import CaseList from "../components/CaseList";
 import ErrorModal from "../../shared/modals/ErrorModal";
 import LoadingSpinner from "../../shared/UIelements/LoadingSpinner";
-import { allDummyCases } from "../../data/dummyCasesList";
+import { allDummyCases } from "../../constants/data/dummyCasesList";
 
 export default function RegisteredCases() {
   const userID = useParams().uid;
