@@ -1,6 +1,4 @@
 import { React, useState } from "react";
-import { paymentCards } from "../../constants/data/dummyCasesList";
-import { paymentMethods } from "../../constants/data/dummyCasesList";
 import Input from "../../shared/formElements/Input";
 import Button from "../../shared/formElements/Button";
 import { useForm } from "../../shared/hooks/form-hook";
@@ -8,19 +6,14 @@ import { VALIDATOR_REQUIRE, VALIDATOR_MINLENGTH } from "../../shared/util/valida
 import { handleKeyPress } from "../../shared/util/generalFunc";
 import bank from "../../assets/images/bank.svg";
 
+import { paymentCards } from "../../constants/constants";
+import { paymentMethods } from "../../constants/constants";
 
 const Payments = () => {
 
-    const [selectedMethod, setSelectedMethod] = useState('net-banking');
     const [savedCards, setSavedCards] = useState(paymentCards);
     const [activeIndex, setActiveIndex] = useState(1);
     const [activeCard, setActiveCard] = useState(-1);
-    const [payableAmount, setPayableAmount] = useState(JSON.parse(localStorage.getItem("CCMS_NEW_CASE"))?.registrationFees);
-    // const handleClick = (index) => {
-    //     //setpayment method, selected card, 
-    //     setActiveIndex(index);
-    //     setSelectedMethod(paymentMethods[index + 1].value);
-    // }
 
     const initialState = {
         holderName: {
@@ -96,7 +89,7 @@ const Payments = () => {
                     <p className="text-xl font-circular font-semibold">Payment Details</p>
                     <div className="flex flex-row justify-between border-b-[2px] mt-2 border-gray-400 pb-2 ">
                         <p className="font-light text-md">Total Payable: </p>
-                        <p className="font-bold text-xl "> ₹ {payableAmount}</p>
+                        <p className="font-bold text-xl "> ₹ {JSON.parse(localStorage.getItem("CCMS_NEW_CASE"))?.registrationFees}</p>
                     </div>
                     <Button
                         className="w-full mt-2 py-2 bg-black text-white font-circular">

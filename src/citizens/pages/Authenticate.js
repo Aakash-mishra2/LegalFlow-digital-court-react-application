@@ -15,12 +15,16 @@ import {
     VALIDATOR_MINLENGTH,
     VALIDATOR_REQUIRE,
 } from "../../shared/util/validators";
+import { ROLES } from "../../constants/constants";
 
 const Authenticate = () => {
+    const dispatch = useDispatch();
+
     const [islogin, setIsLogin] = useState(true);
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState('');
-    const dispatch = useDispatch();
+    const [role, setRole] = useState(ROLES.USER);
+
     const [formState, inputHandler, setFormData] = useForm(
         {
             email: { value: " ", isValid: false },
@@ -175,7 +179,7 @@ const Authenticate = () => {
                         </div>
                     </div>
                     <div className={` flex flex-col font-thin items-center pt-4`}>
-                        <Button type="submit" disabled={!formState.isValid} handler={submitHandler} className="w-full bg-[#213555] rounded-full text-white font-thin font-circular text-md tracking-wide pt-3 pb-3">
+                        <Button type="submit" disabled={!formState.isValid} handler={submitHandler} className={`${formState.isValid ? '!cursor-pointer' : '!cursor-not-allowed'} bg-[#213555]  w-full rounded-full text-white font-thin font-circular text-md tracking-wide pt-3 pb-3`}>
                             {islogin ? "LOGIN" : "SIGNUP"}
                         </Button>
                         {

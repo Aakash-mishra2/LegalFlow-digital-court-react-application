@@ -7,15 +7,15 @@ import Input from "../../shared/formElements/Input";
 import Button from "../../shared/formElements/Button";
 
 import { VALIDATOR_REQUIRE, VALIDATOR_MINLENGTH } from "../../shared/util/validators";
-
-import './CasesForm.css';
-import '../components/styles/CaseItem.css';
 import ErrorModal from "../../shared/modals/ErrorModal";
 import LoadingSpinner from "../../shared/UIelements/LoadingSpinner";
 import StateAndDistrict from "../components/StateAndDistrict";
 import CaseDetails from "../components/CaseDetails";
 
-import { typeOfCases } from "../../constants/data/dummyCasesList";
+import './CasesForm.css';
+import '../components/styles/CaseItem.css';
+
+import { typeOfCases } from "../../constants/constants";
 import { handleKeyPress } from "../../shared/util/generalFunc";
 
 export default function NewCases() {

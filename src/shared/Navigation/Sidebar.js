@@ -1,7 +1,6 @@
-import { sidebarOptions } from "../../constants/data/dummyCasesList";
+import { sidebarOptions } from "../../constants/constants";
 import { Link } from "react-router-dom";
 import { useLocation } from "react-router-dom";
-import Button from "../formElements/Button";
 import { useDispatch } from "react-redux";
 import { logOut } from "../../features/UserAccount/loginSlice";
 import { useNavigate } from "react-router-dom";

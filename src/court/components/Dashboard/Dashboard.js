@@ -1,6 +1,5 @@
 import Overview from "./Overview";
 import CaseStatusTracker from "./CaseStatusTracker";
-import { lawyersData } from "../../../constants/data/dummyCasesList";
 import LawyersSection from "./YourLawyers";
 import useGetAllCases from "../../../api/useGetAllCases";
 import { useSelector } from "react-redux";
@@ -8,12 +7,13 @@ import Button from "../../../shared/formElements/Button";
 import { useNavigate } from "react-router";
 import LoadingSpinner from "../../../shared/UIelements/LoadingSpinner";
 import ErrorModal from "../../../shared/modals/ErrorModal";
+
 import { setData } from "../../../features/CourtAccount/CaseReducers";
+import { lawyersData } from "../../../constants/constants";
 
 const Dashboard = () => {
-    const userId = useSelector((state) => state.userAccount.userId);
     const history = useNavigate();
-
+    const userId = useSelector((state) => state.userAccount.userId);
     const { data, error, loading, refetch } = useGetAllCases(`admin/user/${userId}`);
     setData(data);
 

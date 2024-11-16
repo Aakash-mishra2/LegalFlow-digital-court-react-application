@@ -1,6 +1,6 @@
 import CommonModal from "./Modal";
 import { VscChromeClose } from "react-icons/vsc";
-import { defaultCaseObject } from "../../constants/default_values";
+import { defaultCaseObject } from "../../constants/data/defaultCase";
 import PdfDownloader from "../formElements/PdfDownloader";
 
 const CaseDetailsModal = ({ item, show, closeModal }) => {

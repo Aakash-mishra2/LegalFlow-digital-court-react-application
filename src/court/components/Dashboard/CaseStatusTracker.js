@@ -25,7 +25,6 @@ const CaseStatusTracker = ({ data }) => {
                 <div className="w-full h-full overflow-hidden overflow-y-scroll custom-scrollbar ">
                     <div className="flex flex-col gap-2 ">
                         {data.map((item, index) => {
-
                             const {
                                 caseTitle = "New Application",
                                 judge: { judgeName = "To Be Decided" } = {},
