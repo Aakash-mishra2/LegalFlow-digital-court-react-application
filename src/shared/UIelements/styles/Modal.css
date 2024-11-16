@@ -1,16 +1,3 @@
-.modal {
-  z-index: 100;
-  position: fixed;
-  top: 22vh;
-  left: 10%;
-  width: 80%;
-  background: #f7e6c4;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
-  border-radius: 15px;
-  font-family: 'Ubuntu', sans-serif;
-  letter-spacing: 0.5px;
-}
-
 .modal__header {
   width: 100%;
   padding: 1rem 0.5rem;

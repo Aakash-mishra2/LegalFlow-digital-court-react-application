@@ -1,14 +1,16 @@
 import React, { Suspense } from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-
-import MainNavigation from './shared/Navigation/MainNavigation';
-import Counter from './features/counter/Counter';
+import Sidebar from './shared/Navigation/Sidebar';
+import Header from './shared/Navigation/Header';
 import LoadingSpinner from './shared/UIelements/LoadingSpinner';
-import RegisteredCases from './court/pages/RegisteredCases';
+import Payments from './court/components/Payments';
+import Settings from './court/components/Settings';
+import Dashboard from './court/components/Dashboard/Dashboard';
+import MainNavigation from './shared/Navigation/MainNavigation';
+
 import './App.css';
 
-const Citizens = React.lazy(() => import('./citizens/pages/Citizens'));
 const NewCases = React.lazy(() => import('./court/pages/NewCases'));
 const UpdateCases = React.lazy(() => import('./court/pages/UpdateCases'));
 const Authenticate = React.lazy(() => import('./citizens/pages/Authenticate'));
@@ -18,38 +20,40 @@ const Authenticate = React.lazy(() => import('./citizens/pages/Authenticate'));
 const App = () => {
 
   const isloggedIn = useSelector((state) => state.userAccount.isloggedIn);
-  const currentUserId = useSelector((state) => state.userAccount.UserId);
   let routes;
   if (isloggedIn) {
     routes = (
       <Routes>
-        <Route path="/" element={<Navigate to={`/${currentUserId}/cases`} />} />
-        <Route path="/allParties" element={< Citizens />} />
-        <Route path="/cases/new" element={<NewCases />} />
-        <Route path={`/:uid/cases`} element={< RegisteredCases />} />
+        <Route path="/" element={<Navigate to={'/dashboard'} />} />
+        <Route path="/new-case" element={<NewCases />} />
         <Route path="/update/:caseID" element={<UpdateCases />} />
-        <Route path="/counter" element={<Counter />} />
+        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/payments" element={<Payments />} />
+        <Route path="/settings" element={<Settings />} />
       </Routes>
     )
   }
   else {
     routes = (
       <Routes>
-        <Route path="/counter" element={<Counter />} />
-        <Route path="/*" element={< Authenticate />} />
+        <Route path="/*" element={<Navigate to={'/'} />} />
+        <Route path="/" element={< Authenticate />} />
       </Routes>
     )
   }
   return (
     <BrowserRouter>
-      <MainNavigation />
-      <main>
-        <Suspense
-          fallback={
-            <div className='center'><LoadingSpinner asOverlay /></div>
-          }>
-          {routes}
-        </Suspense>
+      <main className='flex h-screen'>
+        {isloggedIn && <Sidebar />}
+        <div className='flex-1 flex flex-col'>
+          {isloggedIn ? <Header /> : <MainNavigation />}
+          <Suspense
+            fallback={
+              <div className='center'><LoadingSpinner asOverlay /></div>
+            }>
+            {routes}
+          </Suspense>
+        </div>
       </main>
     </BrowserRouter>
   );

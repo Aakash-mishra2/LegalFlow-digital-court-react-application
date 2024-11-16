@@ -44,9 +44,7 @@ export default function Input(props) {
     const { isValid, value } = inputState;
 
     //useEffect(() = > {trigger this action - function  },[when these things change - dependencies])
-    useEffect(() => {
-        onInput(id, value, isValid)
-    }, [id, isValid, value, onInput])
+    useEffect(() => onInput(id, value, isValid), [id, isValid, value, onInput]);
 
     const element =
         props.element === "input" ? (
@@ -57,8 +55,13 @@ export default function Input(props) {
                 onChange={changeHandler}
                 onBlur={touchHandler}
                 value={inputState.value}
-                autoComplete="off"
-                className="block w-full border-[1px] border-gray-300 h-fit font-circular font-thin p-2 mt-1 bg-white text-sm text-gray-500 rounded-md placeholder-gray-400 placeholder:font-extralight placeholder:font-circular"
+                onKeyDown={props.onKeyDown}
+                maxLength={props.maxLength}
+                min={props.minValue}
+                autoComplete={props.autoComplete || "off"}
+                className="block w-full border-[1px] border-gray-300 h-fit font-circular font-thin p-2 mt-1 bg-white text-sm text-gray-500 rounded-md placeholder-gray-400 placeholder:font-extralight placeholder:font-circular
+                focus:outline-none focus:ring-opacity-50 focus:ring-gray-500
+                "
             />
         ) :
             (
@@ -71,7 +74,7 @@ export default function Input(props) {
                     onBlur={touchHandler}
                     value={inputState.value}
                     autoComplete="off"
-                    className="block w-full border-[1px] border-gray-300 h-16 font-circular p-2 mt-2 font-thin bg-white text-sm text-gray-500"
+                    className="block w-full border-[1px] border-gray-300 rounded-md h-16 font-circular p-2 mt-2 font-thin bg-white text-sm text-gray-500 focus:outline-none focus:ring-opacity-50 focus:ring-gray-500"
                 />
             );
 
@@ -79,8 +82,9 @@ export default function Input(props) {
         <div
             className={`mt-2 mb-1 m-0 ${!inputState.isValid && inputState.isTouched &&
                 'text-red-600'}`}
+            style={props.customStyle}
         >
-            <label className="font-circular text-sm font-thin" htmlFor={props.id}>{props.label}</label>
+            <label className={`font-circular text-sm font-thin ${props.labelStyles}`} htmlFor={props.id}>{props.label}</label>
             {element}
             {!inputState.isValid && inputState.isTouched && <p className="font-circular text-wider text-xs mt-2">{props.errorText}</p>}
         </div>

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useForm } from "../../shared/hooks/form-hook";
 import { login } from "../../features/UserAccount/loginSlice";
-import ErrorModal from "../../shared/UIelements/ErrorModal";
+import ErrorModal from "../../shared/modals/ErrorModal";
 import LoadingSpinner from "../../shared/UIelements/LoadingSpinner";
 import api from "../../api/ccmsBase";
 import Button from "../../shared/formElements/Button";
@@ -15,12 +15,16 @@ import {
     VALIDATOR_MINLENGTH,
     VALIDATOR_REQUIRE,
 } from "../../shared/util/validators";
+import { ROLES } from "../../constants/constants";
 
 const Authenticate = () => {
+    const dispatch = useDispatch();
+
     const [islogin, setIsLogin] = useState(true);
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState('');
-    const dispatch = useDispatch();
+    const [role, setRole] = useState(ROLES.USER);
+
     const [formState, inputHandler, setFormData] = useForm(
         {
             email: { value: " ", isValid: false },
@@ -77,8 +81,7 @@ const Authenticate = () => {
                 setIsLoading(false);
                 if (err.response) {
                     setError(err.response.data.message);
-                    console.log(err.response.status);
-                    console.log(error);
+                    console.log('AUTHENTICATION ERROR:', err.response.status, error);
                 } else {
                     setError(err.message);
                 }
@@ -104,8 +107,7 @@ const Authenticate = () => {
                 setIsLoading(false);
                 if (err.response) {
                     setError(err.response.data.message)
-                    console.log(err.response.status);
-                    console.log(error);
+                    console.log("AUTHENTICATION ERROR: ", err.response.status, error);
                 } else {
                     setError(err.message);
                 }
@@ -113,20 +115,18 @@ const Authenticate = () => {
         }
     };
 
-    const clearError = () => {
-        setError(null);
-    }
+    const clearError = () => setError(null);
 
     return (
-        <React.Fragment>
+        <>
             {isLoading && <LoadingSpinner asOverlay />}
             <ErrorModal error={error} onClear={clearError} />
-            <div className="flex flex-row mt-24 items-end h-full">
-                <div className="h-fit w-1/2 pt-0 pb-0 pl-8 pr-8 object-cover">
+            <div className="flex flex-col lg:flex-row mt-24 items-center lg:items-end h-max">
+                <div className="hidden md:block h-fit w-auto md:w-full lg:w-1/2 pt-0 pb-0 pl-8 pr-8 object-cover">
 
-                    <img src={loginImg} className="aspect-auto bg-transparent" alt="loginImage" />
+                    <img src={loginImg} className="aspect-auto mr-auto bg-transparent md:max-h-[40vh] lg:max-h-[65vh] " alt="loginImage" />
                 </div>
-                <Card className={`md:min-h-[65vh] max-h-[90vh] min-w-[35%] flex flex-col justify-between h-full max-w-fit bg-white rounded-2xl text-left ml-16 mr-16 p-4 pl-8 pr-8 ${islogin ? "mt-8" : 'mt-0'}`}>
+                <Card className={` md:min-h-[35vh] lg:min-h-[60vh]  min-w-[85%] lg:min-w-[35%] flex flex-col justify-between h-full max-w-fit bg-white rounded-3xl sm:rounded-2xl text-left ml-8 mr-8 lg:ml-16 lg:mr-16 p-4 pl-8 pr-8 ${islogin ? "mt-8" : 'mt-0'}`}>
                     <div id="login-signup-form">
                         {!islogin && (
                             <div className="flex flex-col">
@@ -145,6 +145,7 @@ const Authenticate = () => {
                                     element="input"
                                     id="cardNo"
                                     type="number"
+                                    minValue="0"
                                     validators={[VALIDATOR_REQUIRE(), VALIDATOR_MINLENGTH(12)]}
                                     onInput={inputHandler}
                                     label="Aadhar-Card/ID no. "
@@ -153,7 +154,7 @@ const Authenticate = () => {
                                 />
                             </div>
                         )}
-                        <div className={`flex ${islogin ? 'flex-col' : 'flex-row gap-4'} justify-between`}>
+                        <div className={`flex ${islogin ? 'flex-col' : ' flex-col sm:flex-row gap-4'} justify-between`}>
                             <Input
                                 element="input"
                                 id="email"
@@ -170,6 +171,7 @@ const Authenticate = () => {
                                 type="password"
                                 validators={[VALIDATOR_REQUIRE(), VALIDATOR_MINLENGTH(8)]}
                                 onInput={inputHandler}
+                                autocomplete="new-password"
                                 label={islogin ? "Password" : "New Password"}
                                 placeHolder=" Your 8 digit password"
                                 errorText=" Enter a valid password of 8 digit or more"
@@ -177,8 +179,7 @@ const Authenticate = () => {
                         </div>
                     </div>
                     <div className={` flex flex-col font-thin items-center pt-4`}>
-
-                        <Button type="submit" disabled={!formState.isValid} handler={submitHandler} className="w-full bg-[#213555] rounded-full text-white font-thin font-circular text-md tracking-wide pt-3 pb-3">
+                        <Button type="submit" disabled={!formState.isValid} handler={submitHandler} className={`${formState.isValid ? '!cursor-pointer' : '!cursor-not-allowed'} bg-[#213555]  w-full rounded-full text-white font-thin font-circular text-md tracking-wide pt-3 pb-3`}>
                             {islogin ? "LOGIN" : "SIGNUP"}
                         </Button>
                         {
@@ -196,7 +197,7 @@ const Authenticate = () => {
 
                 </Card>
             </div>
-        </React.Fragment >
+        </>
     );
 };
 
