@@ -5,13 +5,13 @@ import Sidebar from './shared/Navigation/Sidebar';
 import Header from './shared/Navigation/Header';
 import Counter from './features/counter/Counter';
 import LoadingSpinner from './shared/UIelements/LoadingSpinner';
-import RegisteredCases from './court/pages/RegisteredCases';
 import Payments from './court/components/Payments';
 import Settings from './court/components/Settings';
 import Dashboard from './court/components/Dashboard/Dashboard';
-import './App.css';
 import MainNavigation from './shared/Navigation/MainNavigation';
-const Citizens = React.lazy(() => import('./citizens/pages/Citizens'));
+
+import './App.css';
+
 const NewCases = React.lazy(() => import('./court/pages/NewCases'));
 const UpdateCases = React.lazy(() => import('./court/pages/UpdateCases'));
 const Authenticate = React.lazy(() => import('./citizens/pages/Authenticate'));
@@ -26,9 +26,7 @@ const App = () => {
     routes = (
       <Routes>
         <Route path="/" element={<Navigate to={'/dashboard'} />} />
-        <Route path="/allParties" element={< Citizens />} />
         <Route path="/new-case" element={<NewCases />} />
-        <Route path={`/cases`} element={< RegisteredCases />} />
         <Route path="/update/:caseID" element={<UpdateCases />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/payments" element={<Payments />} />
@@ -51,7 +49,6 @@ const App = () => {
         {isloggedIn && <Sidebar />}
         <div className='flex-1 flex flex-col'>
           {isloggedIn ? <Header /> : <MainNavigation />}
-
           <Suspense
             fallback={
               <div className='center'><LoadingSpinner asOverlay /></div>

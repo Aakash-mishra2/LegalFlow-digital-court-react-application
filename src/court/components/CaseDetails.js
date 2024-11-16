@@ -12,8 +12,6 @@ import api from "../../api/ccmsBase";
 const CaseDetails = () => {
     const history = useNavigate();
     const dispatch = useDispatch();
-
-    const username = useSelector((state) => state.userAccount.userName);
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState("");
     const [confirmCaseDetails, setConfirmCaseDetails] = useState(false);
@@ -24,6 +22,8 @@ const CaseDetails = () => {
             isValid: false,
         }
     }, false);
+
+    const userId = useSelector((state) => state.userAccount.userId);
 
     const submitApplication = async () => {
 
@@ -38,6 +38,7 @@ const CaseDetails = () => {
         const updatedObject = {
             ...existingCase,
             documents: formState?.inputs?.documents.value,
+            userId: userId,
         }
         localStorage.setItem("CCMS_NEW_CASE", JSON.stringify(updatedObject));
         try {
@@ -61,6 +62,7 @@ const CaseDetails = () => {
     }
 
     const AddNewDocument = (obj) => {
+        console.log('object', obj);
         const existingDocuments = formState?.inputs.documents?.value || [];
         const updatedDocuments = [...existingDocuments, obj];
         inputHandler("documents", updatedDocuments, true);

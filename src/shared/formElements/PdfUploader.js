@@ -67,7 +67,7 @@ const PdfUploader = ({
     <>
       <div className="flex flex-col gap-0 mt-2">
         <p className='text-md text-gray-600 font-circular'>{`Click to upload:`}</p>
-        <div className="max-w-[300px] flex flex-row gap-2 items-center">
+        <div className="max-w-[300px] flex flex-row gap-4 items-center">
           {
             !file ? (
               <div className='flex flex-col gap-2 mb-4'>
@@ -86,7 +86,7 @@ const PdfUploader = ({
               </div>
             )
           }
-          <form className="mt-4 flex flex-col gap-2 " onSubmit={handleUpload}>
+          <form className="mt-4 w-4/5 flex flex-col gap-2 " onSubmit={handleUpload}>
             {message && <p className="text-md text-gray-500 font-light">{message}</p>}
             <input
               id="input_file"

@@ -39,16 +39,14 @@ export default function UpdateCases() {
             description: formState.inputs.description.value,
         }
         try {
-            const response = await api.post(`/public/update/${caseid}`, updatedCase);
-            console.log(response.data.message);
+            await api.post(`/public/update/${caseid}`, updatedCase);
             setIsLoading(false);
         }
         catch (err) {
             setIsLoading(false);
             if (err.response) {
                 setError(err.response.data.message);
-                console.log(err.response.status);
-                console.log(error);
+                console.log("UPDATE CASE ERROR:", err.response.status, error);
             } else {
                 setError(err.message);
             }

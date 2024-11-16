@@ -63,29 +63,16 @@ export default function NewCases() {
             description: formState.inputs.caseDesc.value,
             registrationFees: formState.inputs.caseType.value.fees,
         }
-        // console.log('before saving', newcase);
         localStorage.setItem("CCMS_NEW_CASE", JSON.stringify(newcase));
-        try {
-            //api call here
-            setIsLoading(false);
-            setProceedToDetails(true);
-        }
-        catch (err) {
-            setIsLoading(false);
-            if (err.response) {
-                setError(err.response.data.message);
-            } else {
-                setError(err.message);
-            }
-        }
-        // if (error === '') history('/');
+        setIsLoading(false);
+        setProceedToDetails(true);
     }
     return (
         <>
 
             {isLoading && <LoadingSpinner asOverlay />}
             <ErrorModal error={error} onClear={clearError} />
-            <div className="bg-gray-200 h-screen p-4 font-circular overflow-y-scroll">
+            <div className="bg-gray-200 h-screen p-4 pt-0 font-circular overflow-y-scroll">
                 <p className="text-lg font-circular font-thin mt-2">Register New Case </p>
                 <div className="mt-2 mb-0 p-4 w-full shadow-card bg-white">
                     <p className="text-sm font-circular font-thin mt-2">Basic information</p>
@@ -136,7 +123,7 @@ export default function NewCases() {
                     </div>
 
                     <Button
-                        className={`rounded-full px-8    py-2 text-white font-circular font-thin ${!formState.isValid ? "!cursor-not-allowed bg-blue-300" : " bg-blue-500"}`} disabled={false}
+                        className={`rounded-full px-8    py-2 text-white font-circular font-thin ${!formState.isValid ? "!cursor-not-allowed bg-blue-300" : " bg-blue-500"}`} disabled={!formState.isValid}
                         handler={handleSubmit}
                     >
                         Save and Continue

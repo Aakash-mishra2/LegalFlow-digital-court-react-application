@@ -77,8 +77,7 @@ const Authenticate = () => {
                 setIsLoading(false);
                 if (err.response) {
                     setError(err.response.data.message);
-                    console.log(err.response.status);
-                    console.log(error);
+                    console.log('AUTHENTICATION ERROR:', err.response.status, error);
                 } else {
                     setError(err.message);
                 }
@@ -104,8 +103,7 @@ const Authenticate = () => {
                 setIsLoading(false);
                 if (err.response) {
                     setError(err.response.data.message)
-                    console.log(err.response.status);
-                    console.log(error);
+                    console.log("AUTHENTICATION ERROR: ", err.response.status, error);
                 } else {
                     setError(err.message);
                 }
