@@ -37,7 +37,7 @@ export const sidebarOptions = [
         icon: IoSettingsOutline,
         title: 'Settings',
         type: "redirection",
-        url: '/settings'
+        url: '/dashboard'
     },
     {
         icon: TbLogout,
