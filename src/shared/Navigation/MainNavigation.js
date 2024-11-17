@@ -15,7 +15,6 @@ export default function MainNavigation() {
         setMenu(true);
     }
     const closeMenu = () => setMenu(false);
-
     return (
         <>
             {menu && <Backdrop onClick={closeMenu} />}
@@ -24,7 +23,6 @@ export default function MainNavigation() {
                     <Navlinks />
                 </nav>
             </SideMenu>
-
             <MainHeader>
                 {isLoggedIn && (<button
                     className={`w-12 h-12 bg-transparent border-none flex flex-col justify-around mr-4 cursor-pointer md:hidden pt-2 pb-2`}
@@ -41,7 +39,10 @@ export default function MainNavigation() {
                 {/* <nav className="hidden md:block">
                     <Navlinks />
                 </nav> */}
-
+                <div className="flex flex-col text-sm tracking-wider gap-1 p-1 pl-4 pr-8 border-2 border-white rounded-lg text-white">
+                    <p>{`USER : test123@gmail.com, ccms123`}</p>
+                    <p>{`ADMIN: admin123@gmail.com, ccms1234`}</p>
+                </div>
             </MainHeader>
         </>
     );

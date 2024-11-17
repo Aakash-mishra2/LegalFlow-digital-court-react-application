@@ -129,7 +129,7 @@ const Authenticate = () => {
             <div className="h-screen w-screen object-cover fixed top-0 right-0">
                 <img src={courtImage} alt="court_bg" className="h-[100%] w-[100%] aspect-auto" />
             </div>
-            <div className="flex flex-col lg:flex-row mt-32 items-center lg:items-end h-max z-20">
+            <div className="flex flex-col lg:flex-row mt-32 items-baseline h-max z-20">
                 <div className="hidden md:block h-fit w-auto md:w-full lg:w-1/2 pt-0 pb-0 pl-8 pr-8 object-cover">
 
                     {/* <img src={loginImg} className="aspect-auto mr-auto bg-transparent md:max-h-[40vh] lg:max-h-[65vh] " alt="loginImage" /> */}
