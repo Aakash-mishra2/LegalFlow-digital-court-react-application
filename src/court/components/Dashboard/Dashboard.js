@@ -9,34 +9,44 @@ import LoadingSpinner from "../../../shared/UIelements/LoadingSpinner";
 import ErrorModal from "../../../shared/modals/ErrorModal";
 
 import { setData } from "../../../features/CourtAccount/CaseReducers";
-import { lawyersData } from "../../../constants/constants";
+import { lawyersData, ROLES, STATUS } from "../../../constants/constants";
 
 const Dashboard = () => {
     const history = useNavigate();
     const userId = useSelector((state) => state.userAccount.userId);
-    const { data, error, loading, refetch } = useGetAllCases(`admin/user/${userId}`);
+    const role = useSelector((state) => state.userAccount.role);
+    let filter = {};
+    if (role === ROLES.ADMIN) filter = { status: STATUS.FILED };
+
+    const { data, error, loading, refetch } = useGetAllCases(`${role}/${userId}`, filter);
     setData(data);
 
     if (loading) { return <><LoadingSpinner asOverlay /></> }
     if (error) { return <ErrorModal error={error} onClear={refetch} /> }
 
     return (
-        <>
-            <div className="bg-gray-200 h-screen overflow-y-scroll flex flex-row">
-                <div id="ovw-hrn" className="flex flex-col gap-2 mt-4">
-                    <Overview data={data} />
-                    <CaseStatusTracker data={data?.allCases} />
-                </div>
-                <div id="new-lwr" className="flex flex-col gap-2 w-[35%]">
+        <>{
+            role === ROLES.USER ? (
+                <div className="bg-gray-200 h-screen overflow-y-scroll flex flex-row">
+                    <div id="ovw-hrn" className="flex flex-col gap-2 mt-4">
+                        <Overview data={data} />
+                        <CaseStatusTracker data={data?.allCases} />
+                    </div>
+                    <div id="new-lwr" className="flex flex-col gap-2 w-[35%]">
 
-                    <Button
-                        className="bg-red-800 rounded-md text-white text-xl font-bold shadow-nav py-6 px-2 mt-8 mb-2 mr-4"
-                        handler={() => history("/new-case")}
-                    >New Application
-                    </Button>
-                    <LawyersSection data={lawyersData} />
+                        <Button
+                            className="bg-red-800 rounded-md text-white text-xl font-bold shadow-nav py-6 px-2 mt-8 mb-2 mr-4"
+                            handler={() => history("/new-case")}
+                        >New Application
+                        </Button>
+                        <LawyersSection data={lawyersData} />
+                    </div>
                 </div>
-            </div>
+            ) : (
+                <div className="bg-red-700 w-40 h-60 rounded-md"></div>
+            )
+        }
+
         </>
     )
 }

@@ -5,10 +5,10 @@ const ErrorModal = ({ error, onClear }) => {
         <CommonModal
             openModal={!!error}
             handleClose={onClear}
-            className="h-1/2 w-1/2  p-4"
+            className="h-1/2 w-1/2"
             id="error-modal"
         >
-            <div className="relative p-8 bg-gray-100 rounded-xl items-center flex flex-col overflow-hidden">
+            <div className="relative p-8 bg-gray-100 rounded-xl h-full items-center flex flex-col overflow-hidden">
                 <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-transparent via-white to-transparent opacity-50 animate-shine"></div>
                 <span className="text-4xl font-bold mt-2">Oops</span>
                 <span className="text-md mt-3">We&apos;re sorry,</span>

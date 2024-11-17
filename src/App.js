@@ -43,7 +43,7 @@ const App = () => {
   }
   return (
     <BrowserRouter>
-      <main className='flex h-screen'>
+      <main className='flex h-screen '>
         {isloggedIn && <Sidebar />}
         <div className='flex-1 flex flex-col'>
           {isloggedIn ? <Header /> : <MainNavigation />}

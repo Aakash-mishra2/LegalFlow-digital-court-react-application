@@ -14,7 +14,15 @@ export const ROLES = {
     ADMIN: 'admin',
 }
 
-export const sidebarOptions = [
+export const STATUS = {
+    FILED: 'filed',
+    SCHEDULED: 'scheduled',
+    ADJOURNED: 'adjourned',
+    DISMISSED: 'dismissed',
+    CLOSED: 'closed'
+}
+
+export const userSideBar = [
     {
         icon: HiOutlineHome,
         title: 'Dashboard',
@@ -37,7 +45,40 @@ export const sidebarOptions = [
         icon: IoSettingsOutline,
         title: 'Settings',
         type: "redirection",
-        url: '/dashboard'
+        url: '/settings'
+    },
+    {
+        icon: TbLogout,
+        title: 'Logout',
+        type: 'button',
+        url: '/logout'
+    }
+];
+
+export const adminSideBar = [
+    {
+        icon: HiOutlineHome,
+        title: 'Dashboard',
+        url: '/dashboard',
+        type: 'redirection'
+    },
+    {
+        icon: AiOutlineFileAdd,
+        title: 'Tasks',
+        url: '/actions',
+        type: 'redirection',
+    },
+    {
+        icon: BsWallet,
+        title: 'Transactions',
+        url: '/payments',
+        type: 'redirection',
+    },
+    {
+        icon: IoSettingsOutline,
+        title: 'Settings',
+        type: "redirection",
+        url: '/settings'
     },
     {
         icon: TbLogout,

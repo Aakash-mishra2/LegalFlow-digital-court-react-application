@@ -7,8 +7,8 @@ import LoadingSpinner from "../../shared/UIelements/LoadingSpinner";
 import api from "../../api/ccmsBase";
 import Button from "../../shared/formElements/Button";
 import Input from "../../shared/formElements/Input";
-import loginImg from "../../assets/images/login.jpg";
 import Card from "../../shared/UIelements/Card";
+import courtImage from "../../assets/images/court-background.png";
 
 import {
     VALIDATOR_EMAIL,
@@ -24,6 +24,7 @@ const Authenticate = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState('');
     const [role, setRole] = useState(ROLES.USER);
+    const [disableSignup, setDisableSignup] = useState(false);
 
     const [formState, inputHandler, setFormData] = useForm(
         {
@@ -32,6 +33,7 @@ const Authenticate = () => {
         },
         false
     );
+
     const switchModeHandler = () => {
         if (!islogin) {
             setFormData(
@@ -60,6 +62,7 @@ const Authenticate = () => {
         }
         setIsLogin((prevMode) => !prevMode);
     };
+
     const submitHandler = async (event) => {
         event.preventDefault();
         setIsLoading(true);
@@ -69,12 +72,13 @@ const Authenticate = () => {
                 password: formState.inputs.password.value,
             };
             try {
-                const response = await api.post("/public/login", loginUser);
+                const response = await api.post("/user/login", loginUser);
                 setIsLoading(false);
                 dispatch(
                     login({
                         id: response.data.citizen.id,
                         name: response.data.citizen.name,
+                        role: role,
                     })
                 );
             } catch (err) {
@@ -95,12 +99,13 @@ const Authenticate = () => {
                     idCardNo: formState.inputs.cardNo.value,
                 };
 
-                const response = await api.post("/public/signup", newUser);
+                const response = await api.post("/user/signup", newUser);
                 setIsLoading(false);
                 dispatch(
                     login({
                         id: response.data.added.id,
                         name: response.data.added.name,
+                        role: role,
                     })
                 );
             } catch (err) {
@@ -121,68 +126,87 @@ const Authenticate = () => {
         <>
             {isLoading && <LoadingSpinner asOverlay />}
             <ErrorModal error={error} onClear={clearError} />
-            <div className="flex flex-col lg:flex-row mt-24 items-center lg:items-end h-max">
+            <div className="h-screen w-screen object-cover fixed top-0 right-0">
+                <img src={courtImage} alt="court_bg" className="h-[100%] w-[100%] aspect-auto" />
+            </div>
+            <div className="flex flex-col lg:flex-row mt-32 items-center lg:items-end h-max z-20">
                 <div className="hidden md:block h-fit w-auto md:w-full lg:w-1/2 pt-0 pb-0 pl-8 pr-8 object-cover">
 
-                    <img src={loginImg} className="aspect-auto mr-auto bg-transparent md:max-h-[40vh] lg:max-h-[65vh] " alt="loginImage" />
+                    {/* <img src={loginImg} className="aspect-auto mr-auto bg-transparent md:max-h-[40vh] lg:max-h-[65vh] " alt="loginImage" /> */}
                 </div>
-                <Card className={` md:min-h-[35vh] lg:min-h-[60vh]  min-w-[85%] lg:min-w-[35%] flex flex-col justify-between h-full max-w-fit bg-white rounded-3xl sm:rounded-2xl text-left ml-8 mr-8 lg:ml-16 lg:mr-16 p-4 pl-8 pr-8 ${islogin ? "mt-8" : 'mt-0'}`}>
-                    <div id="login-signup-form">
-                        {!islogin && (
-                            <div className="flex flex-col">
-                                <Input
-                                    element="input"
-                                    id="name"
-                                    type="text"
-                                    validators={[VALIDATOR_REQUIRE()]}
-                                    onInput={inputHandler}
-                                    label=" Name"
-                                    placeHolder=" Your full name "
-                                    errorText="Must contain A-Z / a-z characters only "
-                                />
+                <Card className={` md:min-h-[35vh] lg:min-h-[45vh]  min-w-[85%] lg:min-w-[32%] flex flex-col justify-between h-full max-w-fit bg-white rounded-3xl sm:rounded-2xl text-left ml-8 mr-8 lg:ml-16 lg:mr-16 p-4 px-8 ${islogin ? "mt-8" : 'mt-0'}`}>
+                    <div className="flex flex-col gap-2">
 
+
+                        <div id="role-selector" className="flex flex-row gap-4">
+                            <Button
+                                handler={() => { setRole(ROLES.USER); setDisableSignup(false); }}
+                                className={`py-3 w-full rounded-lg font-medium text-lg text-white ${role === ROLES.USER ? 'bg-[#213555] text-white ' : 'bg-white text-[#213555] border-2 border-[#213555]'} `}
+                            >Login as USER</Button>
+                            <Button
+                                handler={() => { setRole(ROLES.ADMIN); setDisableSignup(true); }}
+                                className={`py-3 w-full rounded-lg text-lg font-medium text-white ${role === ROLES.ADMIN ? 'bg-[#213555] text-white ' : 'bg-white text-[#213555] border-2 border-[#213555]'} `}
+                            >Login as ADMIN</Button>
+                        </div>
+                        <div id="login-signup-form">
+                            {!islogin && (
+                                <div className="flex flex-col">
+                                    <Input
+                                        element="input"
+                                        id="name"
+                                        type="text"
+                                        validators={[VALIDATOR_REQUIRE()]}
+                                        onInput={inputHandler}
+                                        label=" Name"
+                                        placeHolder=" Your full name "
+                                        errorText="Must contain A-Z / a-z characters only "
+                                    />
+
+                                    <Input
+                                        element="input"
+                                        id="cardNo"
+                                        type="number"
+                                        minValue="0"
+                                        validators={[VALIDATOR_REQUIRE(), VALIDATOR_MINLENGTH(12)]}
+                                        onInput={inputHandler}
+                                        label="Aadhar-Card/ID no. "
+                                        placeHolder=" Your 12 digit ID card no."
+                                        errorText=" Must contain 12 digits (0-9 only)"
+                                    />
+                                </div>
+                            )}
+                            <div className={`flex ${islogin ? 'flex-col' : ' flex-col sm:flex-row gap-4'}`}>
                                 <Input
                                     element="input"
-                                    id="cardNo"
-                                    type="number"
-                                    minValue="0"
-                                    validators={[VALIDATOR_REQUIRE(), VALIDATOR_MINLENGTH(12)]}
+                                    id="email"
+                                    type="text"
+                                    validators={[VALIDATOR_REQUIRE(), VALIDATOR_EMAIL()]}
                                     onInput={inputHandler}
-                                    label="Aadhar-Card/ID no. "
-                                    placeHolder=" Your 12 digit ID card no."
-                                    errorText=" Must contain 12 digits (0-9 only)"
+                                    label="Email"
+                                    placeHolder=" Your email address "
+                                    errorText=" Must be a valid email address"
+                                    customStyle={{ minWidth: '45%' }}
+                                />
+                                <Input
+                                    element="input"
+                                    id="password"
+                                    type="password"
+                                    validators={[VALIDATOR_REQUIRE(), VALIDATOR_MINLENGTH(8)]}
+                                    onInput={inputHandler}
+                                    autocomplete="new-password"
+                                    label={islogin ? "Password" : "New Password"}
+                                    placeHolder=" Your 8 digit password"
+                                    errorText=" Enter a valid password of 8 digit or more"
+                                    customStyle={{ minWidth: '45%' }}
                                 />
                             </div>
-                        )}
-                        <div className={`flex ${islogin ? 'flex-col' : ' flex-col sm:flex-row gap-4'} justify-between`}>
-                            <Input
-                                element="input"
-                                id="email"
-                                type="text"
-                                validators={[VALIDATOR_REQUIRE(), VALIDATOR_EMAIL()]}
-                                onInput={inputHandler}
-                                label="Email"
-                                placeHolder=" Your email address "
-                                errorText=" Must be a valid email address"
-                            />
-                            <Input
-                                element="input"
-                                id="password"
-                                type="password"
-                                validators={[VALIDATOR_REQUIRE(), VALIDATOR_MINLENGTH(8)]}
-                                onInput={inputHandler}
-                                autocomplete="new-password"
-                                label={islogin ? "Password" : "New Password"}
-                                placeHolder=" Your 8 digit password"
-                                errorText=" Enter a valid password of 8 digit or more"
-                            />
                         </div>
                     </div>
-                    <div className={` flex flex-col font-thin items-center pt-4`}>
-                        <Button type="submit" disabled={!formState.isValid} handler={submitHandler} className={`${formState.isValid ? '!cursor-pointer' : '!cursor-not-allowed'} bg-[#213555]  w-full rounded-full text-white font-thin font-circular text-md tracking-wide pt-3 pb-3`}>
+                    <div className={`flex flex-col font-thin items-center pt-4`}>
+                        <Button type="submit" disabled={!formState.isValid} handler={submitHandler} className={`${formState.isValid ? '!cursor-pointer' : '!cursor-not-allowed'} bg-[#213555]  w-full rounded-3xl text-white font-thin font-circular text-md tracking-wide pt-3 pb-3`}>
                             {islogin ? "LOGIN" : "SIGNUP"}
                         </Button>
-                        {
+                        {!disableSignup && (
                             islogin ? (
                                 <span className="flex flex-row gap-2 font-circular mt-2 text-sm ">
                                     <p>Do not have an account yet?</p><p className="text-red-500 cursor-pointer underline underline-offset-2" onClick={switchModeHandler}>Sign up</p>
@@ -192,6 +216,7 @@ const Authenticate = () => {
                                     <p>You already have an account?</p><p className="text-red-500 underline underline-offset-2 cursor-pointer" onClick={switchModeHandler}>Login</p>
                                 </span>
                             )
+                        )
                         }
                     </div>
 

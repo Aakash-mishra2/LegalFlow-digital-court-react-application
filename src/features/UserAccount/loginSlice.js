@@ -1,9 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { ROLES } from "../../constants/constants";
 
 const initialState = {
-    isloggedIn: true,
-    UserId: '67372c299dba693df3abec34',
-    userName: 'Aakash',
+    isloggedIn: false,
+    userId: '',
+    userName: '',
+    role: ROLES.USER,
 };
 
 export const loginSlice = createSlice({
@@ -12,13 +14,15 @@ export const loginSlice = createSlice({
     reducers: {
         login: (state, action) => {
             state.isloggedIn = !state.isloggedIn;
-            state.UserId = action.payload.id;
+            state.userId = action.payload.id;
             state.userName = action.payload.name;
+            state.role = action.payload.role;
         },
         logOut: (state) => {
             state.isloggedIn = false;
-            state.UserId = '';
-            state.userName = ''
+            state.userId = '';
+            state.userName = '';
+            state.role = ROLES.USER;
         }
     }
 });

@@ -21,7 +21,9 @@ const useGetAllCases = (slug, options = {}) => {
         setError(null);
 
         try {
-            const response = await api.get(url, options);
+            const response = await api.get(url, {
+                params: options, //Filter object
+            });
             setData(response.data);
         } catch (err) {
             setError(err.message);
