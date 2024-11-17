@@ -1,7 +1,7 @@
-import { getDistrictsByState, getAllStates } from "../../api/E-Court/locationAPI";
-import Dropdown from "../../shared/formElements/Dropdown";
 import { useState, useEffect } from "react";
-import { validate } from "../../shared/util/validators";
+import { getAllStates, getDistrictsByState } from "../../../api/E-Court/locationAPI";
+import { validate } from "../../../shared/util/validators";
+import Dropdown from "../../../shared/formElements/Dropdown";
 
 const StateAndDistrict = ({ inputHandler, formState, validators }) => {
 
@@ -21,6 +21,7 @@ const StateAndDistrict = ({ inputHandler, formState, validators }) => {
                 console.log("FETCH ALL STATES ERROR:", error);
             }
         };
+
         fetchStates();
         return () => {
             setStates([]);

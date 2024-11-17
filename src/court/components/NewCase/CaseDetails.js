@@ -2,12 +2,11 @@ import { useState } from "react";
 import { useNavigate } from "react-router";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
-import { addNewCase } from "../../features/CourtAccount/CaseReducers";
-
-import { useForm } from "../../shared/hooks/form-hook";
-import PdfUploader from "../../shared/formElements/PdfUploader";
-import LoadingSpinner from "../../shared/UIelements/LoadingSpinner";
-import api from "../../api/ccmsBase";
+import { useForm } from "../../../shared/hooks/form-hook";
+import { addNewCase } from "../../../features/CourtAccount/CaseReducers";
+import LoadingSpinner from "../../../shared/UIelements/LoadingSpinner";
+import api from "../../../api/ccmsBase";
+import PdfUploader from "../../../shared/formElements/PdfUploader";
 
 const CaseDetails = () => {
     const history = useNavigate();

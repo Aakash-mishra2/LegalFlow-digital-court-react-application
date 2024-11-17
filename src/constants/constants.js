@@ -16,6 +16,7 @@ export const ROLES = {
 
 export const STATUS = {
     FILED: 'filed',
+    PENDING: 'pending',
     SCHEDULED: 'scheduled',
     ADJOURNED: 'adjourned',
     DISMISSED: 'dismissed',

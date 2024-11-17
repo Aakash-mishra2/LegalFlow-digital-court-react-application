@@ -1,22 +1,20 @@
 import React, { useState } from "react";
-import { useForm } from "../../shared/hooks/form-hook";
 import { useSelector } from "react-redux";
-import Dropdown from "../../shared/formElements/Dropdown";
 
-import Input from "../../shared/formElements/Input";
-import Button from "../../shared/formElements/Button";
+import { useForm } from "../../../shared/hooks/form-hook";
+import { VALIDATOR_MINLENGTH, VALIDATOR_REQUIRE } from "../../../shared/util/validators";
+import { typeOfCases } from "../../../constants/constants";
 
-import { VALIDATOR_REQUIRE, VALIDATOR_MINLENGTH } from "../../shared/util/validators";
-import ErrorModal from "../../shared/modals/ErrorModal";
-import LoadingSpinner from "../../shared/UIelements/LoadingSpinner";
-import StateAndDistrict from "../components/StateAndDistrict";
-import CaseDetails from "../components/CaseDetails";
+import Input from "../../../shared/formElements/Input";
+import Button from "../../../shared/formElements/Button";
 
-import './CasesForm.css';
-import '../components/styles/CaseItem.css';
+import LoadingSpinner from "../../../shared/UIelements/LoadingSpinner";
+import ErrorModal from "../../../shared/modals/ErrorModal";
+import StateAndDistrict from "./StateAndDistrict";
+import Dropdown from "../../../shared/formElements/Dropdown";
+import CaseDetails from "./CaseDetails";
+import { handleKeyPress } from "../../../shared/util/generalFunc";
 
-import { typeOfCases } from "../../constants/constants";
-import { handleKeyPress } from "../../shared/util/generalFunc";
 
 export default function NewCases() {
     const currentUserId = useSelector((state) => state.userAccount.UserId);

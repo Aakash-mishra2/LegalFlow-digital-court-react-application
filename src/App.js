@@ -11,8 +11,7 @@ import MainNavigation from './shared/Navigation/MainNavigation';
 
 import './App.css';
 
-const NewCases = React.lazy(() => import('./court/pages/NewCases'));
-const UpdateCases = React.lazy(() => import('./court/pages/UpdateCases'));
+const NewCases = React.lazy(() => import('./court/components/NewCase/NewCases'));
 const Authenticate = React.lazy(() => import('./citizens/pages/Authenticate'));
 
 
@@ -26,7 +25,6 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Navigate to={'/dashboard'} />} />
         <Route path="/new-case" element={<NewCases />} />
-        <Route path="/update/:caseID" element={<UpdateCases />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/payments" element={<Payments />} />
         <Route path="/settings" element={<Settings />} />

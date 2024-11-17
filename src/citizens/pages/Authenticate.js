@@ -134,18 +134,18 @@ const Authenticate = () => {
 
                     {/* <img src={loginImg} className="aspect-auto mr-auto bg-transparent md:max-h-[40vh] lg:max-h-[65vh] " alt="loginImage" /> */}
                 </div>
-                <Card className={` md:min-h-[35vh] lg:min-h-[45vh]  min-w-[85%] lg:min-w-[32%] flex flex-col justify-between h-full max-w-fit bg-white rounded-3xl sm:rounded-2xl text-left ml-8 mr-8 lg:ml-16 lg:mr-16 p-4 px-8 ${islogin ? "mt-8" : 'mt-0'}`}>
+                <Card className={` md:min-h-[35vh] lg:min-h-[45vh]  min-w-[85%] lg:min-w-[32%] flex flex-col justify-between h-full max-w-fit bg-white rounded-xl text-left ml-8 mr-8 lg:ml-16 lg:mr-16 p-2 px-6 py-6 ${islogin ? "mt-8" : 'mt-0'}`}>
                     <div className="flex flex-col gap-2">
 
 
                         <div id="role-selector" className="flex flex-row gap-4">
                             <Button
                                 handler={() => { setRole(ROLES.USER); setDisableSignup(false); }}
-                                className={`py-3 w-full rounded-lg font-medium text-lg text-white ${role === ROLES.USER ? 'bg-[#213555] text-white ' : 'bg-white text-[#213555] border-2 border-[#213555]'} `}
+                                className={`py-2 w-full rounded-lg font-medium text-md text-white ${role === ROLES.USER ? 'bg-[#213555] text-white ' : 'bg-white text-[#213555] border-2 border-[#213555]'} `}
                             >Login as USER</Button>
                             <Button
                                 handler={() => { setRole(ROLES.ADMIN); setDisableSignup(true); }}
-                                className={`py-3 w-full rounded-lg text-lg font-medium text-white ${role === ROLES.ADMIN ? 'bg-[#213555] text-white ' : 'bg-white text-[#213555] border-2 border-[#213555]'} `}
+                                className={`py-2 w-full rounded-lg text-md font-medium ${role === ROLES.ADMIN ? 'bg-[#213555] text-white ' : 'bg-white text-[#213555] border-2 border-[#213555]'} `}
                             >Login as ADMIN</Button>
                         </div>
                         <div id="login-signup-form">
@@ -203,7 +203,7 @@ const Authenticate = () => {
                         </div>
                     </div>
                     <div className={`flex flex-col font-thin items-center pt-4`}>
-                        <Button type="submit" disabled={!formState.isValid} handler={submitHandler} className={`${formState.isValid ? '!cursor-pointer' : '!cursor-not-allowed'} bg-[#213555]  w-full rounded-3xl text-white font-thin font-circular text-md tracking-wide pt-3 pb-3`}>
+                        <Button type="submit" disabled={!formState.isValid} handler={submitHandler} className={`${formState.isValid ? '!cursor-pointer' : '!cursor-not-allowed'} bg-[#213555]  w-full rounded-lg text-white font-thin font-circular text-md tracking-wide pt-3 pb-3`}>
                             {islogin ? "LOGIN" : "SIGNUP"}
                         </Button>
                         {!disableSignup && (

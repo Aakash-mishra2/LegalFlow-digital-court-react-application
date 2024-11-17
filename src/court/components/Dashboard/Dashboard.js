@@ -1,10 +1,12 @@
+import { useNavigate } from "react-router";
+import { useSelector } from "react-redux";
+
 import Overview from "./Overview";
 import CaseStatusTracker from "./CaseStatusTracker";
 import LawyersSection from "./YourLawyers";
 import useGetAllCases from "../../../api/useGetAllCases";
-import { useSelector } from "react-redux";
 import Button from "../../../shared/formElements/Button";
-import { useNavigate } from "react-router";
+import AdminDashboard from "../AdminDB/AdminDashboard";
 import LoadingSpinner from "../../../shared/UIelements/LoadingSpinner";
 import ErrorModal from "../../../shared/modals/ErrorModal";
 
@@ -20,6 +22,7 @@ const Dashboard = () => {
 
     const { data, error, loading, refetch } = useGetAllCases(`${role}/${userId}`, filter);
     setData(data);
+
 
     if (loading) { return <><LoadingSpinner asOverlay /></> }
     if (error) { return <ErrorModal error={error} onClear={refetch} /> }
@@ -43,7 +46,7 @@ const Dashboard = () => {
                     </div>
                 </div>
             ) : (
-                <div className="bg-red-700 w-40 h-60 rounded-md"></div>
+                <AdminDashboard data={data} />
             )
         }
 
