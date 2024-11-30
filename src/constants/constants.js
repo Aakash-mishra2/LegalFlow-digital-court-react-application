@@ -63,12 +63,12 @@ export const adminSideBar = [
         url: '/dashboard',
         type: 'redirection'
     },
-    {
-        icon: AiOutlineFileAdd,
-        title: 'Tasks',
-        url: '/actions',
-        type: 'redirection',
-    },
+    // {
+    //     icon: AiOutlineFileAdd,
+    //     title: 'Tasks',
+    //     url: '/actions',
+    //     type: 'redirection',
+    // },
     {
         icon: BsWallet,
         title: 'Transactions',
@@ -403,5 +403,64 @@ export const lawyersData = [
             feeCurrency: "INR",
             paymentTerms: "30% advance, 70% upon case progress"
         }
+    }
+]
+
+export const allCourts = [
+    {
+        "name": "Supreme Court of India",
+        "courtAddress": "New Delhi, IND"
+    },
+    {
+        "name": "Delhi High Court",
+        "courtAddress": "New Delhi, IND"
+    },
+    {
+        "name": "Bombay High Court",
+        "courtAddress": "Mumbai, MH"
+    },
+    {
+        "name": "Calcutta High Court",
+        "courtAddress": "Kolkata, WB"
+    },
+    {
+        "name": "Madras High Court",
+        "courtAddress": "Chennai, TN"
+    },
+    {
+        "name": "Allahabad High Court",
+        "courtAddress": "Prayagraj, UP"
+    },
+    {
+        "name": "Karnataka High Court",
+        "courtAddress": "Bengaluru, KA"
+    },
+    {
+        "name": "Punjab and Haryana High Court",
+        "courtAddress": "Chandigarh, PB/HR"
+    },
+    {
+        "name": "Gauhati High Court",
+        "courtAddress": "Guwahati, AS"
+    },
+    {
+        "name": "Kerala High Court",
+        "courtAddress": "Ernakulam, KL"
+    },
+    {
+        "name": "Rajasthan High Court",
+        "courtAddress": "Jodhpur, RJ"
+    },
+    {
+        "name": "Patna High Court",
+        "courtAddress": "Patna, BR"
+    },
+    {
+        "name": "Madhya Pradesh High Court",
+        "courtAddress": "Jabalpur, MP"
+    },
+    {
+        "name": "Jharkhand High Court",
+        "courtAddress": "Ranchi, JH"
     }
 ]

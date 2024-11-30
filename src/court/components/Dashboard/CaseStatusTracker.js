@@ -16,7 +16,7 @@ const CaseStatusTracker = ({ data }) => {
     return (
         <>
             <p className="text-md font-circular ml-4">Track Case Status</p>
-            <div className="w-[95%] rounded-xl mx-4 h-[280px] bg-white shadow-card p-2">
+            <div className="w-[95%] rounded-xl mx-4 h-[260px] bg-white shadow-card p-2">
                 <CaseDetailsModal
                     item={selectedCase}
                     show={openDetails}
