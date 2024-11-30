@@ -1,6 +1,5 @@
 import { useNavigate } from "react-router";
 import { useSelector } from "react-redux";
-
 import Overview from "./Overview";
 import CaseStatusTracker from "./CaseStatusTracker";
 import LawyersSection from "./YourLawyers";
@@ -23,7 +22,6 @@ const Dashboard = () => {
     const { data, error, loading, refetch } = useGetAllCases(`${role}/${userId}`, filter);
     setData(data);
 
-
     if (loading) { return <><LoadingSpinner asOverlay /></> }
     if (error) { return <ErrorModal error={error} onClear={refetch} /> }
 
@@ -35,8 +33,7 @@ const Dashboard = () => {
                         <Overview data={data} />
                         <CaseStatusTracker data={data?.allCases} />
                     </div>
-                    <div id="new-lwr" className="flex flex-col gap-2 w-[35%]">
-
+                    <div id="new-lwr" className="flex flex-col gap-2 w-[35%] mt-4">
                         <Button
                             className="bg-red-800 rounded-md text-white text-xl font-bold shadow-nav py-6 px-2 mt-8 mb-2 mr-4"
                             handler={() => history("/new-case")}
@@ -46,7 +43,10 @@ const Dashboard = () => {
                     </div>
                 </div>
             ) : (
-                <AdminDashboard data={data} />
+                <AdminDashboard
+                    data={data}
+                    refetch={refetch}
+                />
             )
         }
 

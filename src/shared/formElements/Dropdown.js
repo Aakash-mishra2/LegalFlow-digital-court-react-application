@@ -14,7 +14,6 @@ const Dropdown = ({
     const [isOpen, setIsOpen] = useState(false);
 
     const dropdownRef = useRef(null);
-
     useEffect(() => {
         if (data) {
             return setFilteredData(data);
@@ -78,7 +77,7 @@ const Dropdown = ({
                     className=' absolute top-full left-0 w-full border-1 border-[#ccc] max-h-[150px] overflow-y-auto bg-white z-10'
                 >
                     {filteredData.map((item, index) => (
-                        <div key={item.id} className="group relative">
+                        <div key={index} className="group relative">
                             <li
                                 key={index}
                                 onClick={() => handleSelect(item)}
