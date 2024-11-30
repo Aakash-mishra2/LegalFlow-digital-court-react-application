@@ -58,6 +58,7 @@ export default function Input(props) {
                 onKeyDown={props.onKeyDown}
                 maxLength={props.maxLength}
                 min={props.minValue}
+                defaultValue={props.defaultValue}
                 autoComplete={props.autoComplete || "off"}
                 className="block w-full border-[1px] border-gray-300 h-fit font-circular font-thin p-2 mt-1 bg-white text-sm text-gray-500 rounded-md placeholder-gray-400 placeholder:font-extralight placeholder:font-circular
                 focus:outline-none focus:ring-opacity-50 focus:ring-gray-500
