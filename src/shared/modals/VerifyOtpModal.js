@@ -22,7 +22,7 @@ const VerifyOtpModal = ({
         event.preventDefault();
         setIsLoading(true);
         try {
-            const response = await api.post(`/otp/verify-otp`, {
+            await api.post(`/otp/verify-otp`, {
                 email: email,
                 otp: value,
             })

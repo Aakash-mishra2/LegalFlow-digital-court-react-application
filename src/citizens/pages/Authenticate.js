@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useForm } from "../../shared/hooks/form-hook";
 import { login } from "../../features/UserAccount/loginSlice";
@@ -9,6 +9,9 @@ import Button from "../../shared/formElements/Button";
 import Input from "../../shared/formElements/Input";
 import Card from "../../shared/UIelements/Card";
 import courtImage from "../../assets/images/court-background.png";
+import { IoChatboxEllipses } from "react-icons/io5";
+import io from 'socket.io-client';
+
 
 import {
     VALIDATOR_EMAIL,
@@ -24,6 +27,7 @@ const Authenticate = () => {
     const [error, setError] = useState('');
     const [role, setRole] = useState(ROLES.USER);
     const [disableSignup, setDisableSignup] = useState(false);
+    //const [messages, setMessages] = useState([]);
 
     const [formState, inputHandler, setFormData] = useForm(
         {
@@ -32,6 +36,7 @@ const Authenticate = () => {
         },
         false
     );
+
 
     const switchModeHandler = () => {
         if (!islogin) {
@@ -123,6 +128,32 @@ const Authenticate = () => {
 
     const clearError = () => setError(null);
 
+    const socket = io(process.env.REACT_APP_CHAT_URL);
+    socket.on('connect', () => {
+        console.log('connected to socket server');
+    });
+    socket.on('testEvent', (message) => {
+        console.log(message);
+    });
+
+    useEffect(() => {
+        //listen for message from the server
+        socket.on('reply-message', (data) => {
+            console.log('recieved :', data);
+        });
+
+        return () => {
+            socket.off('message', (data) => {
+                console.log('socket is off!');
+            }); //cleanup the event listener on unmount
+        };
+    }, [socket]);
+
+    const sendMessage = () => {
+        console.log('send message');
+        socket.emit('sent-message', "Hi");
+    }
+
     return (
         <>
             {isLoading && <LoadingSpinner asOverlay />}
@@ -130,12 +161,12 @@ const Authenticate = () => {
             <div className="h-screen w-screen object-cover fixed top-0 right-0">
                 <img src={courtImage} alt="court_bg" className="h-[100%] w-[100%] aspect-auto" />
             </div>
-            <div className="flex flex-col lg:flex-row mt-32 items-baseline h-max z-20">
+            <div className="flex flex-col relative lg:flex-row mt-32 items-baseline h-max z-20">
                 <div className="hidden md:block h-fit w-auto md:w-full lg:w-1/2 pt-0 pb-0 pl-8 pr-8 object-cover">
 
                     {/* <img src={loginImg} className="aspect-auto mr-auto bg-transparent md:max-h-[40vh] lg:max-h-[65vh] " alt="loginImage" /> */}
                 </div>
-                <Card className={` md:min-h-[35vh] lg:min-h-[45vh]  min-w-[85%] lg:min-w-[32%] flex flex-col justify-between h-full max-w-fit bg-white rounded-lg text-left ml-8 mr-8 lg:ml-16 lg:mr-16 p-2 px-6 py-6 ${islogin ? "mt-8" : 'mt-0'}`}>
+                <Card className={` hidden md:min-h-[35vh] lg:min-h-[45vh]  min-w-[85%] lg:min-w-[32%] flex flex-col justify-between h-full max-w-fit bg-white rounded-lg text-left ml-8 mr-8 lg:ml-16 lg:mr-16 p-2 px-6 py-6 ${islogin ? "mt-8" : 'mt-0'}`}>
                     <div className="flex flex-col gap-2">
 
 
@@ -216,11 +247,15 @@ const Authenticate = () => {
                                     <p>You already have an account?</p><p className="text-red-500 underline underline-offset-2 cursor-pointer" onClick={switchModeHandler}>Login</p>
                                 </span>
                             )
-                        )
-                        }
+                        )}
                     </div>
-
                 </Card>
+                <div
+                    className="rounded-full bg-white w-16 h-16 absolute left-16 bottom-4 cursor-pointer "
+                    onClick={sendMessage}
+                >
+                    <IoChatboxEllipses className="text-5xl text-[#213555] mt-2 ml-2" />
+                </div>
             </div>
         </>
     );
