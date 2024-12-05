@@ -8,6 +8,7 @@ import api from "../../api/ccmsBase";
 import LoadingSpinner from "../../shared/UIelements/LoadingSpinner";
 import ErrorModal from "../../shared/modals/ErrorModal";
 import VerifyOtpModal from "../../shared/modals/VerifyOtpModal";
+import axios from "axios";
 
 const Settings = () => {
     const userEmail = useSelector((state) => state.userAccount.email);
@@ -40,12 +41,20 @@ const Settings = () => {
             return window.alert("Confirm password inputs do not match. Try again.")
         }
         setEmailVerified((prev) => !prev);
+        const token = localStorage.getItem("Access-token");
+        console.log('token', token);
+
+        const requestBody = { new_password: newPassword };
+
         try {
-            await api.patch(`user/reset-password/${userId}`, {
-                new_password: newPassword,
-            });
+            const headers = {
+                'Content-Type': 'application/json',  // Ensure the server understands you're sending JSON
+                'Authorization': token ? `Bearer ${token}` : ''  // Add the token in Authorization header
+            };
+
+            await axios.patch(`${process.env.REACT_APP_BASE_URL}/user/reset-password/${userId}`, requestBody, { headers });
             window.alert('Password reset succesfull.');
-            setEmailVerified(false);
+            //setEmailVerified(false);
         }
         catch (error) {
             setIsLoading(false);
