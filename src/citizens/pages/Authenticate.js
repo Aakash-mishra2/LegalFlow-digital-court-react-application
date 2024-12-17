@@ -78,6 +78,9 @@ const Authenticate = () => {
             try {
                 const response = await api.post("/user/login", loginUser);
                 setIsLoading(false);
+                const { token } = response.data;
+                localStorage.setItem('Access-token', token);
+
                 dispatch(
                     login({
                         id: response.data.citizen.id,
@@ -105,6 +108,9 @@ const Authenticate = () => {
                 };
 
                 const response = await api.post("/user/signup", newUser);
+                const { token } = response.data;
+                localStorage.setItem('Access-token', token);
+
                 setIsLoading(false);
                 dispatch(
                     login({
@@ -166,10 +172,8 @@ const Authenticate = () => {
 
                     {/* <img src={loginImg} className="aspect-auto mr-auto bg-transparent md:max-h-[40vh] lg:max-h-[65vh] " alt="loginImage" /> */}
                 </div>
-                <Card className={` hidden md:min-h-[35vh] lg:min-h-[45vh]  min-w-[85%] lg:min-w-[32%] flex flex-col justify-between h-full max-w-fit bg-white rounded-lg text-left ml-8 mr-8 lg:ml-16 lg:mr-16 p-2 px-6 py-6 ${islogin ? "mt-8" : 'mt-0'}`}>
+                <Card className={` md:min-h-[35vh] lg:min-h-[45vh]  min-w-[85%] lg:min-w-[32%] flex flex-col justify-between h-full max-w-fit bg-white rounded-lg text-left ml-8 mr-8 lg:ml-16 lg:mr-16 p-2 px-6 py-6 ${islogin ? "mt-8" : 'mt-0'}`}>
                     <div className="flex flex-col gap-2">
-
-
                         <div id="role-selector" className="flex flex-row gap-4">
                             <Button
                                 handler={() => { setRole(ROLES.USER); setDisableSignup(false); }}
