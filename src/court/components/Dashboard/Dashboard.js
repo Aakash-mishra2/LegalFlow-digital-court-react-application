@@ -1,3 +1,5 @@
+import { useEffect, useContext } from "react";
+
 import { useNavigate } from "react-router";
 import { useSelector } from "react-redux";
 import Overview from "./Overview";
@@ -11,20 +13,27 @@ import ErrorModal from "../../../shared/modals/ErrorModal";
 
 import { setData } from "../../../features/CourtAccount/CaseReducers";
 import { lawyersData, ROLES, STATUS } from "../../../constants/constants";
+import { NotificationsContext } from "../../../shared/contexts/NotificationsContext";
 
 const Dashboard = () => {
     const history = useNavigate();
     const userId = useSelector((state) => state.userAccount.userId);
     const role = useSelector((state) => state.userAccount.role);
+
+    const { fetchNotifications } = useContext(NotificationsContext);
+
+
     let filter = {};
     if (role === ROLES.ADMIN) filter = { status: STATUS.FILED };
 
     const { data, error, loading, refetch } = useGetAllCases(`${role}/${userId}`, filter);
+
     setData(data);
+
+    useEffect(() => { fetchNotifications(); }, []);
 
     if (loading) { return <><LoadingSpinner asOverlay /></> }
     if (error) { return <ErrorModal error={error} onClear={refetch} /> }
-
     return (
         <>{
             role === ROLES.USER ? (

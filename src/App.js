@@ -8,6 +8,7 @@ import Payments from './court/components/Payments';
 import Settings from './court/components/Settings';
 import Dashboard from './court/components/Dashboard/Dashboard';
 import MainNavigation from './shared/Navigation/MainNavigation';
+import { NotificationsProvider } from './shared/contexts/NotificationsContext';
 
 import './App.css';
 
@@ -41,18 +42,20 @@ const App = () => {
   }
   return (
     <BrowserRouter>
-      <main className='flex h-screen '>
-        {isloggedIn && <Sidebar />}
-        <div className='flex-1 flex flex-col'>
-          {isloggedIn ? <Header /> : <MainNavigation />}
-          <Suspense
-            fallback={
-              <div className='center'><LoadingSpinner asOverlay /></div>
-            }>
-            {routes}
-          </Suspense>
-        </div>
-      </main>
+      <NotificationsProvider>
+        <main className='flex h-screen '>
+          {isloggedIn && <Sidebar />}
+          <div className='flex-1 flex flex-col'>
+            {isloggedIn ? <Header /> : <MainNavigation />}
+            <Suspense
+              fallback={
+                <div className='center'><LoadingSpinner asOverlay /></div>
+              }>
+              {routes}
+            </Suspense>
+          </div>
+        </main>
+      </NotificationsProvider>
     </BrowserRouter>
   );
 }
