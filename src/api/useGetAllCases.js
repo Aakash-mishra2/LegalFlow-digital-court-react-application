@@ -1,7 +1,7 @@
+//import openSocket from 'socket.io-client';
 import { useState, useEffect, useCallback } from "react";
 import api from "./ccmsBase";
 const BASE_URL = process.env.REACT_APP_BASE_URL;
-
 /**
  * Custom hook to fetch all cases for logged in User
  * @param {string} slug - The API endpoint.
@@ -25,6 +25,7 @@ const useGetAllCases = (slug, options = {}) => {
                 params: options, //Filter object
             });
             setData(response.data);
+            //openSocket(process.env.REACT_APP_BASE_URL);
         } catch (err) {
             setError(err.message);
         }

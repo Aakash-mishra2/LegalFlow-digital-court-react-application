@@ -10,7 +10,7 @@ import Input from "../../shared/formElements/Input";
 import Card from "../../shared/UIelements/Card";
 import courtImage from "../../assets/images/court-background.png";
 import { IoChatboxEllipses } from "react-icons/io5";
-import io from 'socket.io-client';
+//import io from 'socket.io-client';
 
 
 import {
@@ -134,31 +134,31 @@ const Authenticate = () => {
 
     const clearError = () => setError(null);
 
-    const socket = io(process.env.REACT_APP_CHAT_URL);
-    socket.on('connect', () => {
-        console.log('connected to socket server');
-    });
-    socket.on('testEvent', (message) => {
-        console.log(message);
-    });
+    // const socket = io(process.env.REACT_APP_CHAT_URL);
+    // socket.on('connect', () => {
+    //     console.log('connected to socket server');
+    // });
+    // socket.on('testEvent', (message) => {
+    //     console.log(message);
+    // });
 
-    useEffect(() => {
-        //listen for message from the server
-        socket.on('reply-message', (data) => {
-            console.log('recieved :', data);
-        });
+    // useEffect(() => {
+    //     //listen for message from the server
+    //     socket.on('reply-message', (data) => {
+    //         console.log('recieved :', data);
+    //     });
 
-        return () => {
-            socket.off('message', (data) => {
-                console.log('socket is off!');
-            }); //cleanup the event listener on unmount
-        };
-    }, [socket]);
+    //     return () => {
+    //         socket.off('message', (data) => {
+    //             console.log('socket is off!');
+    //         }); //cleanup the event listener on unmount
+    //     };
+    // }, [socket]);
 
-    const sendMessage = () => {
-        console.log('send message');
-        socket.emit('sent-message', "Hi");
-    }
+    // const sendMessage = () => {
+    //     console.log('send message');
+    //     socket.emit('sent-message', "Hi");
+    // }
 
     return (
         <>
@@ -254,12 +254,12 @@ const Authenticate = () => {
                         )}
                     </div>
                 </Card>
-                <div
+                {/* <div
                     className="rounded-full bg-white w-16 h-16 absolute left-16 bottom-4 cursor-pointer "
                     onClick={sendMessage}
                 >
                     <IoChatboxEllipses className="text-5xl text-[#213555] mt-2 ml-2" />
-                </div>
+                </div> */}
             </div>
         </>
     );
