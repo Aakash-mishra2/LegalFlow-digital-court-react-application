@@ -30,7 +30,11 @@ const Dashboard = () => {
 
     setData(data);
 
-    useEffect(() => { fetchNotifications(); }, []);
+    useEffect(() => {
+        fetchNotifications();
+    },
+        // eslint-disable-next-line react-hooks/exhaustive-deps 
+        []);
 
     if (loading) { return <><LoadingSpinner asOverlay /></> }
     if (error) { return <ErrorModal error={error} onClear={refetch} /> }
