@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useForm } from "../../shared/hooks/form-hook";
 import { login } from "../../features/UserAccount/loginSlice";
@@ -9,10 +9,6 @@ import Button from "../../shared/formElements/Button";
 import Input from "../../shared/formElements/Input";
 import Card from "../../shared/UIelements/Card";
 import courtImage from "../../assets/images/court-background.png";
-import { IoChatboxEllipses } from "react-icons/io5";
-//import io from 'socket.io-client';
-
-
 import {
     VALIDATOR_EMAIL,
     VALIDATOR_MINLENGTH,
@@ -123,7 +119,7 @@ const Authenticate = () => {
             } catch (err) {
                 setIsLoading(false);
                 if (err.response) {
-                    setError(err.response.data.message)
+                    setError(err.response.data.message);
                     console.log("AUTHENTICATION ERROR: ", err.response.status, error);
                 } else {
                     setError(err.message);
@@ -133,32 +129,6 @@ const Authenticate = () => {
     };
 
     const clearError = () => setError(null);
-
-    // const socket = io(process.env.REACT_APP_CHAT_URL);
-    // socket.on('connect', () => {
-    //     console.log('connected to socket server');
-    // });
-    // socket.on('testEvent', (message) => {
-    //     console.log(message);
-    // });
-
-    // useEffect(() => {
-    //     //listen for message from the server
-    //     socket.on('reply-message', (data) => {
-    //         console.log('recieved :', data);
-    //     });
-
-    //     return () => {
-    //         socket.off('message', (data) => {
-    //             console.log('socket is off!');
-    //         }); //cleanup the event listener on unmount
-    //     };
-    // }, [socket]);
-
-    // const sendMessage = () => {
-    //     console.log('send message');
-    //     socket.emit('sent-message', "Hi");
-    // }
 
     return (
         <>
@@ -176,9 +146,15 @@ const Authenticate = () => {
                     <div className="flex flex-col gap-2">
                         <div id="role-selector" className="flex flex-row gap-4">
                             <Button
-                                handler={() => { setRole(ROLES.USER); setDisableSignup(false); }}
-                                className={`py-2 w-full rounded-lg font-medium text-md ${role === ROLES.USER ? 'bg-[#213555] text-white ' : 'bg-white text-[#213555] border-2 border-[#213555]'} `}
-                            >Login as USER</Button>
+                                handler={() => {
+                                    setRole(ROLES.USER); setDisableSignup(false);
+                                }}
+                                className={
+                                    `py-2 w-full rounded-lg font-medium text-md ${role === ROLES.USER ? 'bg-[#213555] text-white ' : 'bg-white text-[#213555] border-2 border-[#213555]'} `
+                                }
+                            >
+                                Login as USER
+                            </Button>
                             <Button
                                 handler={() => { setRole(ROLES.ADMIN); setDisableSignup(true); }}
                                 className={`py-2 w-full rounded-lg text-md font-medium ${role === ROLES.ADMIN ? 'bg-[#213555] text-white ' : 'bg-white text-[#213555] border-2 border-[#213555]'} `}
@@ -254,12 +230,6 @@ const Authenticate = () => {
                         )}
                     </div>
                 </Card>
-                {/* <div
-                    className="rounded-full bg-white w-16 h-16 absolute left-16 bottom-4 cursor-pointer "
-                    onClick={sendMessage}
-                >
-                    <IoChatboxEllipses className="text-5xl text-[#213555] mt-2 ml-2" />
-                </div> */}
             </div>
         </>
     );
