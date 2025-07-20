@@ -5,18 +5,22 @@
   "dependencies": {
     "@auth0/auth0-react": "^2.2.4",
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.1",
     "@material-ui/core": "^4.12.4",
     "@material-ui/lab": "^4.0.0-alpha.61",
+    "@mui/material": "^7.2.0",
+    "@mui/system": "^7.2.0",
     "@reduxjs/toolkit": "^1.9.5",
     "autoprefixer": "^10.4.20",
     "axios": "^1.5.0",
     "firebase": "^11.0.1",
     "gapi-script": "^1.2.0",
     "postcss": "^8.4.47",
-    "react": "^16.11.0",
+    "react": "^17.0.2",
     "react-circular-progressbar": "^2.1.0",
     "react-datepicker": "^7.5.0",
-    "react-dom": "^16.11.0",
+    "react-dom": "^17.0.2",
     "react-icons": "^5.3.0",
     "react-modal": "^3.16.1",
     "react-redux": "^8.1.2",
@@ -30,10 +34,9 @@
     "twilio": "^5.3.5"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "start": "react-app-rewired start",
+    "build": "react-app-rewired build",
+    "test": "react-app-rewired test"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -57,6 +60,7 @@
     "react-router-dom": "6.11.2"
   },
   "devDependencies": {
-    "eslint": "^8.57.1"
+    "eslint": "^8.57.1",
+    "react-app-rewired": "^2.2.1"
   }
 }

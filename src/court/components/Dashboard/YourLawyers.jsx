@@ -1,4 +1,4 @@
-import { lawyersData } from "../../../constants/constants.js";
+import { lawyersData } from "../../../constants/constants";
 import { CiCircleChevRight } from "react-icons/ci";
 import LawyerDetailsModal from "../../../shared/modals/LawyerDetailsModal";
 import { useState } from "react";

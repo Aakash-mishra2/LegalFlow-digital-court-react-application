@@ -1,5 +1,5 @@
 import React, { Suspense } from 'react';
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import Sidebar from './shared/Navigation/Sidebar';
 import Header from './shared/Navigation/Header';
@@ -9,6 +9,8 @@ import Settings from './court/components/Settings';
 import Dashboard from './court/components/Dashboard/Dashboard';
 import MainNavigation from './shared/Navigation/MainNavigation';
 import { NotificationsProvider } from './shared/contexts/NotificationsContext';
+import Home from './components/Home';
+import ContactUsForm from './components/ContactUsForm';
 
 import './App.css';
 
@@ -35,13 +37,14 @@ const App = () => {
   else {
     routes = (
       <Routes>
-        <Route path="/*" element={<Navigate to={'/'} />} />
-        <Route path="/" element={< Authenticate />} />
+        <Route path="/" element={<Home />} />
+        <Route path="/auth" element={<Authenticate />} />
+        <Route path="/contact-us" element={<ContactUsForm />} />
       </Routes>
     )
   }
   return (
-    <BrowserRouter>
+    <Router>
       <NotificationsProvider>
         <main className='flex h-screen '>
           {isloggedIn && <Sidebar />}
@@ -56,7 +59,7 @@ const App = () => {
           </div>
         </main>
       </NotificationsProvider>
-    </BrowserRouter>
+    </Router>
   );
 }
 
