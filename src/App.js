@@ -12,8 +12,8 @@ import { NotificationsProvider } from './shared/contexts/NotificationsContext';
 
 import './App.css';
 
-const NewCases = React.lazy(() => import('./court/components/NewCase/NewCases'));
-const Authenticate = React.lazy(() => import('./citizens/pages/Authenticate'));
+import NewCases from './court/components/NewCases/NewCases';
+import Authenticate from './court/components/Authenticate/Authenticate';
 
 
 
@@ -41,6 +41,7 @@ const App = () => {
     )
   }
   return (
+    // <h1>This is main file code</h1>
     <BrowserRouter>
       <NotificationsProvider>
         <main className='flex h-screen '>

@@ -61,7 +61,14 @@ const CaseApplicationsModal = ({
         >
             <div className="w-full mb-2 flex flex-row justify-between">
                 <p className="text-xl tracking-wider">{caseTitle}</p>
-                <VscChromeClose onClick={() => closeModal()} className="text-2xl cursor-pointer font-bold" />
+                <div>
+
+                    <Button
+                        onClick={() => { }}
+                        className="bg-red-500 rounded p-1"
+                    >Edit</Button>
+                    <VscChromeClose onClick={() => closeModal()} className="text-2xl cursor-pointer font-bold" />
+                </div>
             </div>
             <div className="w-full mb-2 ">
                 <p className="text-sm italic text-gray-600 font-light">{summary}</p>
