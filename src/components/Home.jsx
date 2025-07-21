@@ -1,4 +1,3 @@
-import React from 'react';
 import './Home.styles.css';
 import HeroSection from './sections/HeroSection';
 import JourneySection from './sections/JourneySection';
@@ -7,7 +6,6 @@ import UpdatesSection from './sections/UpdatesSection';
 import FeaturesSection from './sections/FeaturesSection';
 import StatsSection from './sections/StatsSection';
 import StepsSection from './sections/StepsSection';
-import TestimonialsSection from './sections/TestimonialsSection';
 import FinalCTASection from './sections/FinalCTASection';
 
 const Home = () => {
@@ -20,7 +18,6 @@ const Home = () => {
       <FeaturesSection />
       <StatsSection />
       <StepsSection />
-      <TestimonialsSection />
       <FinalCTASection />
     </div>
   );

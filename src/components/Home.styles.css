@@ -17,6 +17,7 @@
   /* Adjust the radius as needed */
   border-bottom-right-radius: 60% 24%;
   /* Adjust the radius as needed */
+  height: 75vh;
 }
 
 .content-wrapper {
@@ -283,8 +284,8 @@ section {
 
 .hero-image {
   width: 100%;
-  margin-left: 25%;
-  max-width: 500px;
+  margin-left: 15%;
+  max-width: 520px;
   height: auto;
 }
 

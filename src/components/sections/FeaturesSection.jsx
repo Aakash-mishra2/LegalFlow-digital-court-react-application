@@ -118,7 +118,7 @@ const FeaturesSection = () => {
 
   return (
     <section className="features-section">
-      <Container sx={{ maxWidth: '90% !important', width: '90% !important' }}>
+      <Container sx={{ maxWidth: '90% !important', width: '90% !important', alignItems: 'center' }}>
         <Typography
           fontSize={"40px"}
           align="center"
@@ -142,7 +142,7 @@ const FeaturesSection = () => {
           scrollButtons="auto"
           align="center"
           sx={{
-            mb: 12,
+            mb: 8,
             '& .MuiTabs-list': {
               display: 'flex',
               alignItems: 'center',
@@ -171,7 +171,7 @@ const FeaturesSection = () => {
             <Tab key={t.label} label={t.label} />
           ))}
         </Tabs>
-        <Grid container spacing={4} alignItems="center">
+        <Grid container spacing={4} alignItems="center" justifyContent="center">
           <Grid item xs={12} md={6}>
             <Box display="flex" justifyContent="center">
               <Box

@@ -3,7 +3,7 @@ import { Container, Grid, Typography } from '@mui/material';
 
 const ContactHero = () => {
     return (
-        <section className="hero-section">
+        <section className="hero-section" style={{height: "40vh"}}>
             <Container>
                 <Grid container spacing={4} justifyContent="center" alignContent='center'>
                     <Typography

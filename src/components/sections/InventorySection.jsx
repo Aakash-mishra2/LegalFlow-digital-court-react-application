@@ -1,4 +1,3 @@
-import React from 'react';
 import { Container, Grid, Typography, Button, Box } from '@mui/material';
 import { Link } from 'react-router-dom';
 import inventoryImg from '../../assets/images/front/images/miniWarehouse.png';
@@ -12,10 +11,10 @@ const InventorySection = () => {
         // padding: '48px 0',
       }}
     >
-      <Container maxWidth="xl">
-        <Grid container spacing={6} alignItems="center">
+      <Container maxWidth="xl" alignItems="center" spacing={0}>
+        <Grid container spacing={6} alignItems="center" justifyContent="space-between">
           {/* Text Content */}
-          <Grid item xs={12} md={6} textAlign="left" maxWidth="80% !important" width="80% !important">
+          <Grid item xs={12} md={6} textAlign="left" maxWidth="45% !important" width="45% !important">
             <Typography
               variant="h4"
               sx={{
@@ -25,7 +24,7 @@ const InventorySection = () => {
                 fontFamily: 'Inter, sans-serif',
               }}
             >
-              Streamline your inventory management with
+              Simplify Workloads with LegalFlow – Your Court WMS
             </Typography>
             <Typography
               variant="h4"
@@ -37,18 +36,19 @@ const InventorySection = () => {
                 display: 'block',
               }}
             >
-              Dispatch Ease – a mini WMS
+              Judiciary-Ready Workflow Management System
             </Typography>
-            <Typography
-              variant="body1"
-              sx={{
-                mb: 4,
-                color: '#222',
-                fontFamily: 'Inter, sans-serif',
-              }}
-            >
-              Easily track and manage your inventory across all pickup locations from one integrated warehouse management system
-            </Typography>
+            <Box display="flex" flexDirection="column" gap="4" marginBottom={6}>
+              <Typography variant="body4" sx={{ color: '#666', fontWeight: 600 }}>
+                - Monitor case status across departments and benches
+              </Typography>
+              <Typography variant="body4" sx={{ color: '#666', fontWeight: 600 }}>
+                - Automatically generate cause lists, hearing rosters, and notices
+              </Typography>
+              <Typography variant="body4" sx={{ color: '#666', fontWeight: 600 }}>
+                - Track progress, actions, and case movement from a unified interface
+              </Typography>
+            </Box>
             <Link to="/contact-us">
               <Button
                 variant="contained"
@@ -83,8 +83,8 @@ const InventorySection = () => {
                 src={inventoryImg}
                 alt="Inventory Management"
                 sx={{
-                  width: 720,
-                  maxWidth: 720,
+                  width: 640,
+                  maxWidth: 640,
                   borderRadius: '60px',
                   background: '#fff',
                   objectFit: 'cover',

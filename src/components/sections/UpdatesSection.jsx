@@ -1,5 +1,4 @@
-import React from 'react';
-import { Container, Grid, Typography, Button, Box } from '@mui/material';
+import { Container, Grid, Typography, Button, Box, Link } from '@mui/material';
 import realTimeImg from '../../assets/images/front/images/realTime.png';
 
 const UpdatesSection = () => {
@@ -11,9 +10,11 @@ const UpdatesSection = () => {
         // padding: '48px 0',
       }}
     >
-      <Container maxWidth="xl">
-        <Grid container spacing={6} alignItems="center">
-          <Grid item xs={12} md={6} style={{ maxWidth: '90% !important', width: '90% !important' }}>
+      <Container maxWidth="xl" alignItems="center" spacing={0}>
+        <Grid container spacing={6} alignItems="center" justifyContent="space-between">
+
+        {/* Image */}
+          <Grid item xs={12} md={6}>
             <Box
               sx={{
                 display: 'flex',
@@ -23,10 +24,10 @@ const UpdatesSection = () => {
               <Box
                 component="img"
                 src={realTimeImg}
-                alt="Real-time Updates"
+                alt="Real Time Updates"
                 sx={{
-                  width: 720,
-                  maxWidth: 720,
+                  width: 640,
+                  maxWidth: 640,
                   borderRadius: '60px',
                   background: '#fff',
                   objectFit: 'cover',
@@ -35,7 +36,9 @@ const UpdatesSection = () => {
               />
             </Box>
           </Grid>
-          <Grid item xs={12} md={6} textAlign='left'>
+
+          {/* Text Content */}
+          <Grid item xs={12} md={6} textAlign="left" maxWidth="45% !important" width="45% !important">
             <Typography
               variant="h4"
               sx={{
@@ -45,7 +48,7 @@ const UpdatesSection = () => {
                 fontFamily: 'Inter, sans-serif',
               }}
             >
-              Enhance customer experience with
+              Secure, Compliant, and Scalable
             </Typography>
             <Typography
               variant="h4"
@@ -57,39 +60,44 @@ const UpdatesSection = () => {
                 display: 'block',
               }}
             >
-              real-time updates
+             
             </Typography>
-            <Typography
-              variant="body1"
-              sx={{
-                mb: 3,
-                color: '#222',
-                fontFamily: 'Inter, sans-serif',
-              }}
-            >
-              Keep you and your customers informed with automated updates about order status and any potential issues via email, SMS and WhatsApp
-            </Typography>
-            <Button
-              variant="contained"
-              sx={{
-                background: '#FFB940',
-                color: '#fff',
-                fontWeight: 600,
-                borderRadius: '8px',
-                px: 4,
-                py: 1.5,
-                boxShadow: 'none',
-                textTransform: 'none',
-                fontSize: '1rem',
-                '&:hover': { background: '#FFA500' },
-              }}
-              onClick={() => window.location.href = '/contact-us'}
-            >
-              Try Now
-            </Button>
+            <Box display="flex" flexDirection="column" gap="4" marginBottom={6}>
+              <Typography variant="body2" sx={{ color: '#666', fontWeight: 600 }}>
+                - End-to-end data encryption
+              </Typography>
+              <Typography variant="body2" sx={{ color: '#666', fontWeight: 600 }}>
+                - Role-based access control
+              </Typography>
+              <Typography variant="body2" sx={{ color: '#666', fontWeight: 600 }}>
+                - Designed for high-volume courts and legal institutions
+              </Typography>
+            </Box>
+            <Link to="/contact-us">
+              <Button
+                variant="contained"
+                sx={{
+                  background: '#FFB940',
+                  color: '#fff',
+                  fontWeight: 600,
+                  borderRadius: '8px',
+                  px: 4,
+                  py: 1.5,
+                  boxShadow: 'none',
+                  textTransform: 'none',
+                  fontSize: '1rem',
+                  '&:hover': { background: '#FFA500' },
+                }}
+              >
+                Try Now
+              </Button>
+            </Link>
           </Grid>
+
+          
         </Grid>
       </Container>
+
     </section>
   );
 };
