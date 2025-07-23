@@ -13,8 +13,8 @@ import Home from './components/Home';
 import ContactUsForm from './components/ContactUsForm';
 import './App.css';
 
-import NewCases from './court/components/NewCases/NewCases';
-import Authenticate from './court/components/Authenticate/Authenticate';
+import NewCases from './court/components/NewCase/NewCases';
+import Authenticate from './citizens/pages/Authenticate';
 
 const App = () => {
 
