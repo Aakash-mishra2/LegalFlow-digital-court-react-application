@@ -12,8 +12,9 @@ import { NotificationsProvider } from './shared/contexts/NotificationsContext';
 import Home from './components/Home';
 import ContactUsForm from './components/ContactUsForm';
 import './App.css';
-const NewCases = React.lazy(() => import('./court/components/NewCase/NewCases'));
-const Authenticate = React.lazy(() => import('./citizens/pages/Authenticate'));
+
+import NewCases from './court/components/NewCases/NewCases';
+import Authenticate from './court/components/Authenticate/Authenticate';
 
 const App = () => {
 

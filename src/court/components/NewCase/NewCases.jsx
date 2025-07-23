@@ -67,7 +67,6 @@ export default function NewCases() {
     }
     return (
         <>
-
             {isLoading && <LoadingSpinner asOverlay />}
             <ErrorModal error={error} onClear={clearError} />
             <div className="bg-gray-200 h-screen p-4 pt-0 font-circular overflow-y-scroll">
@@ -89,6 +88,7 @@ export default function NewCases() {
                                 validators={[VALIDATOR_MINLENGTH(12)]}
                                 onInput={inputHandler}
                             />
+
                             <StateAndDistrict
                                 inputHandler={inputHandler}
                                 formState={formState}
@@ -121,7 +121,7 @@ export default function NewCases() {
                     </div>
 
                     <Button
-                        className={`rounded-full px-8    py-2 text-white font-circular font-thin ${!formState.isValid ? "!cursor-not-allowed bg-blue-300" : " bg-blue-500"}`} disabled={!formState.isValid}
+                        className={`rounded-full px-8 py-2 text-white font-circular font-thin ${!formState.isValid ? "!cursor-not-allowed bg-blue-300" : " bg-blue-500"}`} disabled={!formState.isValid}
                         handler={handleSubmit}
                     >
                         Save and Continue
