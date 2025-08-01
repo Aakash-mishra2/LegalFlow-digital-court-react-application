@@ -1,24 +1,22 @@
+
 import React, { Suspense } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import Sidebar from './shared/Navigation/Sidebar';
-// import Header from './shared/Navigation/Header';
-import LoadingSpinner from './shared/UIelements/LoadingSpinner';
-import Payments from './court/components/Payments';
-import Settings from './court/components/Settings';
-import Dashboard from './court/components/Dashboard/Dashboard';
-// import MainNavigation from './shared/Navigation/MainNavigation';
-import { NotificationsProvider } from './shared/contexts/NotificationsContext';
+import Sidebar from './components/Sidebar';
+import LoadingSpinner from './components/LoadingSpinner';
+import Payments from './components/Payments';
+import Settings from './components/Settings';
+import Dashboard from './components/Dashboard';
+import NotificationsProvider from './components/NotificationsProvider';
 import Home from './components/Home';
 import ContactUsForm from './components/ContactUsForm';
 import './App.css';
-
-import NewCases from './court/components/NewCase/NewCases';
-import Authenticate from './citizens/pages/Authenticate';
+import NewCases from './components/NewCases';
+import Authenticate from './components/Authenticate';
 
 const App = () => {
-
   const isloggedIn = useSelector((state) => state.userAccount.isloggedIn);
+  
   let routes;
   if (isloggedIn) {
     routes = (
@@ -31,8 +29,7 @@ const App = () => {
         <Route path="*" element={<Navigate to={'/dashboard'} />} />
       </Routes>
     )
-  }
-  else {
+  } else {
     routes = (
       <Routes>
         <Route path="/" element={<Home />} />
@@ -42,13 +39,13 @@ const App = () => {
       </Routes>
     )
   }
+  
   return (
     <Router>
       <NotificationsProvider>
         <main className='flex h-screen '>
           {isloggedIn && <Sidebar />}
           <div className='flex-1 flex flex-col'>
-            {/* {isloggedIn ? <Header /> : <MainNavigation />} */}
             <Suspense
               fallback={
                 <div className='center'><LoadingSpinner asOverlay /></div>
