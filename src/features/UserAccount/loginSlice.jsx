@@ -2,9 +2,9 @@ import { createSlice } from "@reduxjs/toolkit";
 import { ROLES } from "../../constants/constants";
 
 const initialState = {
-    isloggedIn: true,
-    userId: '65683cc7204b0b09e0c2c432',
-    userName: 'John Doe',
+    isloggedIn: false,
+    userId: '',
+    userName: '',
     role: ROLES.USER,
 };
 

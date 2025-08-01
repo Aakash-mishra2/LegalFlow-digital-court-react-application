@@ -28,6 +28,7 @@ const App = () => {
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/payments" element={<Payments />} />
         <Route path="/settings" element={<Settings />} />
+        <Route path="*" element={<Navigate to={'/dashboard'} />} />
       </Routes>
     )
   }
@@ -37,6 +38,7 @@ const App = () => {
         <Route path="/" element={<Home />} />
         <Route path="/auth" element={<Authenticate />} />
         <Route path="/contact-us" element={<ContactUsForm />} />
+        <Route path="*" element={<Navigate to={'/'} />} />
       </Routes>
     )
   }
