@@ -13,10 +13,10 @@ import { AiOutlineThunderbolt, AiOutlineSync, AiOutlineDollarCircle } from 'reac
 import { FaBoxes, FaHandHoldingUsd } from 'react-icons/fa';
 
 // Import main images
-import orderManagementImg from '../../assets/images/front/images/features/ecommerceImg.png';
-import automationImg from '../../assets/images/front/images/features/automationLarge.png';
-import shippingImg from '../../assets/images/front/images/features/Freeshipping-amico.png';
-import reconciliationImg from '../../assets/images/front/images/features/reconcilation.png';
+import orderManagementImg from '../../assets/front/images/features/ecommerceImg.png';
+import automationImg from '../../assets/front/images/features/automationLarge.png';
+import shippingImg from '../../assets/front/images/features/Freeshipping-amico.png';
+import reconciliationImg from '../../assets/front/images/features/reconcilation.png';
 
 const featuresTabs = [
   {

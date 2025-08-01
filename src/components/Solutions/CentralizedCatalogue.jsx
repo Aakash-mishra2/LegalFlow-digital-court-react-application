@@ -2,12 +2,12 @@ import React from 'react';
 import { Box, Grid, Typography } from '@mui/material';
 
 // Import images from /src/assets/solutionsImages
-import img1 from '../../assets/images/miniWarehouse.png';
-import img2 from '../../assets/images/miniWarehouse.png';
-import img3 from '../../assets/images/miniWarehouse.png';
-import img4 from '../../assets/images/miniWarehouse.png';
-import img5 from '../../assets/images/miniWarehouse.png';
-import img6 from '../../assets/images/miniWarehouse.png';
+import img1 from '../../assets/front/images/miniWarehouse.png';
+import img2 from '../../assets/front/images/miniWarehouse.png';
+import img3 from '../../assets/front/images/miniWarehouse.png';
+import img4 from '../../assets/front/images/miniWarehouse.png';
+import img5 from '../../assets/front/images/miniWarehouse.png';
+import img6 from '../../assets/front/images/miniWarehouse.png';
 import FinalCTASection from '../sections/FinalCTASection';
 const floatSections = [
     {

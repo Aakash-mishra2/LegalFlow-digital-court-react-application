@@ -7,8 +7,8 @@ import { IoSettingsOutline } from "react-icons/io5";
 import { BsBank } from "react-icons/bs";
 import { IoCashOutline } from "react-icons/io5";
 import { FaLaptop } from "react-icons/fa";
-import iciciImage from "../assets/images/iciciLogo.png";
-import axisImage from "../assets/images/axisBank.png";
+import iciciImage from "../assets/iciciLogo.png";
+import axisImage from "../assets/axisBank.png";
 
 export const ROLES = {
     USER: 'user',

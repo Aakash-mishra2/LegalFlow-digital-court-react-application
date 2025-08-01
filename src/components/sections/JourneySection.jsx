@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { Container, Grid, Typography, Box } from '@mui/material';
-import mapImg from '../../assets/images/front/images/map.png';
-// import workflowImg from '../../assets/images/front/images/workflow.png';
-import orderProcessingImg from '../../assets/images/front/images/orderProcessingStep.png';
+import mapImg from '../../assets/front/images/map.png';
+// import workflowImg from '../../assets/front/images/workflow.png';
+import orderProcessingImg from '../../assets/front/images/orderProcessingStep.png';
 import '../Home.styles.css';
 // Card data for easy switching
 const cards = [

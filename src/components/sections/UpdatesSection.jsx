@@ -1,5 +1,5 @@
 import { Container, Grid, Typography, Button, Box, Link } from '@mui/material';
-import realTimeImg from '../../assets/images/front/images/realTime.png';
+import realTimeImg from '../../assets/front/images/realTime.png';
 
 const UpdatesSection = () => {
   return (

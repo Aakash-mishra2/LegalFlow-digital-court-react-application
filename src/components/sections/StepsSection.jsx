@@ -1,9 +1,9 @@
 import React from 'react';
 import { Container, Grid, Typography, Button, Box } from '@mui/material';
 
-import step1Img from '../../assets/images/front/images/features/Insync-amico.png';
-import step2Img from '../../assets/images/front/images/features/startShipping.png';
-import step3Img from '../../assets/images/front/images/features/Computerlogin-amico.png';
+import step1Img from '../../assets/front/images/features/Insync-amico.png';
+import step2Img from '../../assets/front/images/features/startShipping.png';
+import step3Img from '../../assets/front/images/features/Computerlogin-amico.png';
 
 const steps = [
   {

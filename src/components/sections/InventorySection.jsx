@@ -1,6 +1,6 @@
 import { Container, Grid, Typography, Button, Box } from '@mui/material';
 import { Link } from 'react-router-dom';
-import inventoryImg from '../../assets/images/front/images/miniWarehouse.png';
+import inventoryImg from '../../assets/front/images/miniWarehouse.png';
 
 const InventorySection = () => {
   return (
