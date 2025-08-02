@@ -19,6 +19,7 @@
   right: 0;
   bottom: 0;
   background: rgba(255, 255, 255, 0.7);
+  opacity: 0.6;
   backdrop-filter: blur(1px);
   z-index: 1;
   pointer-events: none;
@@ -37,7 +38,7 @@
 }
 
 .home-section:first-child {
-  background: rgba(255, 255, 255, 0.95);
+  background: transparent;
   margin-top: 0;
   border-radius: 0 0 20px 20px;
 }
