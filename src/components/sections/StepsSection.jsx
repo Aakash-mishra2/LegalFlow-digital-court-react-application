@@ -1,76 +1,82 @@
-import React from 'react';
-import { Container, Grid, Typography, Button, Box } from '@mui/material';
+import React from "react";
+import { Container, Typography, Button, Box } from "@mui/material";
 
-import step1Img from '../../assets/front/images/features/Insync-amico.png';
-import step2Img from '../../assets/front/images/features/startShipping.png';
-import step3Img from '../../assets/front/images/features/Computerlogin-amico.png';
+import step1Img from "../../assets/front/images/features/Insync-amico.png";
+import step2Img from "../../assets/front/images/features/startShipping.png";
+import step3Img from "../../assets/front/images/features/Computerlogin-amico.png";
 
 const steps = [
   {
     img: step1Img,
-    title: 'STEP 01',
-    desc: 'Register your court and complete digital verification',
+    title: "STEP 01",
+    desc: "Register your court and complete digital verification",
   },
   {
     img: step2Img,
-    title: 'STEP 02',
-    desc: 'Import existing cases and configure judicial workflows',
+    title: "STEP 02",
+    desc: "Import existing cases and configure judicial workflows",
   },
   {
     img: step3Img,
-    title: 'STEP 03',
-    desc: 'Begin digital case management and virtual hearings',
+    title: "STEP 03",
+    desc: "Begin digital case management and virtual hearings",
   },
 ];
 
 const StepsSection = () => {
   return (
-    <section className="steps-section" style={{ background: '#fff6e5', padding: '54px 0' }}>
-      <Container sx={{ maxWidth: '90% !important', width: '90% !important' }}>
+    <section
+      className="steps-section"
+      style={{ background: "#fff6e5", padding: "54px 0" }}
+    >
+      <Container sx={{ maxWidth: "90% !important", width: "90% !important" }}>
         <Typography
           variant="h4"
           align="center"
           sx={{
             fontWeight: 300,
             mb: 6,
-            color: '#222',
-            fontFamily: 'serif',
+            color: "#222",
+            fontFamily: "serif",
             lineHeight: 1.3,
           }}
         >
-          Modernize your{' '}
-          <Box component="span" sx={{ color: '#f8b217', fontWeight: 700, fontStyle: 'italic' }}>
+          Modernize your{" "}
+          <Box
+            component="span"
+            sx={{ color: "#f8b217", fontWeight: 700, fontStyle: "italic" }}
+          >
             courthouse
-          </Box>
-          {' '}in just{' '}
+          </Box>{" "}
+          in just{" "}
           <Box component="span" sx={{ fontWeight: 600 }}>
             3 steps
           </Box>
         </Typography>
-        <Box 
+        <Box
           sx={{
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'flex-start',
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "flex-start",
             gap: 3,
-            flexWrap: 'wrap'
+            flexWrap: "wrap",
           }}
         >
           {steps.map((step, idx) => (
             <Box
               key={idx}
               sx={{
-                background: 'transparent',
-                borderRadius: '20px',
-                textAlign: 'center',
+                background: "transparent",
+                borderRadius: "20px",
+                textAlign: "center",
                 p: 2,
-                boxShadow: 'none',
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-                flex: '1 1 300px',
-                maxWidth: '350px',
-                minWidth: '280px',
+                boxShadow: "none",
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                flex: "1 1 300px",
+                maxWidth: "350px",
+                minWidth: "280px",
               }}
             >
               <Box
@@ -81,50 +87,50 @@ const StepsSection = () => {
                   width: 180,
                   height: 200,
                   mb: 2,
-                  objectFit: 'contain',
+                  objectFit: "contain",
                 }}
               />
               <Typography
                 variant="h5"
                 sx={{
                   fontWeight: 700,
-                  color: '#222',
+                  color: "#222",
                   mb: 1,
                   mt: 2,
-                  borderBottom: '2px solid #F9A000',
-                  fontFamily: 'serif',
+                  borderBottom: "2px solid #F9A000",
+                  fontFamily: "serif",
                 }}
               >
                 {step.title}
               </Typography>
               <Typography
                 sx={{
-                  color: '#666',
-                  fontFamily: 'serif',
-                  fontSize: '1rem',
+                  color: "#666",
+                  fontFamily: "serif",
+                  fontSize: "1rem",
                 }}
               >
                 {step.desc}
               </Typography>
             </Box>
           ))}
-        </Grid>
+        </Box>
         <Box display="flex" justifyContent="center" mt={4}>
           <Button
             variant="contained"
             sx={{
-              background: '#f8b217',
-              color: '#fff',
+              background: "#f8b217",
+              color: "#fff",
               fontWeight: 600,
-              borderRadius: '8px',
+              borderRadius: "8px",
               px: 4,
               py: 1.5,
-              boxShadow: 'none',
-              textTransform: 'none',
-              fontSize: '1rem',
-              '&:hover': { background: '#FFA500' },
+              boxShadow: "none",
+              textTransform: "none",
+              fontSize: "1rem",
+              "&:hover": { background: "#FFA500" },
             }}
-            onClick={() => window.location.href = '/contact-us'}
+            onClick={() => (window.location.href = "/contact-us")}
           >
             Try Now
           </Button>
