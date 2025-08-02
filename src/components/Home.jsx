@@ -41,28 +41,28 @@ const Home = () => {
 
   return (
     <div className="home-container">
-      <div className="home-section">
+      <div className="home-section hero-section-wrapper">
         <HeroSection />
       </div>
-      <div className="home-section">
+      <div className="home-section journey-section-wrapper">
         <JourneySection />
       </div>
-      <div className="home-section">
+      <div className="home-section inventory-section-wrapper">
         <InventorySection />
       </div>
-      <div className="home-section">
+      <div className="home-section updates-section-wrapper">
         <UpdatesSection />
       </div>
-      <div className="home-section">
+      <div className="home-section features-section-wrapper">
         <FeaturesSection />
       </div>
-      <div className="home-section">
+      <div className="home-section stats-section-wrapper">
         <StatsSection />
       </div>
-      <div className="home-section">
+      <div className="home-section steps-section-wrapper">
         <StepsSection />
       </div>
-      <div className="home-section">
+      <div className="home-section final-cta-section-wrapper">
         <FinalCTASection />
       </div>
     </div>
