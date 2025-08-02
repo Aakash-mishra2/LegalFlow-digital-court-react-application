@@ -47,56 +47,66 @@ const StepsSection = () => {
             3 steps
           </Box>
         </Typography>
-        <Grid container spacing={4} justifyContent="center" alignItems="flex-start">
+        <Box 
+          sx={{
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'flex-start',
+            gap: 3,
+            flexWrap: 'wrap'
+          }}
+        >
           {steps.map((step, idx) => (
-            <Grid item xs={12} md={4} key={idx}>
+            <Box
+              key={idx}
+              sx={{
+                background: 'transparent',
+                borderRadius: '20px',
+                textAlign: 'center',
+                p: 2,
+                boxShadow: 'none',
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                flex: '1 1 300px',
+                maxWidth: '350px',
+                minWidth: '280px',
+              }}
+            >
               <Box
+                component="img"
+                src={step.img}
+                alt={step.title}
                 sx={{
-                  background: 'transparent',
-                  borderRadius: '20px',
-                  textAlign: 'center',
-                  p: 2,
-                  boxShadow: 'none',
-                  display: 'flex',
-                  flexDirection: 'column',
-                  alignItems: 'center',
+                  width: 180,
+                  height: 200,
+                  mb: 2,
+                  objectFit: 'contain',
+                }}
+              />
+              <Typography
+                variant="h5"
+                sx={{
+                  fontWeight: 700,
+                  color: '#222',
+                  mb: 1,
+                  mt: 2,
+                  borderBottom: '2px solid #F9A000',
+                  fontFamily: 'serif',
                 }}
               >
-                <Box
-                  component="img"
-                  src={step.img}
-                  alt={step.title}
-                  sx={{
-                    width: 280,
-                    height: 300,
-                    mb: 2,
-                    objectFit: 'contain',
-                  }}
-                />
-                <Typography
-                  variant="h4"
-                  sx={{
-                    fontWeight: 700,
-                    color: '#222',
-                    mb: 1,
-                    mt: 2,
-                    borderBottom: '2px solid #F9A000',
-                    fontFamily: 'Inter, sans-serif',
-                  }}
-                >
-                  {step.title}
-                </Typography>
-                <Typography
-                  sx={{
-                    color: '#666',
-                    fontFamily: 'Inter, sans-serif',
-                    fontSize: '1rem',
-                  }}
-                >
-                  {step.desc}
-                </Typography>
-              </Box>
-            </Grid>
+                {step.title}
+              </Typography>
+              <Typography
+                sx={{
+                  color: '#666',
+                  fontFamily: 'serif',
+                  fontSize: '1rem',
+                }}
+              >
+                {step.desc}
+              </Typography>
+            </Box>
           ))}
         </Grid>
         <Box display="flex" justifyContent="center" mt={4}>
