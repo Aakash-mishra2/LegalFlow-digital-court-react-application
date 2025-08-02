@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import { Container, Grid, Typography, Box } from '@mui/material';
-import mapImg from '../../assets/front/images/map.png';
-// import workflowImg from '../../assets/front/images/workflow.png';
-import orderProcessingImg from '../../assets/front/images/orderProcessingStep.png';
+import lawImg from '../../assets/law.jpg';
+import flatSystemImg from '../../assets/flat-system.jpg';
 import '../Home.styles.css';
 // Card data for easy switching
 const cards = [
@@ -10,16 +9,16 @@ const cards = [
     key: 'catalog',
     title: 'Centralized Case Repository',
     description: 'Digitize and organize all case files, petitions, evidence, and documents — accessible anytime, anywhere.',
-    img: mapImg,
-    alt: 'Product Catalog',
+    img: lawImg,
+    alt: 'Legal System',
     highlight: true,
   },
   {
     key: 'shipping',
     title: 'Centralized Case Repository',
     description: 'Easily manage cases across different court branches and jurisdictions from one dashboard.',
-    img: mapImg,
-    alt: 'Multi-portal Shipping',
+    img: flatSystemImg,
+    alt: 'System Management',
     highlight: true,
   },
   {
@@ -32,8 +31,8 @@ const cards = [
         <div>Step 3: One-Click Document Uploads – Securely attach briefs, judgments, and legal notices.</div>
       </Box>
     ),
-    img: orderProcessingImg,
-    alt: 'Order Processing',
+    img: lawImg,
+    alt: 'Legal Process',
     highlight: true,
   },
 ];
@@ -48,28 +47,28 @@ const JourneySection = () => {
           variant="h3"
           align="center"
           sx={{
-            fontWeight: 400,
+            fontWeight: 300,
             mb: 8,
             color: '#222',
-            fontFamily: 'Inter, sans-serif',
+            fontFamily: 'Playfair Display, serif',
+            letterSpacing: '-0.5px',
+            lineHeight: 1.2,
           }}
         >
           How CaseFlow Streamlines the {' '}
-          <Box component="span" sx={{ color: '#f8b217', fontWeight: 600 }}>
+          <Box component="span" sx={{ color: '#f8b217', fontWeight: 700, fontStyle: 'italic' }}>
             Judiciary Process
           </Box>
         </Typography>
-        <Grid container spacing={6} alignItems="stretch" justifyContent="space-between" gap={8} >
-          {/* Image and Cards side by side in parallel columns */}
-          <Grid item xs={12} md={6} sx={{ display: 'flex', flexDirection:'row !important', alignItems: 'center' }}>
+        <Grid container spacing={4} alignItems="center" justifyContent="space-between">
+          {/* Smaller Image */}
+          <Grid item xs={12} md={4}>
             <Box
               sx={{
-                position: 'sticky',
-                top: '100px',
                 display: 'flex',
                 justifyContent: 'center',
-                width: '100%',
-                height: '500px',
+                alignItems: 'center',
+                height: '350px',
                 transition: 'all 0.5s ease'
               }}
             >
@@ -77,19 +76,19 @@ const JourneySection = () => {
                 src={cards[activeIndex].img}
                 alt={cards[activeIndex].alt}
                 style={{
-                  width: "90%",
-                  maxHeight: "100%",
-                  objectFit: 'contain',
-                  borderRadius: 24,
-                  background: '#fff',
+                  width: "100%",
+                  height: "300px",
+                  objectFit: 'cover',
+                  borderRadius: 20,
+                  boxShadow: '0 8px 32px rgba(0,0,0,0.15)',
                   transition: 'all 0.5s ease',
                 }}
               />
             </Box>
           </Grid>
 
-          {/* Cards */}
-          <Grid item xs={12} md={6} maxWidth={'70% !important'}>
+          {/* Cards taking more space */}
+          <Grid item xs={12} md={8}>
             <Box
               display="flex"
               flexDirection="column"
@@ -139,11 +138,12 @@ const JourneySection = () => {
                   <Typography
                     variant="h6"
                     sx={{
-                      fontWeight: 700,
-                      mb: 1,
+                      fontWeight: 600,
+                      mb: 1.5,
                       color: idx === activeIndex && card.highlight ? '#fff' : '#222',
-                      fontSize: '1.3rem',
-                      fontFamily: 'Inter, sans-serif',
+                      fontSize: '1.25rem',
+                      fontFamily: 'Roboto, sans-serif',
+                      letterSpacing: '-0.3px',
                     }}
                   >
                     {card.title}
@@ -151,10 +151,11 @@ const JourneySection = () => {
                   <Typography
                     variant="body1"
                     sx={{
-                      color: idx === activeIndex && card.highlight ? '#fff' : '#666',
+                      color: idx === activeIndex && card.highlight ? '#fff' : '#555',
                       fontWeight: 400,
-                      fontSize: '1rem',
-                      fontFamily: 'Inter, sans-serif',
+                      fontSize: '0.95rem',
+                      fontFamily: 'Open Sans, sans-serif',
+                      lineHeight: 1.6,
                     }}
                   >
                     {card.description}
