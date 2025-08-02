@@ -9,17 +9,17 @@ const steps = [
   {
     img: step1Img,
     title: 'STEP 01',
-    desc: 'Create profile and complete KYC',
+    desc: 'Register your court and complete digital verification',
   },
   {
     img: step2Img,
     title: 'STEP 02',
-    desc: 'Integrate marketplaces and sync products',
+    desc: 'Import existing cases and configure judicial workflows',
   },
   {
     img: step3Img,
     title: 'STEP 03',
-    desc: 'Start shipping and fulfilling your orders',
+    desc: 'Begin digital case management and virtual hearings',
   },
 ];
 
@@ -31,15 +31,20 @@ const StepsSection = () => {
           variant="h4"
           align="center"
           sx={{
-            fontWeight: 400,
+            fontWeight: 300,
             mb: 6,
             color: '#222',
-            fontFamily: 'Inter, sans-serif',
+            fontFamily: 'serif',
+            lineHeight: 1.3,
           }}
         >
-          Ship your goals{' '}
-          <Box component="span" sx={{ color: '#f8b217', fontWeight: 600 }}>
-            in just 3 steps
+          Modernize your{' '}
+          <Box component="span" sx={{ color: '#f8b217', fontWeight: 700, fontStyle: 'italic' }}>
+            courthouse
+          </Box>
+          {' '}in just{' '}
+          <Box component="span" sx={{ fontWeight: 600 }}>
+            3 steps
           </Box>
         </Typography>
         <Grid container spacing={4} justifyContent="center" alignItems="flex-start">

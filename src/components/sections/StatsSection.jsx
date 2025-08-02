@@ -3,16 +3,16 @@ import { Container, Grid, Typography, Box } from '@mui/material';
 
 const stats = [
   {
-    value: '10+',
-    label: 'courier partners',
+    value: '500+',
+    label: 'courts connected',
   },
   {
-    value: '27000+',
-    label: 'pin codes covered',
+    value: '100,000+',
+    label: 'cases managed',
   },
   {
-    value: '50%',
-    label: 'faster order processing',
+    value: '75%',
+    label: 'faster case processing',
   },
 ];
 
@@ -27,28 +27,33 @@ const StatsSection = () => {
           variant="h4"
           align="center"
           sx={{
-            fontWeight: 400,
+            fontWeight: 300,
             mb: 2,
             color: '#222',
-            fontFamily: 'Inter, sans-serif',
+            fontFamily: 'serif',
+            lineHeight: 1.3,
           }}
         >
-          Deliver to every part of India{' '}
-          <Box component="span" sx={{ color: '#f8b217', fontWeight: 600 }}>
-            with ease
+          Delivering{' '}
+          <Box component="span" sx={{ color: '#f8b217', fontWeight: 700, fontStyle: 'italic' }}>
+            justice
+          </Box>
+          {' '}across every{' '}
+          <Box component="span" sx={{ fontWeight: 600 }}>
+            jurisdiction
           </Box>
         </Typography>
         <Typography
           align="center"
           sx={{
             color: '#444',
-            fontFamily: 'Inter, sans-serif',
+            fontFamily: 'serif',
             mb: 5,
             fontSize: '1.1rem',
+            fontStyle: 'italic',
           }}
         >
-          Expand your market and satisfy customers with faster order processing
-          and PAN India delivery
+          Empowering courts nationwide with digital transformation and streamlined legal processes
         </Typography>
         <Grid
           container

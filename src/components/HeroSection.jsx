@@ -13,24 +13,35 @@ const HeroSection = () => {
               <Typography 
                 variant="h2" 
                 sx={{ 
-                  fontWeight: 800, 
+                  fontWeight: 300, 
                   color: '#222', 
                   mb: 3,
-                  fontSize: { xs: '2.5rem', md: '3.5rem' }
+                  fontSize: { xs: '2.5rem', md: '3.5rem' },
+                  fontFamily: 'serif',
+                  lineHeight: 1.1
                 }}
               >
-                Digital Court Case Management System
+                Strategic{' '}
+                <Box component="span" sx={{ fontStyle: 'italic', fontWeight: 400 }}>
+                  Legal Management
+                </Box>
+                {' '}for{' '}
+                <Box component="span" sx={{ fontWeight: 600 }}>
+                  Visionary Growth
+                </Box>
               </Typography>
               <Typography 
                 sx={{ 
                   fontSize: '1.2rem', 
                   color: '#666', 
                   mb: 4, 
-                  lineHeight: 1.6 
+                  lineHeight: 1.6,
+                  fontFamily: 'serif',
+                  fontStyle: 'italic'
                 }}
               >
-                Streamline your legal proceedings with our comprehensive digital platform. 
-                Manage cases, track hearings, and connect with legal professionals all in one place.
+                Transform your judicial operations with our comprehensive digital ecosystem. 
+                Orchestrate cases, coordinate hearings, and connect legal professionals through innovative technology.
               </Typography>
               <Box sx={{ display: 'flex', gap: 2, flexWrap: 'wrap' }}>
                 <Button

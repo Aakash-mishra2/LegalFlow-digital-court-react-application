@@ -42,11 +42,11 @@ const InventorySection = () => {
               <Typography variant="body4" sx={{ color: '#666', fontWeight: 600 }}>
                 - Monitor case status across departments and benches
               </Typography>
-              <Typography variant="body4" sx={{ color: '#666', fontWeight: 600 }}>
-                - Automatically generate cause lists, hearing rosters, and notices
+              <Typography variant="body4" sx={{ color: '#666', fontWeight: 600, fontFamily: 'serif' }}>
+                - Automatically generate cause lists, hearing schedules, and legal notices
               </Typography>
-              <Typography variant="body4" sx={{ color: '#666', fontWeight: 600 }}>
-                - Track progress, actions, and case movement from a unified interface
+              <Typography variant="body4" sx={{ color: '#666', fontWeight: 600, fontFamily: 'serif' }}>
+                - Track judicial decisions, appeals, and case movements from a unified interface
               </Typography>
             </Box>
             <Link to="/contact-us">

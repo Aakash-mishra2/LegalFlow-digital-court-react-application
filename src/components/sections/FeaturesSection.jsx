@@ -20,94 +20,94 @@ import reconciliationImg from '../../assets/front/images/features/reconcilation.
 
 const featuresTabs = [
   {
-    label: 'Order Management',
+    label: 'Case Management',
     image: orderManagementImg,
-    title: 'Simplify orders across marketplaces',
-    desc: 'Streamline your multichannel order management with a unified platform.',
+    title: 'Comprehensive case tracking across all jurisdictions',
+    desc: 'Streamline your legal case management with a unified digital platform.',
     pointers: [
       {
         icon: <MdStoreMallDirectory size={32} color="#FFB940" />,
-        title: 'Multi-channel integration',
-        desc: 'Integrate multiple eCommerce marketplaces from a single dashboard',
+        title: 'Multi-court integration',
+        desc: 'Connect with multiple court systems and jurisdictions from a single dashboard',
       },
       {
         icon: <FaBoxes size={32} color="#FFB940" />,
-        title: 'Bulk order handling',
-        desc: 'Manage & process bulk orders efficiently to save time and improve operations',
+        title: 'Bulk case processing',
+        desc: 'Handle multiple cases efficiently with automated workflows and batch operations',
       },
       {
         icon: <MdInventory size={32} color="#FFB940" />,
-        title: 'Inventory management',
-        desc: 'Manage stock levels in real-time to avoid both stock outs and overstocking',
+        title: 'Document management',
+        desc: 'Organize and track all case documents, evidence, and legal filings in real-time',
       },
     ],
   },
   {
     label: 'Automation',
     image: automationImg,
-    title: 'Automate your shipment process',
-    desc: 'Speed up your eCommerce operations by automating daily tasks effortlessly',
+    title: 'Automate your legal workflow processes',
+    desc: 'Speed up court operations by automating routine legal tasks effortlessly',
     pointers: [
       {
         icon: <MdLocalShipping size={32} color="#FFB940" />,
-        title: 'Smart courier recommendation',
-        desc: 'Automatically selects the best courier partner based on cost, speed, and reliability',
+        title: 'Smart case assignment',
+        desc: 'Automatically assign cases to appropriate judges and courts based on jurisdiction and availability',
       },
       {
         icon: <MdOutlineReceiptLong size={32} color="#FFB940" />,
-        title: 'Auto-invoice generation',
-        desc: 'Quickly generate accurate invoices, labels, and manifests in seconds',
+        title: 'Auto-document generation',
+        desc: 'Generate court notices, summons, and legal documents automatically in seconds',
       },
       {
         icon: <AiOutlineSync size={32} color="#FFB940" />,
-        title: 'Real-time order updates',
-        desc: 'Keep you and your customers informed with automatic real-time order updates',
+        title: 'Real-time case updates',
+        desc: 'Keep all parties informed with automatic notifications of case status changes',
       },
     ],
   },
   {
-    label: 'Shipping',
+    label: 'Hearings',
     image: shippingImg,
-    title: 'Fast & hassle-free shipping',
-    desc: 'Experience reliable shipping with our easy-to-use solutions',
+    title: 'Efficient & organized hearing management',
+    desc: 'Experience streamlined hearing scheduling with our comprehensive solutions',
     pointers: [
       {
         icon: <AiOutlineDollarCircle size={32} color="#FFB940" />,
-        title: 'On-time COD remittance',
-        desc: 'Get your COD remittance on-time for better cash management',
+        title: 'Digital hearing rooms',
+        desc: 'Conduct virtual hearings with integrated video conferencing and digital evidence presentation',
       },
       {
         icon: <MdOutlineReplay size={32} color="#FFB940" />,
-        title: 'Hassle-free returns',
-        desc: 'Delight your customers with easy & streamlined return management',
+        title: 'Flexible rescheduling',
+        desc: 'Handle hearing postponements and rescheduling with automated calendar management',
       },
       {
         icon: <AiOutlineThunderbolt size={32} color="#FFB940" />,
-        title: 'NDR assistance',
-        desc: 'Increase your delivery success rate & boost revenue with delivery optimization',
+        title: 'Quick hearing summaries',
+        desc: 'Generate detailed hearing reports and minutes automatically for accurate record-keeping',
       },
     ],
   },
   {
-    label: 'Reconciliation',
+    label: 'Analytics',
     image: reconciliationImg,
-    title: 'Easy and accurate reconciliation',
-    desc: 'Keep your finances error-free and operations smooth with easy reconciliation',
+    title: 'Comprehensive legal analytics and reporting',
+    desc: 'Keep your court operations data-driven with detailed analytics and insights',
     pointers: [
       {
         icon: <MdOutlineScale size={32} color="#FFB940" />,
-        title: 'Weight Reconciliation',
-        desc: 'Ensure accurate weight reconciliation for every shipment',
+        title: 'Case outcome analysis',
+        desc: 'Track case resolutions, judgments, and legal precedents for informed decision-making',
       },
       {
         icon: <FaHandHoldingUsd size={32} color="#FFB940" />,
-        title: 'COD reconciliation',
-        desc: 'Get on-time and accurate COD remittance in your account',
+        title: 'Court efficiency metrics',
+        desc: 'Monitor court performance, hearing backlogs, and processing times for optimization',
       },
       {
         icon: <MdOutlineGavel size={32} color="#FFB940" />,
-        title: 'Dispute management',
-        desc: 'Efficiently manage disputes with minimal discrepancies',
+        title: 'Legal compliance tracking',
+        desc: 'Ensure adherence to legal procedures and deadlines with automated compliance monitoring',
       },
     ],
   },
@@ -127,12 +127,17 @@ const FeaturesSection = () => {
             mt: 1,
             mb: 3,
             color: '#222',
-            fontFamily: 'Inter, sans-serif',
+            fontFamily: 'serif',
+            lineHeight: 1.2,
           }}
         >
-          Grow your eCommerce business with{'  '}
-          <Box component="span" sx={{ color: '#f8b217', fontWeight: 600 }}>
-            maximum ease
+          Transforming Legal{' '}
+          <Box component="span" sx={{ color: '#f8b217', fontWeight: 700, fontStyle: 'italic' }}>
+            Justice
+          </Box>
+          {' '}for{' '}
+          <Box component="span" sx={{ fontWeight: 600 }}>
+            Digital Excellence
           </Box>
         </Typography>
         <Tabs
