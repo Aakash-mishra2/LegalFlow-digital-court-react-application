@@ -1,101 +1,109 @@
-import { Container, Grid, Typography, Button, Box } from '@mui/material';
+import { Container, Typography, Button, Box } from '@mui/material';
 import { Link } from 'react-router-dom';
-import inventoryImg from '../../assets/front/images/miniWarehouse.png';
+import inventoryImg from '../../assets/smart-speaker-being-used-indoors.jpg';
 
 const InventorySection = () => {
   return (
-    <section
-      className="inventory-section"
-      style={{
-        background: '#FFF6E5',
-        // padding: '48px 0',
-      }}
-    >
-      <Container maxWidth="xl" alignItems="center" spacing={0}>
-        <Grid container spacing={6} alignItems="center" justifyContent="space-between">
-          {/* Text Content */}
-          <Grid item xs={12} md={6} textAlign="left" maxWidth="45% !important" width="45% !important">
-            <Typography
-              variant="h4"
+    <section className="inventory-section" style={{ background: 'transparent', padding: '32px 0' }}>
+      <Container maxWidth="xl" style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', gap: '48px' }}>
+        {/* Text Content */}
+        <Box
+          sx={{
+            flex: 1,
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'center',
+            alignItems: 'flex-start',
+            padding: '32px',
+            background: 'rgba(255, 255, 255, 0.38)',
+            borderRadius: '32px',
+            boxShadow: '0 8px 32px rgba(0,0,0,0.10)',
+            backdropFilter: 'blur(8px)',
+            zIndex: 2,
+          }}
+        >
+          <Typography
+            variant="h3"
+            sx={{
+              fontWeight: 700,
+              mb: 1.5,
+              color: '#222',
+              fontFamily: 'Playfair Display, serif',
+              letterSpacing: '-0.5px',
+              lineHeight: 1.2,
+              textAlign: 'left',
+            }}
+          >
+            Simplify Workloads with LegalFlow
+          </Typography>
+          <Typography
+            variant="h4"
+            sx={{
+              fontWeight: 800,
+              color: '#FFB940',
+              mb: 2,
+              fontFamily: 'Playfair Display, serif',
+              display: 'block',
+              fontStyle: 'italic',
+              letterSpacing: '-0.3px',
+              textAlign: 'left',
+            }}
+          >
+            Judiciary-Ready Workflow Management System
+          </Typography>
+          <Box display="flex" flexDirection="column" gap={0.5} marginBottom={5}>
+            <div className="bright-pointer"><span className="bullet">•</span>Monitor case status across departments and benches</div>
+            <div className="bright-pointer"><span className="bullet">•</span>Automatically generate cause lists, hearing schedules, and legal notices</div>
+            <div className="bright-pointer"><span className="bullet">•</span>Track judicial decisions, appeals, and case movements from a unified interface</div>
+          </Box>
+          <Link to="/contact-us">
+            <Button
+              variant="contained"
               sx={{
-                fontWeight: 400,
-                mb: 1,
-                color: '#111',
-                fontFamily: 'Inter, sans-serif',
+                background: '#FFB940',
+                color: '#fff',
+                fontWeight: 700,
+                borderRadius: '10px',
+                px: 5,
+                py: 2,
+                boxShadow: '0 4px 16px rgba(255,185,64,0.12)',
+                textTransform: 'none',
+                fontSize: '1.1rem',
+                fontFamily: 'Roboto, sans-serif',
+                letterSpacing: '-0.2px',
+                '&:hover': { background: '#FFA500' },
               }}
             >
-              Simplify Workloads with LegalFlow – Your Court WMS
-            </Typography>
-            <Typography
-              variant="h4"
-              sx={{
-                fontWeight: 800,
-                color: '#FFB940',
-                mb: 2,
-                fontFamily: 'Inter, sans-serif',
-                display: 'block',
-              }}
-            >
-              Judiciary-Ready Workflow Management System
-            </Typography>
-            <Box display="flex" flexDirection="column" gap="4" marginBottom={6}>
-              <Typography variant="body4" sx={{ color: '#666', fontWeight: 600 }}>
-                - Monitor case status across departments and benches
-              </Typography>
-              <Typography variant="body4" sx={{ color: '#666', fontWeight: 600, fontFamily: 'serif' }}>
-                - Automatically generate cause lists, hearing schedules, and legal notices
-              </Typography>
-              <Typography variant="body4" sx={{ color: '#666', fontWeight: 600, fontFamily: 'serif' }}>
-                - Track judicial decisions, appeals, and case movements from a unified interface
-              </Typography>
-            </Box>
-            <Link to="/contact-us">
-              <Button
-                variant="contained"
-                sx={{
-                  background: '#FFB940',
-                  color: '#fff',
-                  fontWeight: 600,
-                  borderRadius: '8px',
-                  px: 4,
-                  py: 1.5,
-                  boxShadow: 'none',
-                  textTransform: 'none',
-                  fontSize: '1rem',
-                  '&:hover': { background: '#FFA500' },
-                }}
-              >
-                Try Now
-              </Button>
-            </Link>
-          </Grid>
-
-          {/* Image */}
-          <Grid item xs={12} md={6}>
-            <Box
-              sx={{
-                display: 'flex',
-                justifyContent: 'center',
-              }}
-            >
-              <Box
-                component="img"
-                src={inventoryImg}
-                alt="Inventory Management"
-                sx={{
-                  width: 640,
-                  maxWidth: 640,
-                  borderRadius: '60px',
-                  background: '#fff',
-                  objectFit: 'cover',
-                  boxSizing: 'border-box',
-                }}
-              />
-            </Box>
-          </Grid>
-        </Grid>
+              Try Now
+            </Button>
+          </Link>
+        </Box>
+        {/* Image */}
+        <Box
+          sx={{
+            flex: 1,
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            zIndex: 1,
+          }}
+        >
+          <Box
+            component="img"
+            src={inventoryImg}
+            alt="Inventory Management"
+            sx={{
+              width: 520,
+              maxWidth: '100%',
+              borderRadius: '24px',
+              background: '#fff',
+              objectFit: 'cover',
+              boxSizing: 'border-box',
+              boxShadow: '0 8px 32px rgba(0,0,0,0.10)',
+            }}
+          />
+        </Box>
       </Container>
-
     </section>
   );
 };

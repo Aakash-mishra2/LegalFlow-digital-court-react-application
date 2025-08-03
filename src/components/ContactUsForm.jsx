@@ -1,6 +1,28 @@
-import ContactHero from "./sections/ContactHero";
 import React, { useState } from "react";
 import "./Home.styles.css";
+import { Container, Grid, Typography } from '@mui/material';
+import { Link } from "react-router-dom";
+
+const ContactHero = () => {
+    return (
+        <section className="hero-section" style={{ height: "40vh", margin: "0px auto", alignItems: "center" }}>
+            <Container>
+                <Grid container spacing={4} justifyContent="center" alignContent='center' textAlign={"center"}>
+                    <Typography
+                        fontSize={{ xs: 44, md: 64 }}
+                        className="main-title"
+                        marginTop={4}
+                        sx={{ fontWeight: 900, letterSpacing: '-1px', lineHeight: 1.1 }}
+                    >
+                        Get Started With Case Management with CCMS
+                    </Typography>
+                </Grid>
+            </Container>
+        </section>
+    );
+};
+
+
 const ContactUsForm = () => {
     const [checked, setChecked] = useState(true);
 
@@ -12,7 +34,7 @@ const ContactUsForm = () => {
                     background: "#fff",
                     borderRadius: "24px",
                     padding: "32px",
-                    margin: "32px auto",
+                    margin: "0px auto",
                     maxWidth: 900,
                     boxShadow: "0 2px 16px #00000010",
                 }}
@@ -87,7 +109,7 @@ const ContactUsForm = () => {
                             }}
                         />
                         <span style={{ fontSize: 15, color: "#222" }}>
-                            By signing up, you are agreeing to ShipMaxx's{" "}
+                            By signing up, you are agreeing to our{" "}
                             <a href="/" style={{ color: "#f8b217", textDecoration: "none" }}>terms of services</a> and{" "}
                             <a href="/" style={{ color: "#f8b217", textDecoration: "none" }}>privacy policy</a>.
                         </span>
@@ -96,8 +118,8 @@ const ContactUsForm = () => {
                 </form>
 
             </div>
-            <div style={{ display: "flex", justifyContent: "center" }}>
-                <button
+            <div style={{ display: "flex", justifyContent: "center", marginTop: 12 }}>
+                <Link
                     type="submit"
                     style={{
                         background: "#f8b217",
@@ -111,9 +133,10 @@ const ContactUsForm = () => {
                         marginTop: 8,
                         transition: "background 0.2s",
                     }}
+                    to="/"
                 >
                     Submit
-                </button>
+                </Link>
             </div>
         </div>
     );

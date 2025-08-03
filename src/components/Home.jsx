@@ -62,7 +62,7 @@ const Home = () => {
       <div className="home-section steps-section-wrapper">
         <StepsSection />
       </div>
-      <div className="home-section final-cta-section-wrapper">
+      <div className="home-section final-cta-section-wrapper mb-24 ">
         <FinalCTASection />
       </div>
     </div>

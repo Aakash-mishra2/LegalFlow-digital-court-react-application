@@ -4,11 +4,12 @@ import lawImg from "../../assets/law.jpg";
 import flatSystemImg from "../../assets/flat-system.jpg";
 import sentenceImg from "../../assets/sentence.jpg";
 import "../Home.styles.css";
+import "./JourneySection.styles.css";
 // Card data for easy switching
 const cards = [
   {
     key: "catalog",
-    title: "Centralized Case Repository",
+    title: "Organised case files and recordings",
     description:
       "Digitize and organize all case files, petitions, evidence, and documents — accessible anytime, anywhere.",
     img: sentenceImg,
@@ -28,23 +29,17 @@ const cards = [
     key: "processing",
     title: "Quick 3-Step Case Lifecycle Management",
     description: (
-      <Box
-        component="div"
-        sx={{ textAlign: "left", fontSize: "16px", color: "black" }}
-      >
+      <div className="journey-steps">
         <div>
-          Step 1: Automated Case Registration – Instantly register and assign
-          new cases.
+          <span className="journey-step-label">Step 1:</span> <span className="journey-step-desc">Automated Case Registration – <span className="journey-step-highlight">Instantly register and assign new cases.</span></span>
         </div>
         <div>
-          Step 2: Smart Hearing Scheduler – Schedule hearings with conflict
-          checks and judge availability.
+          <span className="journey-step-label">Step 2:</span> <span className="journey-step-desc">Smart Hearing Scheduler – <span className="journey-step-highlight">Schedule hearings with conflict checks and judge availability.</span></span>
         </div>
         <div>
-          Step 3: One-Click Document Uploads – Securely attach briefs,
-          judgments, and legal notices.
+          <span className="journey-step-label">Step 3:</span> <span className="journey-step-desc">One-Click Document Uploads – <span className="journey-step-highlight">Securely attach briefs, judgments, and legal notices.</span></span>
         </div>
-      </Box>
+      </div>
     ),
     img: lawImg,
     alt: "Legal Process",
@@ -54,16 +49,35 @@ const cards = [
 
 const JourneySection = () => {
   const [activeIndex, setActiveIndex] = useState(0);
+  const [imgTransition, setImgTransition] = useState(false);
+
+  // Mousewheel scroll handler for card switching
+  React.useEffect(() => {
+    const handleWheel = (e) => {
+      if (e.deltaY > 0) {
+        setActiveIndex((prev) => Math.min(prev + 1, cards.length - 1));
+      } else if (e.deltaY < 0) {
+        setActiveIndex((prev) => Math.max(prev - 1, 0));
+      }
+      setImgTransition(true);
+      setTimeout(() => setImgTransition(false), 700);
+    };
+    const section = document.querySelector('.journey-section');
+    if (section) section.addEventListener('wheel', handleWheel);
+    return () => {
+      if (section) section.removeEventListener('wheel', handleWheel);
+    };
+  }, []);
 
   return (
     <section className="journey-section">
-      <Container sx={{ maxWidth: "85% !important", width: "85% !important" }}>
+      <Container className="m-0 p-0">
         <Typography
           variant="h3"
           align="center"
           sx={{
             fontWeight: 300,
-            mb: 8,
+            mb: 4,
             color: "#222",
             fontFamily: "Playfair Display, serif",
             letterSpacing: "-0.5px",
@@ -73,27 +87,24 @@ const JourneySection = () => {
           How CaseFlow Streamlines the{" "}
           <Box
             component="span"
-            sx={{ color: "#f8b217", fontWeight: 700, fontStyle: "italic" }}
+            sx={{ color: "white", fontWeight: 700, fontStyle: "italic" }}
           >
             Judiciary Process
           </Box>
         </Typography>
         <Grid
-          container
-          className="flex flex-row gap-8"
-          spacing={4}
-          alignItems="center"
-          justifyContent="space-between"
+
+          className="flex flex-row justify-between items-center gap-24 p-0 m-0"
         >
           {/* Smaller Image */}
-          <Grid item xs={12} md={4}>
+          <Grid item xs={12} md={2}>
             <Box
               sx={{
                 display: "flex",
                 justifyContent: "center",
                 alignItems: "center",
                 height: "350px",
-                transition: "all 0.5s ease",
+                overflow: "hidden",
               }}
             >
               <img
@@ -101,22 +112,27 @@ const JourneySection = () => {
                 alt={cards[activeIndex].alt}
                 style={{
                   width: "100%",
-                  height: "300px",
+                  maxHeight: "420px",
+                  maxWidth: "420px",
+                  height: "100%",
                   objectFit: "cover",
                   borderRadius: 20,
                   boxShadow: "0 8px 32px rgba(0,0,0,0.15)",
-                  transition: "all 0.5s ease",
+                  transition: "transform 0.7s cubic-bezier(.4,2,.3,1), opacity 0.7s, filter 0.7s",
+                  transform: imgTransition ? "scale(0.96) translateY(20px)" : "scale(1) translateY(0)",
+                  opacity: imgTransition ? 0 : 1,
+                  filter: imgTransition ? "blur(8px)" : "blur(0)",
                 }}
               />
             </Box>
           </Grid>
 
           {/* Cards taking more space */}
-          <Grid item className="max-w-50" md={8}>
+          <Grid item className="max-w-3/5" md={8}>
             <Box
               display="flex"
               flexDirection="column"
-              gap={2}
+              gap={1}
               sx={{
                 justifyContent: "center",
               }}
@@ -124,57 +140,23 @@ const JourneySection = () => {
               {cards.map((card, idx) => (
                 <Box
                   key={card.key}
-                  className="feature-card"
-                  sx={{
-                    backgroundColor:
-                      idx === activeIndex
-                        ? card.highlight
-                          ? "#f8b217"
-                          : "#fff"
-                        : "#f7f7f7",
-                    color:
-                      idx === activeIndex && card.highlight ? "#fff" : "#222",
-                    boxShadow:
-                      idx === activeIndex
-                        ? "0 8px 30px rgba(0,0,0,0.12)"
-                        : "0 4px 24px #00000014",
-                    cursor: "pointer",
-                    borderRadius: "24px",
-                    padding: "32px 36px",
-                    transition: "all 0.4s ease",
-                    transform:
-                      idx === activeIndex
-                        ? "translateX(-10px)"
-                        : "translateX(0)",
-                    position: "relative",
-                    display: "flex",
-                    flexDirection: "column",
-                    alignItems: "center",
-                    marginBottom: "15px",
-                    borderLeft:
-                      idx === activeIndex ? "6px solid #f8b217" : "none",
-                    "&:before": {
-                      // content: `"STEP ${idx + 1}"`,
-                      position: "absolute",
-                      top: "-12px",
-                      left: "48px",
-                      right: "10px",
-                      padding: "2px 4px",
-                      backgroundColor: idx === activeIndex ? "#f8b217" : "#eee",
-                      color: idx === activeIndex ? "#fff" : "#666",
-                      fontSize: "12px",
-                      fontWeight: "bold",
-                      borderRadius: "12px",
-                      zIndex: 1,
-                    },
+                  className={`feature-card${idx === activeIndex ? ' active highlight' : ' inactive'}`}
+                  onClick={() => {
+                    setActiveIndex(idx);
+                    setImgTransition(true);
+                    setTimeout(() => setImgTransition(false), 400);
                   }}
-                  onClick={() => setActiveIndex(idx)}
+                  style={{
+                    transition: "transform 0.7s cubic-bezier(.4,2,.3,1), opacity 0.7s",
+                    transform: idx === activeIndex ? (imgTransition ? "scale(0.98) translateY(-8px)" : "scale(1) translateY(0)") : "scale(0.97) translateY(0)",
+                    opacity: idx === activeIndex ? 1 : 0.7,
+                  }}
                 >
                   <Typography
                     variant="h6"
                     sx={{
                       fontWeight: 600,
-                      mb: 1.5,
+                      mb: 0.95,
                       color:
                         idx === activeIndex && card.highlight ? "#fff" : "#222",
                       fontSize: "1.25rem",
@@ -189,11 +171,10 @@ const JourneySection = () => {
                     sx={{
                       color:
                         idx === activeIndex && card.highlight ? "#fff" : "#555",
-                      fontWeight: 400,
-                      fontSize: "0.95rem",
-                      fontFamily: "Open Sans, sans-serif",
+                      fontWeight: 600,
                       lineHeight: 1.6,
                     }}
+                    className="journey-step-desc"
                   >
                     {card.description}
                   </Typography>

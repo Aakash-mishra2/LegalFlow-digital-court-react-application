@@ -6,12 +6,12 @@ const HeroSection = () => {
   return (
     <section
       style={{
-        paddingTop: "80px",
-        paddingBottom: "80px",
+        marginTop: "50px",
+        padding: "20px 0",
         background: "transparent",
       }}
     >
-      <Container maxWidth="lg">
+      <Container maxWidth="lg" marginTop={24}>
         <Grid container spacing={6} alignItems="center">
           <Grid item xs={12} md={6}>
             <Box>
@@ -64,6 +64,7 @@ const HeroSection = () => {
                     px: 4,
                     py: 1.5,
                     fontSize: "1.1rem",
+                    fontWeight: 600,
                     "&:hover": {
                       bgcolor: "#e09900",
                     },
@@ -81,6 +82,8 @@ const HeroSection = () => {
                     color: "#f8b217",
                     px: 4,
                     py: 1.5,
+                    fontWeight: 600,
+                    backgroundColor: "white",
                     fontSize: "1.1rem",
                     "&:hover": {
                       borderColor: "#e09900",

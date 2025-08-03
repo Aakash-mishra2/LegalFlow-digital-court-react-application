@@ -27,7 +27,7 @@ const StepsSection = () => {
   return (
     <section
       className="steps-section"
-      style={{ background: "#fff6e5", padding: "54px 0" }}
+      style={{ padding: "32px 0" }}
     >
       <Container sx={{ maxWidth: "90% !important", width: "90% !important" }}>
         <Typography

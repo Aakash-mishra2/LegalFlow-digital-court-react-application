@@ -7,7 +7,6 @@ const FinalCTASection = () => {
     <Box
       component="section"
       sx={{
-        backgroundColor: '#FFF5DC',
         py: 6,
         textAlign: 'center',
         borderBottom: '1px solid #e0e0e0',
@@ -18,31 +17,37 @@ const FinalCTASection = () => {
           variant="h4"
           component="h2"
           sx={{
-            fontWeight: 500,
-            fontSize: { xs: '1.5rem', md: '2rem' },
+            fontWeight: 600,
+            fontSize: { xs: '2rem', md: '2.5rem' },
             mb: 2,
             color: '#1E1E1E',
+            fontFamily: 'Playfair Display, serif',
+            letterSpacing: '-0.5px',
+            lineHeight: 1.2,
           }}
         >
-          Let's make eCommerce{' '}
+          Ready to modernize your court case management?
           <Box
             component="span"
-            sx={{ fontWeight: 700, color: '#F4B400' }}
+            sx={{ fontWeight: 700, color: '#F4B400', fontStyle: 'italic', fontFamily: 'Playfair Display, serif' }}
           >
-            easy and smooth
+            {' '}Streamline, digitize, and accelerate justice delivery
           </Box>
         </Typography>
 
         <Typography
           sx={{
-            fontSize: '1rem',
+            fontSize: '1.15rem',
             color: '#333333',
             maxWidth: 600,
             mx: 'auto',
             mb: 4,
+            fontFamily: 'Open Sans, sans-serif',
+            fontWeight: 500,
+            letterSpacing: '-0.2px',
           }}
         >
-          Sign up to streamline your order and shipping processes for a smoother business growth
+          Sign up to experience <b>seamless case registration</b>, <i>smart scheduling</i>, and <b>secure document management</b> for courts and legal professionals.
         </Typography>
 
         <Button
@@ -53,16 +58,19 @@ const FinalCTASection = () => {
             backgroundColor: '#F4B400',
             color: '#fff',
             px: 4,
-            py: 1,
-            borderRadius: '6px',
+            py: 1.5,
+            borderRadius: '8px',
             textTransform: 'none',
-            fontWeight: 600,
+            fontWeight: 700,
+            fontFamily: 'Roboto, sans-serif',
+            fontSize: '1.1rem',
+            boxShadow: '0 4px 16px rgba(244,180,0,0.12)',
             '&:hover': {
               backgroundColor: '#e2a900',
             },
           }}
         >
-          Try Now
+          Try CaseFlow Now
         </Button>
       </Container>
     </Box>
