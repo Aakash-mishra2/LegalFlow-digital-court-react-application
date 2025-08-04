@@ -1,0 +1,64 @@
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 64px;
+  background: rgba(33, 53, 85, 0.98);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 100;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+}
+
+.navbar-logo {
+  display: flex;
+  align-items: center;
+  margin-left: 32px;
+}
+
+.navbar-logo-img {
+  height: 40px;
+  width: 40px;
+  border-radius: 8px;
+  margin-right: 12px;
+  object-fit: cover;
+}
+
+.navbar-appname {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: 1px;
+}
+
+.navbar-menu {
+  display: flex;
+  gap: 32px;
+  margin-right: 32px;
+  list-style: none;
+}
+
+.navbar-menu-item {
+  font-family: 'Roboto', sans-serif;
+  font-size: 1.1rem;
+  color: #cfd8e3;
+  cursor: pointer;
+  padding: 4px 12px;
+  border-radius: 6px;
+  transition: background 0.2s, color 0.2s;
+}
+
+.navbar-menu-item.active {
+  color: #fff;
+  background: #213555;
+  font-weight: 700;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+}
+
+.navbar-menu-item:hover {
+  color: #fff;
+  background: #2a3e5c;
+}

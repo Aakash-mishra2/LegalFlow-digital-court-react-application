@@ -26,9 +26,10 @@
   margin: 0 auto;
   min-width: 100vw;
   overflow-x: hidden;
-  padding-bottom: 72px !important;
 }
 
+
+/* Remove global blur from viewport */
 .home-container::before {
   content: '';
   position: fixed;
@@ -36,20 +37,43 @@
   left: 0;
   right: 0;
   bottom: 0;
-  backdrop-filter: blur(1px);
   z-index: 1;
   pointer-events: none;
 }
+
 
 .home-section {
   position: relative;
   z-index: 2;
   background: transparent;
-  backdrop-filter: blur(4px);
-  margin: 40px auto;
+  margin: 40px auto 30px auto;
   border-radius: 20px;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
   max-width: 1200px;
+}
+
+.hero-section-wrapper {
+  backdrop-filter: blur(4px);
+}
+/* Custom thin capsule-shaped scrollbar for all sections */
+.custom-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: #f8b217 #222;
+}
+.custom-scrollbar::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+  background: #f8b217;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #f8b217;
+  border-radius: 10px;
+  opacity: 1.5;
+  min-height: 24px;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+  border-radius: 10px;
 }
 
 
@@ -59,6 +83,7 @@
   margin-bottom: 0;
   border-radius: 20px 20px 0 0;
 }
+
 
 
 .journey-section-wrapper {
@@ -106,6 +131,7 @@
    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
 }
 
+
 .features-section-wrapper {
   padding: 20px 0px;
   background: rgba(250, 250, 250, 0.95);
@@ -113,14 +139,21 @@
   border-bottom: 3px solid #f8b217;
 }
 
+
 .stats-section-wrapper {
   background: linear-gradient(135deg, rgba(248, 178, 23, 0.05), rgba(255, 255, 255, 0.95));
+  margin: 50px auto;
+  margin-bottom: 80px;
+  margin-top: 80px;
 }
+
 
 .steps-section-wrapper {
   background: rgba(248, 251, 255, 0.9);
   border-radius: 30px !important;
+  margin-bottom: 80px;
 }
+
 
 .final-cta-section-wrapper {
   background: linear-gradient(135deg, rgba(248, 178, 23, 0.15), rgba(255, 255, 255, 0.9));

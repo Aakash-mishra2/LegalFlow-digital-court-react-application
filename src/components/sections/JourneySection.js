@@ -101,14 +101,14 @@ const JourneySection = () => {
           align="center"
           sx={{
             fontWeight: 300,
-            mb: 4,
+            mb: 8,
             color: "#222",
             fontFamily: "Playfair Display, serif",
             letterSpacing: "-0.5px",
             lineHeight: 1.2,
           }}
         >
-          How CaseFlow Streamlines the{" "}
+          How LegalFlow Streamlines the{" "}
           <Box
             component="span"
             sx={{ color: "white", fontWeight: 700, fontStyle: "italic" }}

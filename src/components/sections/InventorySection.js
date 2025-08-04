@@ -34,7 +34,7 @@ const InventorySection = () => {
               textAlign: 'left',
             }}
           >
-            Simplify Workloads with LegalFlow
+            Simplify Workload with Us!
           </Typography>
           <Typography
             variant="h4"
