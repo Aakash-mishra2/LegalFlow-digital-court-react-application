@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { motion, AnimatePresence } from "motion/react";
+import { motion, AnimatePresence } from "framer-motion";
 import { Container, Grid, Typography, Box } from "@mui/material";
 import lawImg from "../../assets/law.jpg";
 import flatSystemImg from "../../assets/flat-system.jpg";

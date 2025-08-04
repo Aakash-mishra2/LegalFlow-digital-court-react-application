@@ -1,12 +1,12 @@
 import React from 'react';
-import * as ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
 
 import './index.css';
 import App from './App';
 import { store } from './store/index';
 import { Provider } from 'react-redux';
 //import { Auth0Provider } from '@auth0/auth0-react';
-const root = ReactDOM.createPortal(document.getElementById('root'));
+const root = createRoot(document.getElementById('root'));
 
 root.render(
     <React.StrictMode>
