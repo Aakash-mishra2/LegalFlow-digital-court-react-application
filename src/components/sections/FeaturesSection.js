@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { Container, Grid, Typography, Button, Box, Tabs, Tab } from '@mui/material';
 import {
   MdStoreMallDirectory,
   MdInventory,
@@ -11,12 +10,11 @@ import {
 } from 'react-icons/md';
 import { AiOutlineThunderbolt, AiOutlineSync, AiOutlineDollarCircle } from 'react-icons/ai';
 import { FaBoxes, FaHandHoldingUsd } from 'react-icons/fa';
-
-// Import main images
 import orderManagementImg from '../../assets/front/images/features/ecommerceImg.png';
 import automationImg from '../../assets/front/images/features/automationLarge.png';
 import shippingImg from '../../assets/front/images/features/Freeshipping-amico.png';
 import reconciliationImg from '../../assets/front/images/features/reconcilation.png';
+import './featuresSection.styles.css';
 
 const featuresTabs = [
   {
@@ -115,165 +113,55 @@ const featuresTabs = [
 
 const FeaturesSection = () => {
   const [tab, setTab] = useState(0);
-
   return (
     <section className="features-section">
-      <Container sx={{ maxWidth: '90% !important', width: '90% !important', alignItems: 'center' }}>
-        <Typography
-          fontSize={"40px"}
-          align="center"
-          sx={{
-            fontWeight: 300,
-            mt: 1,
-            mb: 3,
-            color: '#222',
-            fontFamily: 'serif',
-            lineHeight: 1.2,
-          }}
-        >
-          Transforming Legal{' '}
-          <Box component="span" sx={{ color: '#f8b217', fontWeight: 700, fontStyle: 'italic' }}>
-            Justice
-          </Box>
-          {' '}for{' '}
-          <Box component="span" sx={{ fontWeight: 600 }}>
-            Digital Excellence
-          </Box>
-        </Typography>
-        <Tabs
-          value={tab}
-          onChange={(_, v) => setTab(v)}
-          variant="scrollable"
-          scrollButtons="auto"
-          align="center"
-          sx={{
-            mb: 8,
-            '& .MuiTabs-list': {
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              borderBottom: '2px solid #00000029',
-              width: '80%',
-            },
-            '& .MuiTab-root': {
-              fontWeight: 600,
-              fontSize: '1.1rem',
-              color: '#222',
-              textTransform: 'none',
-              minWidth: 160,
-            },
-            '& .Mui-selected': {
-              color: '#FFB940 !important',
-              borderBottom: '2px solid #FFB940',
-            },
-            '& .MuiTabs-indicator': {
-              backgroundColor: '#FFB940',
-              height: 2,
-            },
-          }}
-        >
-          {featuresTabs.map((t, i) => (
-            <Tab key={t.label} label={t.label} />
-          ))}
-        </Tabs>
-        <Grid container spacing={4} alignItems="center" justifyContent="center">
-          <Grid item xs={12} md={6}>
-            <Box display="flex" justifyContent="center">
-              <Box
-                component="img"
-                src={featuresTabs[tab].image}
-                alt={featuresTabs[tab].label}
-                sx={{
-                  width: '100%',
-                  maxWidth: 370,
-                  borderRadius: '32px',
-                  background: 'transparent',
-                  objectFit: 'cover',
-                  boxSizing: 'border-box',
-                }}
-              />
-            </Box>
-          </Grid>
-          <Grid item xs={12} md={6} sx={{ textAlign: 'left' }}>
-            <Typography
-              variant="h5"
-              sx={{
-                fontWeight: 700,
-                mb: 1,
-                color: '#222',
-                fontFamily: 'Inter, sans-serif',
-              }}
-            >
-              {featuresTabs[tab].title}
-            </Typography>
-            <Typography
-              variant="body1"
-              sx={{
-                mb: 2,
-                color: '#222',
-                fontFamily: 'Inter, sans-serif',
-              }}
-            >
-              {featuresTabs[tab].desc}
-            </Typography>
-            <Box sx={{ mb: 3, display: 'flex', flexDirection: 'column', gap: '0' }}>
-              {featuresTabs[tab].pointers.map((p, idx) => (
-                <Box
-                  key={idx}
-                  display="flex"
-                  alignItems="left"
-                  justifyContent="flex-start"
-                  mb={2}
-                >
-                  <Box
-                    sx={{
-                      width: 32,
-                      height: 32,
-                      mr: 2,
-                      mt: 0.5,
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                    }}
-                  >
-                    {React.cloneElement(p.icon, { color: '#222' })}
-                  </Box>
-                  <Box>
-                    <Typography
-                      variant="subtitle1"
-                      sx={{ fontWeight: 700, color: '#222', textAlign: 'left' }}
-                    >
-                      {p.title}
-                    </Typography>
-                    <Typography variant="body2" sx={{ color: '#222', textAlign: 'left' }}>
-                      {p.desc}
-                    </Typography>
-                  </Box>
-                </Box>
-              ))}
-            </Box>
-            <Button
-              variant="contained"
-              sx={{
-                background: '#FFB940',
-                color: '#fff',
-                fontWeight: 600,
-                borderRadius: '8px',
-                px: 4,
-                py: 1.5,
-                boxShadow: 'none',
-                textTransform: 'none',
-                fontSize: '1rem',
-                '&:hover': { background: '#FFA500' },
-              }}
-              onClick={() => window.location.href = '/contact-us'}
-            >
-              Try Now
-            </Button>
-          </Grid>
-        </Grid>
-      </Container>
-    </section >
+      <div className="features-section-title">
+        Transforming Legal{' '}
+        <span className="features-section-highlight">Justice</span>
+        {' '}for{' '}
+        <span className="features-section-strong">Digital Excellence</span>
+      </div>
+      <div className="features-tabs">
+        {featuresTabs.map((t, i) => (
+          <div
+            key={t.label}
+            className={`features-tab${tab === i ? ' selected' : ''}`}
+            onClick={() => setTab(i)}
+            style={{ cursor: 'pointer' }}
+          >
+            {t.label}
+          </div>
+        ))}
+      </div>
+      <div className="features-content-row">
+        <img
+          className="features-image"
+          src={featuresTabs[tab].image}
+          alt={featuresTabs[tab].label}
+        />
+        <div className="features-content">
+          <div className="features-content-title">{featuresTabs[tab].title}</div>
+          <div className="features-content-desc">{featuresTabs[tab].desc}</div>
+          <div className="features-pointers">
+            {featuresTabs[tab].pointers.map((p, idx) => (
+              <div className="features-pointer" key={idx}>
+                <div className="features-pointer-icon">
+                  {React.cloneElement(p.icon, { color: '#222' })}
+                </div>
+                <div className="features-pointer-title">{p.title}</div>
+                <div className="features-pointer-desc">{p.desc}</div>
+              </div>
+            ))}
+          </div>
+          <button
+            className="features-btn"
+            onClick={() => window.location.href = '/contact-us'}
+          >
+            Try Now
+          </button>
+        </div>
+      </div>
+    </section>
   );
 };
 
