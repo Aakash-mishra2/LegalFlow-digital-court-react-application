@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { motion, AnimatePresence } from "motion/react";
+import { useSpring, animated } from '@react-spring/web';
 import { Container, Grid, Typography, Box } from "@mui/material";
 import lawImg from "../../assets/law.jpg";
 import flatSystemImg from "../../assets/flat-system.jpg";
@@ -50,9 +50,51 @@ const cards = [
 
 const JourneySection = () => {
   const [activeIndex, setActiveIndex] = useState(0);
+  const [direction, setDirection] = useState(0); // -1 for up, 1 for down
+
+  // Animation springs for image and card, triggered by activeIndex and direction
+  const imageSpring = useSpring({
+    opacity: 1,
+    transform: `scale(1) translateY(0px)`,
+    filter: 'blur(0)',
+    from: {
+      opacity: 0,
+      transform: `scale(0.96) translateY(${direction === 1 ? 60 : -60}px)`,
+      filter: 'blur(8px)'
+    },
+    config: { tension: 300, friction: 18 },
+    reset: true,
+  });
+
+  const cardSpring = useSpring({
+    opacity: 1,
+    transform: `scale(1) translateY(0px)`,
+    from: {
+      opacity: 0,
+      transform: `scale(0.98) translateY(${direction === 1 ? 40 : -40}px)`
+    },
+    config: { tension: 300, friction: 18 },
+    reset: true,
+  });
+
+  // Mouse wheel handler for smooth card switching, require larger scroll delta
+  const SCROLL_THRESHOLD = 60; // pixels
+  let scrollAccumulator = 0;
+  const handleWheel = (e) => {
+    scrollAccumulator += e.deltaY;
+    if (scrollAccumulator > SCROLL_THRESHOLD) {
+      setDirection(1);
+      setActiveIndex((prev) => (prev + 1) % cards.length);
+      scrollAccumulator = 0;
+    } else if (scrollAccumulator < -SCROLL_THRESHOLD) {
+      setDirection(-1);
+      setActiveIndex((prev) => (prev - 1 + cards.length) % cards.length);
+      scrollAccumulator = 0;
+    }
+  };
 
   return (
-    <section className="journey-section">
+    <section className="journey-section" onWheel={handleWheel} tabIndex={0} style={{ outline: 'none' }}>
       <Container className="m-0 p-0">
         <Typography
           variant="h3"
@@ -75,7 +117,6 @@ const JourneySection = () => {
           </Box>
         </Typography>
         <Grid
-
           className="flex flex-row justify-between items-center gap-24 p-0 m-0"
         >
           {/* Smaller Image */}
@@ -89,26 +130,21 @@ const JourneySection = () => {
                 overflow: "hidden",
               }}
             >
-              <AnimatePresence mode="wait">
-                <motion.img
-                  key={activeIndex}
-                  src={cards[activeIndex].img}
-                  alt={cards[activeIndex].alt}
-                  initial={{ opacity: 0, scale: 0.96, y: 20, filter: "blur(8px)" }}
-                  animate={{ opacity: 1, scale: 1, y: 0, filter: "blur(0)" }}
-                  exit={{ opacity: 0, scale: 0.96, y: 20, filter: "blur(8px)" }}
-                  transition={{ duration: 0.7, ease: [0.4, 2, 0.3, 1] }}
-                  style={{
-                    width: "100%",
-                    maxHeight: "420px",
-                    maxWidth: "420px",
-                    height: "100%",
-                    objectFit: "cover",
-                    borderRadius: 20,
-                    boxShadow: "0 8px 32px rgba(0,0,0,0.15)",
-                  }}
-                />
-              </AnimatePresence>
+              <animated.img
+                key={activeIndex}
+                src={cards[activeIndex].img}
+                alt={cards[activeIndex].alt}
+                style={{
+                  ...imageSpring,
+                  width: "100%",
+                  maxHeight: "420px",
+                  maxWidth: "420px",
+                  height: "100%",
+                  objectFit: "cover",
+                  borderRadius: 20,
+                  boxShadow: "0 8px 32px rgba(0,0,0,0.15)",
+                }}
+              />
             </Box>
           </Grid>
 
@@ -122,48 +158,39 @@ const JourneySection = () => {
                 justifyContent: "center",
               }}
             >
-              <AnimatePresence mode="wait">
-                {cards.map((card, idx) => (
-                  idx === activeIndex && (
-                    <motion.div
-                      key={card.key}
-                      className={`feature-card${idx === activeIndex ? ' active highlight' : ' inactive'}`}
-                      initial={{ opacity: 0, scale: 0.98, y: 8 }}
-                      animate={{ opacity: 1, scale: 1, y: 0 }}
-                      exit={{ opacity: 0, scale: 0.98, y: 8 }}
-                      transition={{ duration: 0.7, ease: [0.4, 2, 0.3, 1] }}
-                      onClick={() => setActiveIndex(idx)}
-                    >
-                      <Typography
-                        variant="h6"
-                        sx={{
-                          fontWeight: 600,
-                          mb: 0.95,
-                          color:
-                            idx === activeIndex && card.highlight ? "#fff" : "#222",
-                          fontSize: "1.25rem",
-                          fontFamily: "Roboto, sans-serif",
-                          letterSpacing: "-0.3px",
-                        }}
-                      >
-                        {card.title}
-                      </Typography>
-                      <Typography
-                        variant="body1"
-                        sx={{
-                          color:
-                            idx === activeIndex && card.highlight ? "#fff" : "#555",
-                          fontWeight: 600,
-                          lineHeight: 1.6,
-                        }}
-                        className="journey-step-desc"
-                      >
-                        {card.description}
-                      </Typography>
-                    </motion.div>
-                  )
-                ))}
-              </AnimatePresence>
+              <animated.div
+                key={cards[activeIndex].key}
+                className={`feature-card active highlight`}
+                style={cardSpring}
+                onClick={() => setActiveIndex(activeIndex)}
+              >
+                <Typography
+                  variant="h6"
+                  sx={{
+                    fontWeight: 700,
+                    mb: 1.2,
+                    color: '#fff',
+                    textShadow: '0 2px 8px rgba(0,0,0,0.25)',
+                    fontSize: "1.35rem",
+                    fontFamily: "Playfair Display, serif",
+                    letterSpacing: "-0.3px",
+                  }}
+                >
+                  {cards[activeIndex].title}
+                </Typography>
+                <Typography
+                  variant="body1"
+                  sx={{
+                    color: '#f8f8f8',
+                    fontWeight: 600,
+                    lineHeight: 1.7,
+                    textShadow: '0 1px 6px rgba(0,0,0,0.18)',
+                  }}
+                  className="journey-step-desc"
+                >
+                  {cards[activeIndex].description}
+                </Typography>
+              </animated.div>
             </Box>
           </Grid>
         </Grid>

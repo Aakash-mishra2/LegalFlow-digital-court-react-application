@@ -6,7 +6,7 @@ const HeroSection = () => {
   return (
     <section
       style={{
-        marginTop: "50px",
+        margintop: "50px",
         padding: "20px 0",
         background: "transparent",
       }}
