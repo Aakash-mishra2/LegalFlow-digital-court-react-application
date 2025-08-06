@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from "react";
-import api from "./ccmsBase";
-const BASE_URL = process.env.REACT_APP_BASE_URL;
+import axios from "axios";
+const BASE_URL = process.env.REACT_APP_BASE_URL + '/ccms';
 /**
  * Custom hook to fetch all cases for logged in User
  * @param {string} slug - The API endpoint.
@@ -20,8 +20,10 @@ const useGetAllCases = (slug, options = {}) => {
         setError(null);
 
         try {
-            const response = await api.get(url, {
+            const token = JSON.parse(localStorage.getItem('Access-token'));
+            const response = await axios.get(url, {
                 params: options, //Filter object
+                headers: token ? { Authorization: `Bearer ${token}` } : {},
             });
             setData(response.data);
             //openSocket(process.env.REACT_APP_BASE_URL);

@@ -43,7 +43,11 @@ const CaseDetails = () => {
         localStorage.setItem("CCMS_NEW_CASE", JSON.stringify(updatedObject));
 
         try {
-            const response = await api.post('/admin/newcase', updatedObject);
+            const response = await api.post(
+                `${process.env.REACT_APP_BASE_URL}/ccms/admin/newcase`,
+                updatedObject,
+                { headers: { 'Content-Type': 'application/json' } }
+            );
             //update all cases object to render by status tracker
             dispatch(addNewCase(response.data.caseObject));
             setIsLoading(false);

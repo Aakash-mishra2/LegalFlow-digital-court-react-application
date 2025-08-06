@@ -1,4 +1,3 @@
-import { useEffect, useContext } from "react";
 
 import { useNavigate } from "react-router";
 import { useSelector } from "react-redux";
@@ -13,16 +12,12 @@ import ErrorModal from "../../../shared/modals/ErrorModal";
 
 import { setData } from "../../../features/CourtAccount/CaseReducers";
 import { lawyersData, ROLES, STATUS } from "../../../constants/constants";
-import { NotificationsContext } from "../../../shared/contexts/NotificationsContext";
+import errorScreen from "../../../assets/error_screen.png";
 
 const Dashboard = () => {
     const history = useNavigate();
     const userId = useSelector((state) => state.userAccount.userId);
     const role = useSelector((state) => state.userAccount.role);
-
-    const { fetchNotifications } = useContext(NotificationsContext);
-
-
     let filter = {};
     if (role === ROLES.ADMIN) filter = { status: STATUS.FILED };
 
@@ -30,16 +25,24 @@ const Dashboard = () => {
 
     setData(data);
 
-    useEffect(() => {
-        fetchNotifications();
-        // eslint-disable-next-line react-hooks/exhaustive-deps 
-    }, []);
-
     if (loading) { return <><LoadingSpinner asOverlay /></> }
     if (error) { return <ErrorModal error={error} onClear={refetch} /> }
+    // If user and no cases, show error image
+    if (!data?.allCases || !Array.isArray(data.allCases) || data.allCases.length === 0) {
+        return (
+            <div className="bg-gray-200 h-screen w-full flex flex-col items-center justify-center">
+                <img
+                    src={errorScreen}
+                    alt="No cases found"
+                    style={{ maxWidth: 400, width: '80%', cursor: 'pointer', borderRadius: 16, boxShadow: '0 2px 12px rgba(0,0,0,0.08)' }}
+                    onClick={() => history('/new-case')}
+                />
+            </div>
+        );
+    }
     return (
-        <>{
-            role === ROLES.USER ? (
+        <>
+            {role === ROLES.USER ? (
                 <div className="bg-gray-200 h-screen overflow-y-scroll flex flex-row">
                     <div id="ovw-hrn" className="flex flex-col gap-2 mt-4">
                         <Overview data={data} />
@@ -59,11 +62,9 @@ const Dashboard = () => {
                     data={data}
                     refetch={refetch}
                 />
-            )
-        }
-
+            )}
         </>
-    )
+    );
 }
 
 export default Dashboard;

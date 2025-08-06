@@ -41,7 +41,7 @@ const Settings = () => {
             return window.alert("Confirm password inputs do not match. Try again.")
         }
         setEmailVerified((prev) => !prev);
-        const token = localStorage.getItem("Access-token");
+        const token = localStorage.getItem("token");
         console.log('token', token);
 
         const requestBody = { new_password: newPassword };
@@ -52,7 +52,7 @@ const Settings = () => {
                 'Authorization': token ? `Bearer ${token}` : ''  // Add the token in Authorization header
             };
 
-            await axios.patch(`${process.env.REACT_APP_BASE_URL}/user/reset-password/${userId}`, requestBody, { headers });
+            await axios.patch(`${process.env.REACT_APP_BASE_URL}/ccms/user/reset-password/${userId}`, requestBody, { headers });
             window.alert('Password reset succesfull.');
             //setEmailVerified(false);
         }

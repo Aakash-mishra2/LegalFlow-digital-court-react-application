@@ -1,20 +1,20 @@
 import React, { useEffect, useState } from "react";
 import './Navbar.css';
-import logo from "../assets/court-background.png"; // Use your logo path
-
+import logo from '../assets/front/small_logo.png';
+import { useNavigate } from "react-router";
 const sections = [
   { id: "hero-section-wrapper", label: "Get Started" },
   { id: "journey-section-wrapper", label: "Why LegalFlow" },
   { id: "inventory-section-wrapper", label: "Outcomes" },
-  { id: "stats-section-wrapper", label: "Stats" },
+  // { id: "stats-section-wrapper", label: "Stats" },
   { id: "steps-section-wrapper", label: "Steps" },
   { id: "features-section-wrapper", label: "Features" },
-  
+
 ];
 
 export default function Navbar() {
   const [activeSection, setActiveSection] = useState(sections[0].id);
-
+  const router = useNavigate();
   useEffect(() => {
     const handleScroll = () => {
       let found = sections[0].id;
@@ -45,7 +45,7 @@ export default function Navbar() {
     <nav className="navbar">
       <div className="navbar-logo">
         <img src={logo} alt="LegalFlow Logo" className="navbar-logo-img" />
-        <span className="navbar-appname">LegalFlow</span>
+
       </div>
       <ul className="navbar-menu">
         {sections.map((section) => (
@@ -57,6 +57,7 @@ export default function Navbar() {
             {section.label}
           </li>
         ))}
+        <li className="navbar-menu-item" onClick={() => router("/auth")}>Login</li>
       </ul>
     </nav>
   );

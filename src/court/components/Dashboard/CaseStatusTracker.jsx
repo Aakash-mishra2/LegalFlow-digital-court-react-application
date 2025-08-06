@@ -7,9 +7,9 @@ import { convertToMaskedFormat } from "../../../shared/util/generalFunc";
 const CaseStatusTracker = ({ data }) => {
     const [openDetails, setOpenDetails] = useState(false);
     const [selectedCase, setSelectedCase] = useState({});
-    data = data.slice().reverse();
+    data = Array.isArray(data) && data.length > 0 ? data.slice().reverse() : [];
     const handleOpenModal = (index) => {
-        setSelectedCase(data[index]);
+        data.length() > 0 && setSelectedCase(data[index]);
         setOpenDetails(open => !open);
     }
 
@@ -24,7 +24,7 @@ const CaseStatusTracker = ({ data }) => {
                 />
                 <div className="w-full h-full overflow-hidden overflow-y-scroll custom-scrollbar ">
                     <div className="flex flex-col gap-2 ">
-                        {data.map((item, index) => {
+                        {Array.isArray(data) && data.length > 0 ? data.map((item, index) => {
                             const {
                                 caseTitle = "New Application",
                                 judge: { judgeName = "To Be Decided" } = {},
@@ -51,7 +51,7 @@ const CaseStatusTracker = ({ data }) => {
                                     </div>
                                 </div>
                             )
-                        })
+                        }) : null
                         }
                     </div>
                 </div>

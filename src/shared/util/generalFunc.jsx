@@ -26,6 +26,13 @@ export function convertToMaskedFormat(input) {
     if (!input || input.length < 4) {
         throw new Error("Input string is too short.");
     }
-    const last4Digits = input.slice(-4).toUpperCase(); // Get the last 4 characters
-    return `XXXXX${last4Digits}`;
+    if (Array.isArray(input) && input.length > 0) {
+        const last4Digits = input.slice(-4).toUpperCase(); // Get the last 4 characters
+        return `XXXXX${last4Digits}`;
+    }
+    if (typeof input === 'string') {
+        const last4Digits = input.slice(-4).toUpperCase(); // Get the last 4 characters
+        return `XXXXX${last4Digits}`;
+    }
+    throw new Error("Input must be a string or array with length > 0.");
 }

@@ -16,7 +16,7 @@ import Home from "./components/Home";
 import ContactUsForm from "./components/ContactUsForm";
 import "./App.css";
 import NewCases from "./court/components/NewCase/NewCases";
-import Authenticate from "./components/Authenticate";
+import Authenticate from "./components/dashboard/Authenticate";
 
 const App = () => {
   const isloggedIn = useSelector((state) => state.userAccount.isloggedIn);

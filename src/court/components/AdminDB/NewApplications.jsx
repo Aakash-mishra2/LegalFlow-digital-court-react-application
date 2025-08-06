@@ -5,7 +5,7 @@ import CaseApplicationsModal from "../../../shared/modals/CaseApplicationsModal"
 const NewApplications = ({ refetch, data }) => {
     const [openDetails, setOpenDetails] = useState(false);
     const [selectedCase, setSelectedCase] = useState({});
-    data = data.data.slice().reverse();
+    data = Array.isArray(data?.data?.allCases) && data.data.allCases.length() > 0 && data.data.slice().reverse();
 
     const handleOpenModal = (index) => {
         setSelectedCase(data[index]);
