@@ -3,7 +3,6 @@ import { createSlice } from '@reduxjs/toolkit';
 import { ROLES } from '../config/constants';
 
 const initialState = {
-    isloggedIn: false,
     userId: '',
     userName: '',
     role: ROLES.USER,
@@ -14,16 +13,15 @@ const loginSlice = createSlice({
     initialState,
     reducers: {
         login: (state, action) => {
-            state.isloggedIn = true;
             state.userId = action.payload.userId;
             state.userName = action.payload.userName;
             state.role = action.payload.role || ROLES.USER;
         },
         logout: (state) => {
-            state.isloggedIn = false;
             state.userId = '';
             state.userName = '';
             state.role = ROLES.USER;
+            localStorage.removeItem('Access-token');
         },
         updateProfile: (state, action) => {
             state.userName = action.payload.userName || state.userName;

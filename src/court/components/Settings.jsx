@@ -4,7 +4,6 @@ import { useSelector } from "react-redux";
 import { VALIDATOR_MINLENGTH, VALIDATOR_REQUIRE } from "../../shared/util/validators";
 import Input from "../../shared/formElements/Input";
 import Button from "../../shared/formElements/Button";
-import api from "../../api/ccmsBase";
 import LoadingSpinner from "../../shared/UIelements/LoadingSpinner";
 import ErrorModal from "../../shared/modals/ErrorModal";
 import VerifyOtpModal from "../../shared/modals/VerifyOtpModal";
@@ -36,14 +35,11 @@ const Settings = () => {
     //for reset password api call
     const submitHandler = async (event) => {
         event.preventDefault();
-        console.log('user id', userId);
         if (newPassword !== confirmNewPassword) {
             return window.alert("Confirm password inputs do not match. Try again.")
         }
         setEmailVerified((prev) => !prev);
-        const token = localStorage.getItem("token");
-        console.log('token', token);
-
+        const token = localStorage.getItem("Access-token");
         const requestBody = { new_password: newPassword };
 
         try {
@@ -66,22 +62,29 @@ const Settings = () => {
     //for two factor authentication by otp on email
     const sendOtp = async (event) => {
         event.preventDefault();
-        setOtp("")
+        setOtp("");
         setIsLoading(true);
         try {
-            await api.post('/otp/generate-otp', {
-                email: formState.inputs.email.value,
-                password: formState.inputs.current_password.value,
-            })
+            const token = localStorage.getItem('Access-token');
+            const baseUrl = process.env.REACT_APP_BASE_URL || '';
+            await axios.post(
+                `${baseUrl}/ccms/otp/generate-otp`,
+                {
+                    email: formState.inputs.email.value,
+                    password: formState.inputs.current_password.value,
+                },
+                {
+                    headers: token ? { Authorization: `Bearer ${token}` } : {},
+                }
+            );
             setIsLoading(false);
             setOpenOtp(true);
-        }
-        catch (error) {
+        } catch (error) {
             setIsLoading(false);
-            setError(error.response.data.message);
+            setError(error.response?.data?.message || error.message);
             return;
         }
-    }
+    };
 
     return (
         <div className="p-4 h-screen bg-gray-200">

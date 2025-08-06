@@ -5,8 +5,9 @@ import { useDispatch } from "react-redux";
 import { useForm } from "../../../shared/hooks/form-hook";
 import { addNewCase } from "../../../features/CourtAccount/CaseReducers";
 import LoadingSpinner from "../../../shared/UIelements/LoadingSpinner";
-import api from "../../../api/ccmsBase";
 import PdfUploader from "../../../shared/formElements/PdfUploader";
+import axios from "axios";
+import ErrorModal from "../../../shared/modals/ErrorModal";
 
 const CaseDetails = () => {
     const history = useNavigate();
@@ -43,10 +44,16 @@ const CaseDetails = () => {
         localStorage.setItem("CCMS_NEW_CASE", JSON.stringify(updatedObject));
 
         try {
-            const response = await api.post(
+            const token = localStorage.getItem('Access-token');
+            const response = await axios.post(
                 `${process.env.REACT_APP_BASE_URL}/ccms/admin/newcase`,
                 updatedObject,
-                { headers: { 'Content-Type': 'application/json' } }
+                {
+                    headers: {
+                        'Content-Type': 'application/json',
+                        ...(token ? { Authorization: `Bearer ${token}` } : {})
+                    }
+                }
             );
             //update all cases object to render by status tracker
             dispatch(addNewCase(response.data.caseObject));
@@ -58,8 +65,6 @@ const CaseDetails = () => {
             setIsLoading(false);
             if (err.response) {
                 setError(err.response.data.message);
-                console.log(err.response.status);
-                console.log(error);
             } else {
                 setError(err.message);
             }
@@ -75,6 +80,16 @@ const CaseDetails = () => {
     return (
         <>
             {isLoading && <LoadingSpinner asOverlay />}
+            {error && error.trim() !== '' && (
+                <ErrorModal
+                    show={!!error.length() > 0}
+                    onCancel={() => setError("")}
+                    header="Error"
+                    footer={<button onClick={() => setError("")} className="px-4 py-2 bg-blue-500 text-white rounded">Okay</button>}
+                >
+                    <p>{error}</p>
+                </ErrorModal>
+            )}
             <div className="mt-4 mb-0 p-4 w-full shadow-card bg-white">
                 <p className="text-md font-circular font-thin mt-2">Case Details</p>
                 <div className="flex flex-row gap-2">
@@ -89,14 +104,8 @@ const CaseDetails = () => {
                                 <div className="mb-4">
                                     <p className="text-md text-light mb-1 text-gray-600 font-cicular">Uploaded documents</p>
                                     {formState.inputs.documents.value.map((item, index) =>
-                                        // <PdfDownloader
-                                        //     title="First complaint"
-                                        //     pdfTitle={`${item.fileTitle} : ${item.fileName}`}
-                                        //     pdfId={item.fileId}
-                                        // />
                                         <p key={index} > {`${item.fileTitle} : ${item.fileName}`}</p>
-                                    )
-                                    }
+                                    )}
                                 </div>
                                 <button className="sticky bottom-0 rounded-md shadow-card text-white bg-blue-500 py-2 px-4 w-4/5" onClick={submitApplication} >Submit Application</button>
                             </div>

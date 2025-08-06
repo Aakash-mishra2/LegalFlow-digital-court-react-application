@@ -4,7 +4,7 @@ import Dropdown from "../formElements/Dropdown";
 import { VscChromeClose } from "react-icons/vsc";
 import { allCourts } from "../../constants/constants";
 import Button from "../formElements/Button";
-import api from "../../api/ccmsBase";
+import axios from "axios";
 import { TooltipContainer } from "../UIelements/TooltipContainer";
 import DropdownWithOptions from "../UIelements/DropdownWithOptions";
 
@@ -49,7 +49,15 @@ const EditCaseDetailsModal = ({
         }
 
         try {
-            const response = await api.put(`/admin/update-case/${item._id}`, body)
+            const token = localStorage.getItem('Access-token');
+            const baseUrl = process.env.REACT_APP_BASE_URL || '';
+            const response = await axios.put(
+                `${baseUrl}/ccms/admin/update-case/${item._id}`,
+                body,
+                {
+                    headers: token ? { Authorization: `Bearer ${token}` } : {},
+                }
+            );
             if (response) {
                 closeModal();
                 let temp = window.alert(`Case ${newTitle} schedule updated succesfully. `);

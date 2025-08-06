@@ -1,5 +1,5 @@
 import React, { createContext, useState, useEffect } from 'react';
-import api from '../../api/ccmsBase';
+import axios from 'axios';
 import { useSelector } from 'react-redux';
 
 export const NotificationsContext = createContext();
@@ -11,7 +11,14 @@ export const NotificationsProvider = ({ children }) => {
     // Fetch notifications from the backend
     const fetchNotifications = async () => {
         try {
-            const response = await api.get(`/notifications/${userId}`); // Replace with your API endpoint
+            const token = localStorage.getItem('Access-token');
+            const baseUrl = process.env.REACT_APP_BASE_URL || '';
+            const response = await axios.get(
+                `${baseUrl}/ccms/notifications/${userId}`,
+                {
+                    headers: token ? { Authorization: `Bearer ${token}` } : {},
+                }
+            );
             setNotifications(response.data);
             setUnreadCount(response.data.filter((notif) => !notif.read).length);
         } catch (error) {

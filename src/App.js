@@ -1,11 +1,5 @@
-import React, { Suspense } from "react";
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  Navigate,
-} from "react-router-dom";
-import { useSelector } from "react-redux";
+import React, { Suspense, useEffect } from "react";
+import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import Sidebar from "./shared/Navigation/Sidebar";
 import LoadingSpinner from "./components/LoadingSpinner";
 import Payments from "./court/components/Payments";
@@ -19,13 +13,38 @@ import NewCases from "./court/components/NewCase/NewCases";
 import Authenticate from "./components/dashboard/Authenticate";
 
 const App = () => {
-  const isloggedIn = useSelector((state) => state.userAccount.isloggedIn);
+  const isloggedIn = !!localStorage.getItem('Access-token');
+  // Keep user on same route after reload if logged in
+  useEffect(() => {
+    if (isloggedIn) {
+      const currentPath = window.location.pathname;
+      // If user is on /auth or /, redirect to /dashboard
+      if (currentPath === '/auth' || currentPath === '/') {
+        window.history.replaceState({}, '', '/dashboard');
+      }
+    }
+    else if (!localStorage.getItem('Access-token')) {
+      const currentPath = window.location.pathname;
+      // If user is on /auth or /, redirect to /dashboard
+      if (currentPath === '/auth' || currentPath === '/') {
+        window.history.replaceState({}, '.');
+      }
+    }
+  }, [isloggedIn]);
+
+  useEffect(() => {
+    const handleStorage = () => {
+      //setIsloggedIn(!!localStorage.getItem('Access-token'));
+    };
+    window.addEventListener('storage', handleStorage);
+    return () => window.removeEventListener('storage', handleStorage);
+  }, []);
 
   let routes;
   if (isloggedIn) {
     routes = (
       <Routes>
-        <Route path="/" element={<Navigate to={"/dashboard"} />} />
+        <Route path="/" element={<Dashboard />} />
         <Route path="/new-case" element={<NewCases />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/payments" element={<Payments />} />

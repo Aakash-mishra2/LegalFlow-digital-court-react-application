@@ -4,7 +4,7 @@ import PdfDownloader from "../formElements/PdfDownloader";
 import { defaultCaseObject } from "../../constants/data/defaultCase";
 import React, { useState } from "react";
 import Button from "../formElements/Button";
-import api from '../../api/ccmsBase';
+import axios from 'axios';
 
 const CaseApplicationsModal = ({
     data,
@@ -41,7 +41,15 @@ const CaseApplicationsModal = ({
         event.preventDefault();
         if (!checkedState.every((state) => Boolean)) return window.alert("Please verify all documents before submitting.")
         try {
-            const response = await api.put(`/admin/update-case/${data._id}`, { status: "pending" })
+            const token = localStorage.getItem('Access-token');
+            const baseUrl = process.env.REACT_APP_BASE_URL || '';
+            const response = await axios.put(
+                `${baseUrl}/ccms/admin/update-case/${data._id}`,
+                { status: "pending" },
+                {
+                    headers: token ? { Authorization: `Bearer ${token}` } : {},
+                }
+            );
             if (response) {
                 let temp = window.alert(`Case ${data.caseTitle} application is accepted. `);
                 if (temp === undefined) {

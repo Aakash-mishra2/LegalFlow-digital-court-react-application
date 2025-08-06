@@ -1,15 +1,35 @@
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+
+import { useNavigate } from "react-router";
 import { useDispatch } from "react-redux";
 import { login } from "../../store/loginSlice";
 import ErrorModal from "../../shared/modals/ErrorModal";
 import LoadingSpinner from "../../shared/UIelements/LoadingSpinner";
-import api from "../../api/ccmsBase";
 import './auth.styles.css';
 import logo from '../../assets/front/logo.png';
 import bgLogo from '../../assets/law justice.jpg';
+import axios from "axios";
 const Authenticate = () => {
   const dispatch = useDispatch();
+  // Use localStorage for login state
+  const isLoggedIn = !!localStorage.getItem('Access-token');
+  const navigate = useNavigate();
+
+  // Redirect to /dashboard if already logged in (on reload or navigation)
+  useEffect(() => {
+    if (isLoggedIn) {
+      navigate('/dashboard', { replace: true });
+    }
+    // Listen for popstate (back/forward navigation)
+    const handlePopState = () => {
+      if (!!localStorage.getItem('Access-token')) {
+        navigate('/dashboard', { replace: true });
+      }
+    };
+    window.addEventListener('popstate', handlePopState);
+    return () => window.removeEventListener('popstate', handlePopState);
+  }, [isLoggedIn, navigate]);
   const [isLogin, setIsLogin] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
@@ -22,6 +42,21 @@ const Authenticate = () => {
     addressDistrict: '',
     remember: false,
   });
+
+  // Redirect to /dashboard if already logged in (on reload or navigation)
+  useEffect(() => {
+    if (isLoggedIn) {
+      navigate('/dashboard', { replace: true });
+    }
+    // Listen for popstate (back/forward navigation)
+    const handlePopState = () => {
+      if (!!localStorage.getItem('Access-token')) {
+        navigate('/dashboard', { replace: true });
+      }
+    };
+    window.addEventListener('popstate', handlePopState);
+    return () => window.removeEventListener('popstate', handlePopState);
+  }, [isLoggedIn, navigate]);
 
   const handleInputChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -37,7 +72,7 @@ const Authenticate = () => {
     if (isLogin) {
       try {
         const baseUrl = process.env.REACT_APP_BASE_URL || '';
-        const response = await api.post(
+        const response = await axios.post(
           `${baseUrl}/ccms/user/login`,
           {
             email: formState.email,
@@ -48,6 +83,7 @@ const Authenticate = () => {
         setIsLoading(false);
         const { token } = response.data;
         localStorage.setItem('Access-token', JSON.stringify(token));
+        window.location.replace('/dashboard');
         dispatch(
           login({
             userId: response.data.user.id,
@@ -63,7 +99,7 @@ const Authenticate = () => {
     } else {
       try {
         const baseUrl = process.env.REACT_APP_BASE_URL || '';
-        const response = await api.post(
+        const response = await axios.post(
           `${baseUrl}/ccms/user/signup`,
           {
             fullName: formState.fullName,
@@ -78,6 +114,7 @@ const Authenticate = () => {
         setIsLoading(false);
         const { token } = response.data;
         localStorage.setItem('Access-token', token);
+        window.location.replace('/dashboard');
         dispatch(
           login({
             userId: response.data.user.id,

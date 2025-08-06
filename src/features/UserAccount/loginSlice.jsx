@@ -23,6 +23,7 @@ export const loginSlice = createSlice({
             state.userId = '';
             state.userName = '';
             state.role = ROLES.USER;
+            localStorage.removeItem('Access-token');
         }
     }
 });

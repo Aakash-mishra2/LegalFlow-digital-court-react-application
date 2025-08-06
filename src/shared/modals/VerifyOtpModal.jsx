@@ -2,7 +2,7 @@ import Button from '../formElements/Button';
 import CommonModal from './Modal';
 import OtpInput from '../UIelements/OtpInput';
 import { useState } from 'react';
-import api from "../../api/ccmsBase";
+import axios from "axios";
 
 const VerifyOtpModal = ({
     show,
@@ -22,20 +22,27 @@ const VerifyOtpModal = ({
         event.preventDefault();
         setIsLoading(true);
         try {
-            await api.post(`/otp/verify-otp`, {
-                email: email,
-                otp: value,
-            })
+            const token = localStorage.getItem('Access-token');
+            const baseUrl = process.env.REACT_APP_BASE_URL || '';
+            await axios.post(
+                `${baseUrl}/ccms/otp/verify-otp`,
+                {
+                    email: email,
+                    otp: value,
+                },
+                {
+                    headers: token ? { Authorization: `Bearer ${token}` } : {},
+                }
+            );
             setIsLoading(false);
             onVerificationSuccess();
         }
         catch (error) {
-            setErrorMsg(error.response.data.message);
+            setErrorMsg(error.response?.data?.message || error.message);
             setIsLoading(false);
-
             return;
         }
-    }
+    };
     return (
         <CommonModal
             openModal={show}
