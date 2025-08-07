@@ -13,7 +13,7 @@ import axios from "axios";
 const Authenticate = () => {
   const dispatch = useDispatch();
   // Use localStorage for login state
-  const isLoggedIn = !!localStorage.getItem('Access-token');
+  const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
   const navigate = useNavigate();
 
   // Redirect to /dashboard if already logged in (on reload or navigation)
@@ -66,6 +66,7 @@ const Authenticate = () => {
     }));
   };
 
+  // ...existing code...
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsLoading(true);
@@ -83,6 +84,7 @@ const Authenticate = () => {
         setIsLoading(false);
         const { token } = response.data;
         localStorage.setItem('Access-token', JSON.stringify(token));
+        localStorage.setItem('isLoggedIn', 'true'); // <-- Add this line
         window.location.replace('/dashboard');
         dispatch(
           login({
@@ -114,6 +116,7 @@ const Authenticate = () => {
         setIsLoading(false);
         const { token } = response.data;
         localStorage.setItem('Access-token', token);
+        localStorage.setItem('isLoggedIn', 'true'); // <-- Add this line
         window.location.replace('/dashboard');
         dispatch(
           login({
@@ -129,6 +132,7 @@ const Authenticate = () => {
       }
     }
   };
+  // ...existing code...
 
   const clearError = () => setError(null);
 
@@ -239,17 +243,17 @@ const Authenticate = () => {
         </button>
       </form>
       <div className="auth-footer" style={{ marginBottom: 18 }}>
-          {isLogin ? (
-            <>
-              Don't have an account?
-              <span className="auth-link" onClick={() => setIsLogin(false)}> Sign up</span>
-            </>
-          ) : (
-            <>
-              Already have an account?
-              <span className="auth-link" onClick={() => setIsLogin(true)}> Log in</span>
-            </>
-          )}
+        {isLogin ? (
+          <>
+            Don't have an account?
+            <span className="auth-link" onClick={() => setIsLogin(false)}> Sign up</span>
+          </>
+        ) : (
+          <>
+            Already have an account?
+            <span className="auth-link" onClick={() => setIsLogin(true)}> Log in</span>
+          </>
+        )}
       </div>
       <div className="auth-bg-illus">
         {/* You can add a background illustration image here if desired */}

@@ -1,5 +1,5 @@
 
-import React, { createContext, useContext, useState } from 'react';
+import React, { createContext, useContext, useState, useEffect } from 'react';
 
 const NotificationsContext = createContext();
 
@@ -13,7 +13,6 @@ export const useNotifications = () => {
 
 const NotificationsProvider = ({ children }) => {
   const [notifications, setNotifications] = useState([]);
-
   const addNotification = (notification) => {
     setNotifications(prev => [...prev, { ...notification, id: Date.now() }]);
   };
@@ -21,6 +20,9 @@ const NotificationsProvider = ({ children }) => {
   const removeNotification = (id) => {
     setNotifications(prev => prev.filter(notif => notif.id !== id));
   };
+  useEffect(() => {
+    localStorage.clear();
+  }, []);
 
   const value = {
     notifications,
