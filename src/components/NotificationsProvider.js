@@ -13,13 +13,10 @@ export const useNotifications = () => {
 
 const NotificationsProvider = ({ children }) => {
   const [notifications, setNotifications] = useState([]);
-  const addNotification = (notification) => {
-    setNotifications(prev => [...prev, { ...notification, id: Date.now() }]);
-  };
+  const addNotification = (notification) => setNotifications(prev => [...prev, { ...notification, id: Date.now() }]);
 
-  const removeNotification = (id) => {
-    setNotifications(prev => prev.filter(notif => notif.id !== id));
-  };
+  const removeNotification = (id) => setNotifications(prev => prev.filter(notif => notif.id !== id));
+
   useEffect(() => {
     localStorage.clear();
   }, []);
